@@ -1,0 +1,6 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Κανονικές Εκφράσεις}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Ερώτημα α}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Ερώτημα β}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Ερώτημα γ}{1}{subsection.1.3}%
+\contentsline {subsection}{\nameref {subsection2}}{1}{subsection.1.3}%

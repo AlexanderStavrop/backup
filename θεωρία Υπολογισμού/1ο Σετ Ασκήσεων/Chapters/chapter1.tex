@@ -1,0 +1,44 @@
+\section{Κανονικές Εκφράσεις}
+
+
+\subsection[Ερώτημα α]{\textbf{α) }} L = \{w $\in \{a, b\}^*$ : η w περιέχει ακριβώς 2 εμφανίσεις του a και άρτιο αριθμό από b\}
+\begin{equation*}
+	L = \mathcal{L} \Bigg( (bb)^* \bigg( \Big( (ab \cup ba) (bb)^*(ab \cup ba) \Big)  \bigcup    \Big(aa\Big)  \bigg) (bb)^*\Bigg)
+\end{equation*}
+
+\subsection[Ερώτημα β]{\textbf{β) }} L = \{w $\in {a, b}^*$ : η w αρχίζει και τελειώνει με το ίδιο σύμβολο και έχει περιττό μήκος\}
+\begin{equation*}
+	L = \mathcal{L} \Bigg( \bigg(  a \Big( (a \cup b)(a \cup b) \Big)^* (a \cup b) a \bigg)  \bigcup   \bigg( b \Big( (a \cup b)(a \cup b) \Big)^* (a \cup b) b \bigg) \Bigg)
+\end{equation*}
+
+\subsection[Ερώτημα γ]{\textbf{γ) }} L = \{w $\in {a, b}^*$ : το πλήθος των a στην w είναι 4k + 1 (k $\geq$ 0) και δεν εμφανίζονται συνεχόμενα a\}
+\begin{equation*}
+	L = \mathcal{L} \bigg( b^*(a b^+a b^+a b^+a b^+)^*ab^* \bigg)
+\end{equation*}
+
+
+
+\subsection*{Subsection 2}
+\label{subsection2}
+\addcontentsline{toc}{subsection}{\nameref{subsection2}}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/university.png}
+		\caption{subcaption 1}
+		\label{circ:1_phase_D}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Images/university.png}
+		\caption{subcaption 1}
+		\label{circ:1_phase_Th}
+	\end{subfigure}
+	\caption{Caption 1}
+\end{figure}
+
+\begin{equation}
+	a \leq \tan^{-1} \left(\frac{\omega L}{R} \right) \label{eq:Q11_V_o}
+\end{equation}
