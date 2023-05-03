@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.4)  3 MAY 2023 02:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  3 MAY 2023 08:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1398,15 +1398,15 @@ LaTeX Font Info:    ... okay on input line 119.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(39.02531pt, 536.24437pt, 39.02531pt)
-* v-part:(T,H,B)=(39.02531pt, 716.91936pt, 39.02531pt)
+* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
+* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=536.24437pt
-* \textheight=716.91936pt
-* \oddsidemargin=-33.24467pt
-* \evensidemargin=-33.24467pt
-* \topmargin=-70.24467pt
+* \textwidth=527.57014pt
+* \textheight=708.24513pt
+* \oddsidemargin=-28.90756pt
+* \evensidemargin=-28.90756pt
+* \topmargin=-65.90756pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -1513,11 +1513,11 @@ Package hyperref Info: Link coloring ON on input line 119.
 \openout2 = `Titlepage/title.aux'.
 
  (./Titlepage/title.tex
-<Images/university.png, id=26, 67.452pt x 108.1641pt>
+<Images/university.png, id=71, 67.452pt x 108.1641pt>
 File: Images/university.png Graphic file (type png)
 <use Images/university.png>
 Package pdftex.def Info: Images/university.png  used on input line 25.
-(pdftex.def)             Requested size: 160.87494pt x 258.02788pt.
+(pdftex.def)             Requested size: 158.27264pt x 253.85388pt.
 
 [1
 
@@ -1537,11 +1537,7 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 2.
 
 (/usr/share/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-)
-
-Package hyperref Warning: Suppressing empty link on input line 6.
-
-)
+))
 \tf@toc=\write5
 \openout5 = `"Computation theory.toc"'.
 
@@ -1558,73 +1554,89 @@ l.127     \newpage
 \openout2 = `Chapters/chapter1.aux'.
 
  (./Chapters/chapter1.tex
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 4
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
 .
 
 (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
-File: Images/university.png Graphic file (type png)
-<use Images/university.png>
-Package pdftex.def Info: Images/university.png  used on input line 29.
-(pdftex.def)             Requested size: 254.71524pt x 408.54056pt.
-File: Images/university.png Graphic file (type png)
-<use Images/university.png>
-Package pdftex.def Info: Images/university.png  used on input line 35.
-(pdftex.def)             Requested size: 268.12218pt x 430.04425pt.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
-)
+ []
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.129     \include{Chapters/chapter1}
-                                      [1
+l.77 \clearpage
+                [1
 
-] [2]
+]
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 125.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 125.
+
+[2
+
+] [3
+
+]) [4]
 \openout2 = `Chapters/chapter2.aux'.
 
  (./Chapters/chapter2.tex)
 \openout2 = `Chapters/chapter3.aux'.
 
-
-(./Chapters/chapter3.tex)
+ (./Chapters/chapter3.tex)
 \openout2 = `Chapters/chapter4.aux'.
 
- (./Chapters/chapter4.tex) (./Computation theory.aux
-(./Titlepage/title.aux) (./Chapters/chapter1.aux) (./Chapters/chapter2.aux)
-(./Chapters/chapter3.aux) (./Chapters/chapter4.aux))
-Package rerunfilecheck Info: File `"Computation theory".out' has not changed.
-(rerunfilecheck)             Checksum: DEF6D0ABADEC66560C0D8C15F878A322;631.
+
+(./Chapters/chapter4.tex) (./Computation theory.aux (./Titlepage/title.aux)
+(./Chapters/chapter1.aux) (./Chapters/chapter2.aux) (./Chapters/chapter3.aux)
+(./Chapters/chapter4.aux))
+
+Package rerunfilecheck Warning: File `"Computation theory".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Computation theory".out':
+(rerunfilecheck)             Before: F05A7504402829C3168F09B8FD871B26;2649
+(rerunfilecheck)             After:  0996A2BDF44BC1724D5FB6948D012AAA;2909.
  ) 
 Here is how much of TeX's memory you used:
- 31698 strings out of 476025
- 608725 string characters out of 5796533
- 1857388 words of memory out of 5000000
- 51547 multiletter control sequences out of 15000+600000
+ 31990 strings out of 476025
+ 614192 string characters out of 5796533
+ 1886388 words of memory out of 5000000
+ 51822 multiletter control sequences out of 15000+600000
  522518 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,8n,89p,475b,545s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,11n,89p,475b,1004s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/
-grmn1095.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pfb></u
-sr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texmf-d
-ist/fonts/type1/public/cbfonts/grxn1440.pfb>
-Output written on "Computation theory.pdf" (4 pages, 232149 bytes).
+cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grmn1095.pfb></
+usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pfb></usr/share/texmf-
+dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texmf-dist/fonts/type1
+/public/cbfonts/grxn1440.pfb>
+Output written on "Computation theory.pdf" (6 pages, 265331 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 159 compressed objects within 2 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
