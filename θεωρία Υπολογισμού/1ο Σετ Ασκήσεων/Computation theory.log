@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  3 MAY 2023 08:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.4)  3 MAY 2023 22:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1360,7 +1360,8 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box138
 )
 (./Computation theory.aux (./Titlepage/title.aux) (./Chapters/chapter1.aux)
-(./Chapters/chapter2.aux) (./Chapters/chapter3.aux) (./Chapters/chapter4.aux))
+(./Chapters/chapter2.aux) (./Chapters/chapter3.aux) (./Chapters/chapter4.aux)
+(./Chapters/chapter5.aux))
 \openout1 = `"Computation theory.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
@@ -1513,7 +1514,7 @@ Package hyperref Info: Link coloring ON on input line 119.
 \openout2 = `Titlepage/title.aux'.
 
  (./Titlepage/title.tex
-<Images/university.png, id=71, 67.452pt x 108.1641pt>
+<Images/university.png, id=83, 67.452pt x 108.1641pt>
 File: Images/university.png Graphic file (type png)
 <use Images/university.png>
 Package pdftex.def Info: Images/university.png  used on input line 25.
@@ -1562,81 +1563,609 @@ File: omscmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-
- []
-
-
+)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.77 \clearpage
-                [1
+l.129     \include{Chapters/chapter1}
+                                      [1
+
+]
+\openout2 = `Chapters/chapter2.aux'.
+
+ (./Chapters/chapter2.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+) [2
+
+
+
+]
+\openout2 = `Chapters/chapter3.aux'.
+
+ (./Chapters/chapter3.tex
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 23.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 23.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 55.
+
+[3
+
+
 
 ]
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 125.
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
 
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 125.
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
 
-[2
 
-] [3
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
 
-]) [4]
-\openout2 = `Chapters/chapter2.aux'.
 
- (./Chapters/chapter2.tex)
-\openout2 = `Chapters/chapter3.aux'.
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
 
- (./Chapters/chapter3.tex)
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 87.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 87.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--106
+
+ []
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 109.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 109.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 144.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 144.
+
+[4
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 169--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--171
+
+ []
+
+[5
+
+] [6
+
+]) [7
+
+]
 \openout2 = `Chapters/chapter4.aux'.
 
+ (./Chapters/chapter4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 11--13
 
-(./Chapters/chapter4.tex) (./Computation theory.aux (./Titlepage/title.aux)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--21
+
+ []
+
+) [8
+
+
+
+]
+\openout2 = `Chapters/chapter5.aux'.
+
+ (./Chapters/chapter5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--64
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--78
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
+
+ []
+
+[9
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 103--106
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--120
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--159
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--186
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 192--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 192--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--252
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--286
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--286
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 297--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--315
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--315
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--330
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--330
+
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12]
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 376.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 376.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+
+LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
+
+) [13] (./Computation theory.aux (./Titlepage/title.aux)
 (./Chapters/chapter1.aux) (./Chapters/chapter2.aux) (./Chapters/chapter3.aux)
-(./Chapters/chapter4.aux))
-
-Package rerunfilecheck Warning: File `"Computation theory".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Computation theory".out':
-(rerunfilecheck)             Before: F05A7504402829C3168F09B8FD871B26;2649
-(rerunfilecheck)             After:  0996A2BDF44BC1724D5FB6948D012AAA;2909.
+(./Chapters/chapter4.aux) (./Chapters/chapter5.aux))
+Package rerunfilecheck Info: File `"Computation theory".out' has not changed.
+(rerunfilecheck)             Checksum: F8919EDC3DCB4F3055E100CDF766BDF3;3039.
  ) 
 Here is how much of TeX's memory you used:
- 31990 strings out of 476025
- 614192 string characters out of 5796533
- 1886388 words of memory out of 5000000
- 51822 multiletter control sequences out of 15000+600000
- 522518 words of font info for 64 fonts, out of 8000000 for 9000
+ 32083 strings out of 476025
+ 616024 string characters out of 5796533
+ 1880388 words of memory out of 5000000
+ 51876 multiletter control sequences out of 15000+600000
+ 526153 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,89p,475b,1004s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,23n,89p,905b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grmn1095.pfb></
-usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pfb></usr/share/texmf-
-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texmf-dist/fonts/type1
-/public/cbfonts/grxn1440.pfb>
-Output written on "Computation theory.pdf" (6 pages, 265331 bytes).
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
+usr/share/texmf-dist/fonts/type1/public/cbfonts/grmn1095.pfb></usr/share/texmf-
+dist/fonts/type1/public/cbfonts/grmn1200.pfb></usr/share/texmf-dist/fonts/type1
+/public/cbfonts/grxn1095.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/
+grxn1200.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></u
+sr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1728.pfb>
+Output written on "Computation theory.pdf" (15 pages, 331488 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 159 compressed objects within 2 object streams
- 26 named destinations out of 1000 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 234 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 170 words of extra memory for PDF output out of 10000 (max. 10000000)
 
