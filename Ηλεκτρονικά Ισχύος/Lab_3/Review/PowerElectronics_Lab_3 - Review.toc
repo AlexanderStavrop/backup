@@ -1,0 +1,5 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\nameref {intro}}{1}{section*.1}%
+\contentsline {section}{\numberline {1}Περιγραφή Λειτουργίας Μετασχηματιστών Υποβιβασμού}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Μετατροπέας υποβιβασμού}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Ελεγχόμενος μετατροπέας υποβιβασμού}{2}{subsection.1.2}%
