@@ -78,6 +78,17 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{matrix,positioning}
 
+% Circuit Drawing
+\usepackage[american]{circuitikz}
+\usetikzlibrary{circuits.ee.IEC}
+% Resistor size
+\ctikzset{bipoles/resistor/height=0.15}
+\ctikzset{bipoles/resistor/width=0.45}
+% Coil size
+\ctikzset{bipoles/cuteinductor/height=0.2}
+\ctikzset{bipoles/cuteinductor/width=0.5}
+
+
 % Table of contents
 % Clickable
 \usepackage{hyperref}
@@ -97,8 +108,8 @@
 \newcommand{\subject}{Ηλεκτρονικά Ισχύος}
 \newcommand{\descript}{3η Άσκηση}
 \newcommand{\names}{Δούνης Λουκάς\\
-                    Ζαφειράκης Κωνσταντίνος\\
-                    Σταυρόπουλος Αλέξανδρος Ανδρέας 2019030109}
+	Ζαφειράκης Κωνσταντίνος\\
+	Σταυρόπουλος Αλέξανδρος Ανδρέας 2019030109}
 \newcommand{\lecturer}{Φώτιος Κανέλλος}
 \newcommand{\lablecturer}{Δήμητρα Κυριακού}
 \newcommand{\term}{Εαρινό εξάμηνο 2022-2023}
@@ -122,10 +133,10 @@
 		\renewcommand{\contentsname}{\centering \text{Πίνακας Περιεχομένων}}
 		\tableofcontents{\protect\thispagestyle{empty}}
 	\end{center}
-    \newpage
-    \setcounter{page}{1}
-    \include{Chapters/chapter0}
-    \include{Chapters/chapter1}
+	\newpage
+	\setcounter{page}{1}
+	\include{Chapters/chapter0}
+	\include{Chapters/chapter1}
 	\include{Chapters/chapter2}
 	\include{Chapters/chapter3}
 	\include{Chapters/chapter4}

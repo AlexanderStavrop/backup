@@ -1,5 +1,21 @@
 \babel@toc {english}{}\relax 
 \contentsline {section}{\nameref {intro}}{1}{section*.1}%
-\contentsline {section}{\numberline {1}Περιγραφή Λειτουργίας Μετασχηματιστών Υποβιβασμού}{2}{section.1}%
+\contentsline {section}{\numberline {1}Περιγραφή Λειτουργίας Μετατροπέας Υποβιβασμού}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Μετατροπέας υποβιβασμού}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Κλειστός Διακόπτης (Φ1)}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Ανοιχτός Διακόπτης (Φ2)}{3}{subsubsection.1.1.2}%
 \contentsline {subsection}{\numberline {1.2}Ελεγχόμενος μετατροπέας υποβιβασμού}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Μετατροπέας Υποβιβασμού}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Duty Cycle = 0.5 - L = 0.001H}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Ρεύμα πηνίου}{5}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Ρεύμα πυκνωτή}{6}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Τάση πυκνωτή}{7}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Duty Cycle = 0.5 - L = 0.01H}{7}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Ρεύμα πηνίου}{7}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Ρεύμα πυκνωτή}{7}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Τάση πυκνωτή}{7}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Duty Cycle = 0.8 - L = 0.001H}{7}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Ρεύμα πηνίου}{7}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Ρεύμα πυκνωτή}{7}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Τάση πυκνωτή}{7}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Σύγκριση επίδρασης παραμέτρων}{7}{subsection.2.4}%

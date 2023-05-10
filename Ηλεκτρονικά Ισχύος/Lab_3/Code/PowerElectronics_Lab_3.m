@@ -16,11 +16,10 @@ Duty_Cycle = [0.5 0.5 0.8];
 L = [1e-3, 1e-2, 1e-3];
 
 % Time vector
-time = 0:dt:0.02;
+time = 0:dt:0.025;
 
 % Creating the triangular waveform
 shark_tooth = (sawtooth(2*pi*f*time, 0.5) + 1)/2;
-
 for i = 1:length(Duty_Cycle)
     % Selecting the correct Duty cycle and L values
     D = Duty_Cycle(i);
@@ -68,53 +67,53 @@ for i = 1:length(Duty_Cycle)
         % Assining the values accordingly
         I_L(t+1) = x_dot(1);
         I_phi(t+1) = x_dot(2);
-        I_C = I_L - I_phi;
         V_C(t+1) = x_dot(3);
     end
+    I_C = I_L - I_phi;
     
-    path = '~/Documents/Github/git_backup/Ηλεκτρονικά Ισχύος/Lab_3/Review/Images/';
+    % path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_3/Review/Images/';
 
     % Plotting I_L
     title_str = sprintf("Induction current (Duty Cycle = %.1f, L = %.3f)", D, L_i);
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1250 650]);
-    x_indx = find(time <= 0.01, 1, 'last');
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1600 650]);
+    x_indx = find(time <= 0.025, 1, 'last');
     plot(time(1:x_indx), I_L(1:x_indx))
     title(title_str)
     ylabel('Amplitude (A)');
     xlabel('Time (sec)');
-    fname = sprintf("%sI_L_0%d_%.3f", path, D*10, L_i*1000);
-    print(fname, '-depsc')
+    % fname = sprintf("%sI_L_0%d_%d", path, D*10, L_i*1000);
+    % print(fname, '-depsc')
 
     % Plotting I_phi
     title_str = sprintf("Load current (Duty Cycle = %.1f, L = %.3f)", D, L_i);
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1250 650]);
-    x_indx = find(time <= 0.01, 1, 'last');
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1600 650]);
+    x_indx = find(time <= 0.025, 1, 'last');
     plot(time(1:x_indx), I_phi(1:x_indx))
     title(title_str)
     ylabel('Amplitude (A)');
     xlabel('Time (sec)');
-    fname = sprintf("%sI_phi_0%d_%.3f", path, D*10, L_i*1000);
-    print(fname, '-depsc')
+    % fname = sprintf("%sI_phi_0%d_%d", path, D*10, L_i*1000);
+    % print(fname, '-depsc')
 
     % Plotting I_C
     title_str = sprintf("Capacitor current (Duty Cycle = %.1f, L = %3f)", D, L_i);
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1250 650]);
-    x_indx = find(time <= 0.01, 1, 'last');
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1600 650]);
+    x_indx = find(time <= 0.025, 1, 'last');
     plot(time(1:x_indx), I_C(1:x_indx))
     title(title_str)
     ylabel('Amplitude (A)');
     xlabel('Time (sec)');
-    fname = sprintf("%sI_C_0%d_%.3f", path, D*10, L_i*1000);
-    print(fname, '-depsc')
+    % fname = sprintf("%sI_C_0%d_%d", path, D*10, L_i*1000);
+    % print(fname, '-depsc')
 
     % Plotting V_C
     title_str = sprintf("Capacitor Voltage (Duty Cycle = %.1f, L = %.3f)", D, L_i);
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1250 650]);
-    x_indx = find(time <= 0.01, 1, 'last');
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 1600 650]);
+    x_indx = find(time <= 0.025, 1, 'last');
     plot(time(1:x_indx), V_C(1:x_indx))
     title(title_str)
     ylabel('Amplitude (V)');
     xlabel('Time (sec)');
-    fname = sprintf("%sV_C_0%d_%.3f", path, D*10, L_i*1000);
-    print(fname, '-depsc');
+    % fname = sprintf("%sV_C_0%d_%d", path, D*10, L_i*1000);
+    % print(fname, '-depsc');
 end
