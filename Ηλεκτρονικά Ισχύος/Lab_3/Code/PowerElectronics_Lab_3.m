@@ -36,38 +36,45 @@ for i = 1:length(Duty_Cycle)
     sys_C = [1, 0, 0; 0, 1, 0; 0, 0, 1];
     sys_D = [0, 0; 0, 0; 0, 0];
 
+    % Creating the system variable B for each phase
+    sys_B_1 = [1/L_i, 0; 0, -1/L_phi; 0, 0];
+    sys_B_2 = [0, 0; 0, -1/L_phi; 0, 0];
+
+
+    % Creating the continuous and discrete system accordingly (Phase 1)
+    sys_1 = ss(sys_A, sys_B_1, sys_C, sys_D);
+    sysd_1 = c2d(sys_1, dt);
+
+    % Creating the continuous and discrete system accordingly (Phase 2)
+    sys_2 = ss(sys_A, sys_B_2, sys_C, sys_D);
+    sysd_2 = c2d(sys_2, dt);
+
     for t = 1:length(time)
-        % Phase 1
-        if (shark_tooth(t) < D)
-            % Creating the system variable B
-            sys_B = [1/L_i, 0; 0, -1/L_phi; 0, 0];
-        % Phase 2
-        elseif (shark_tooth(t) >= D)
-            % Creating the system variable B
-            sys_B = [0, 0; 0, -1/L_phi; 0, 0];
-        end
-        % Creating the continuous and discrete system accordingly
-        sys = ss(sys_A,sys_B,sys_C,sys_D);
-        sysd = c2d(sys, dt);
-
-        % Extracting the discrete system variables
-        A_d = sysd.A;
-        B_d = sysd.B;
-        C_d = sysd.C;
-        D_d = sysd.D;        
-
         % Creating the x and u vectors
         x = [I_L(t); I_phi(t); V_C(t)];
         u = [V_s; E];
 
-        % Solving the system
-        x_dot = sysd.A*x + sysd.B*u;
-        y = sysd.C*x + sysd.D*u;
-        
-        % Assining the values accordingly
-        I_L(t+1) = x_dot(1);
-        I_phi(t+1) = x_dot(2);
-        V_C(t+1) = x_dot(3);
+        % Phase 1
+        if (shark_tooth(t) < D)
+            % Solving the system
+            x_dot = sysd_1.A*x + sysd_1.B*u;
+            y = sysd_1.C*x + sysd_1.D*u;
+            
+            % Assining the values accordingly
+            I_L(t+1) = x_dot(1);
+            I_phi(t+1) = x_dot(2);
+            V_C(t+1) = x_dot(3);
+        % Phase 2
+        elseif (shark_tooth(t) >= D)
+            % Solving the system
+            x_dot = sysd_2.A*x + sysd_2.B*u;
+            y = sysd_2.C*x + sysd_2.D*u;
+            
+            % Assining the values accordingly
+            I_L(t+1) = x_dot(1);
+            I_phi(t+1) = x_dot(2);
+            V_C(t+1) = x_dot(3);
+        end
     end
     I_C = I_L - I_phi;
     
