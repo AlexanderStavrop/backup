@@ -1,0 +1,302 @@
+\section{Μη ντετερμινισμός και κανονικότητα αυτομάτων}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q1)   						{$q_1$};
+		\node[state, thick, accepting]     (q2) [right of=q1]   {$q_2$};
+		\node[state, thick]           				(q3) [right of=q2]   {$q_3$};
+		\node[state, thick]           				(q4) [right of=q3]   {$q_4$};
+		
+		\path[->] (q1) edge [thick]     							 node [align=center]  {$b$} (q2)
+		(q1) edge [thick, bend right=-40 ]    node [align=center]  {$e$} (q3)
+		(q2) edge [thick, bend right=-10 ]    node [align=center]  {$a$} (q3)
+		(q3) edge [thick, bend right=-10 ]    node [align=center]  {$b$} (q2)
+		(q3) edge [thick]     							   node [align=center]  {$a$} (q4)
+		(q3) edge [thick,loop above]   		     node [align=center]  {$a$} (q3)
+		(q4) edge [thick, bend right=-25]     node [align=center]  {$e$} (q1);
+	\end{tikzpicture}
+	\caption{Μη ντετερμινιστικό αυτόματο Μ}
+	\label{fig:not_det}
+\end{figure}
+
+\subsection[Ερώτημα α]{\textbf{α) }}Κατασκευάστε αναλυτικά ένα ισοδύναμο ντετερμινιστικό αυτόματο $Μ'$
+
+\noindent\\
+Για την κατασκευή του ισοδύναμου ντετερμινιστικού αυτόματου, αρχικά είναι απαραίτητο να υπολογιστούν τα $\Epsilon$ κάθε κατάστασης. Στο $\Epsilon$ μίας κατάστασης τοποθετούνται όλες οι καταστάσεις προς τις οποίες υπάρχει κενή μετάβαση, ενώ είναι προφανές πως πάντα θα περιέχεται η ίδια η κατάσταση που εξετάζεται.
+\begin{align*}
+	&\Epsilon (q_1) = \{q_1, q_3\}\\
+	&\Epsilon (q_2) = \{q_2\} \\
+	&\Epsilon (q_3) = \{q_3\}\\
+	&\Epsilon (q_4) = \{q_1, q_4\}
+\end{align*}
+
+\noindent\\
+Έχοντας κατασκευάσει τα $\Epsilon$, κατασκευάζεται η νέα αρχική κατάσταση η οποία ισούται με το $\Epsilon$ της προηγούμενης αρχικής κατάστασης, δηλαδή της $q_1$:
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 (q0)	 																	  {$\{q_1, q_3\}$};
+	\end{tikzpicture}
+\end{figure}
+
+\noindent\\
+Στην συνέχεια, εξετάζονται όλες οι πιθανές μεταβάσεις από την αρχική κατάσταση:
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} X\\
+		q_3 \xrightarrow{a} $\Epsilon$ (q_3) \bigcup $\Epsilon$ (q_4)
+	\end{rcases*} \text{Άρα η μετάβαση a οδηγεί στο } \Epsilon (q_3) \cup \Epsilon (q_4)\\
+\end{equation*}
+\begin{equation}
+	\begin{rcases*}
+		q_1 \xrightarrow{b} $\Epsilon$ (q_2)\\
+		q_3 \xrightarrow{b} $\Epsilon$ (q_2)
+	\end{rcases*} \text{Άρα η μετάβαση b οδηγεί στο } \Epsilon (q_2)
+\end{equation}
+
+\noindent
+οπότε, το σχήμα μετασχηματίζεται ως εξής:
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 (q0)	 																	  {$\{q_1, q_3\}$};
+		\node[state, thick, shape=ellipse]									 (q1)    [above right=0.5cm and 1cm of q0]     {$\{q_1, q_3, q_4\}$};
+		\node[state, thick, accepting]  				   						(q2)    [below right=0.2cm and 1.6cm of  q0]  {$\{q_2\}$};
+		
+		\path[->] (q0) edge [thick]     				   		 	node [align=center]  {$a$} (q1)
+		(q0) edge [thick, below]     				 node [align=center, xshift=-7pt, yshift=-1pt]  {$b$} (q2);
+	\end{tikzpicture}
+\end{figure}
+
+\clearpage
+\noindent
+Ομοίως, εξετάζονται όλες οι πιθανές μεταβάσεις από την κατάσταση $\{q_1, q_3, q_4\}$
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} X\\
+		q_3 \xrightarrow{a} $\Epsilon$ (q_3) \bigcup $\Epsilon$ (q_4)\\
+		q_4 \xrightarrow{a} X
+	\end{rcases*} \text{Άρα η μετάβαση a οδηγεί στο } \Epsilon (q_3) \cup \Epsilon (q_4)\\
+\end{equation*}
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{b} $\Epsilon$ (q_2)\\
+		q_3 \xrightarrow{b} $\Epsilon$ (q_2)\\
+		q_4 \xrightarrow{b} X
+	\end{rcases*} \text{Άρα η μετάβαση b οδηγεί στο } \Epsilon (q_2)
+\end{equation*}
+
+οπότε, το σχήμα μετασχηματίζεται ως εξής:
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 (q0)	 																	  {$\{q_1, q_3\}$};
+		\node[state, thick, shape=ellipse]									 (q1)    [above right=0.5cm and 1cm of q0]     {$\{q_1, q_3, q_4\}$};
+		\node[state, thick, accepting]  				   						(q2)    [below right=0.2cm and 1.6cm of  q0]  {$\{q_2\}$};
+		
+		\path[->] (q0) edge [thick]     				   		 	node [align=center]  {$a$} (q1)
+		(q0) edge [thick, below]     				 node [align=center, xshift=-7pt, yshift=-1pt]  {$b$} (q2)
+		(q1) edge [thick,loop above]    		 node [align=center]  {$a$} (q1)
+		(q1) edge [thick]    			   		  		   node [align=center]  {$b$} (q2);
+	\end{tikzpicture}
+\end{figure}
+\noindent\\\\
+Ακολουθώντας την ίδια διαδικασία για την κατάσταση $\{q_2\}$
+\begin{equation*}
+	\begin{rcases*}
+		q_2 \xrightarrow{a} $\Epsilon$ (q_3)
+	\end{rcases*} \text{Άρα η μετάβαση a οδηγεί στο } \Epsilon (q_3)\\
+\end{equation*}
+\begin{equation*}
+	\begin{rcases*}
+		q_2 \xrightarrow{b} X
+	\end{rcases*} \text{Άρα η μετάβαση b οδηγεί σε καταβόθρα}
+\end{equation*}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 (q0)	 																	  {$\{q_1, q_3\}$};
+		\node[state, thick, shape=ellipse]									 (q1)    [above right=0.5cm and 1cm of q0]     {$\{q_1, q_3, q_4\}$};
+		\node[state, thick]           							    					(q3) 	[right=2cm  of q1]     			   				  	  {$\{q_3\}$};
+		\node[state, thick, accepting]  				   						(q2)    [below right=0.2cm and 1.6cm of  q0]  {$\{q_2\}$};
+		\node[state, thick]										    					(q4) 	[right= 3cm of q2]  			   			 		 {$\{ \}$};
+		
+		\path[->] (q0) edge [thick]     				   		 	node [align=center]  {$a$} (q1)
+		(q0) edge [thick, below]     				 node [align=center, xshift=-7pt, yshift=-1pt]  {$b$} (q2)
+		(q1) edge [thick,loop above]    		 node [align=center]  {$a$} (q1)
+		(q1) edge [thick]    			   		  		   node [align=center]  {$b$} (q2)
+		(q2) edge [thick, bend right=-10 ]    node [align=center]  {$a$} (q3)
+		(q2) edge [thick, below]    				 node [align=center]  {$b$} (q4)
+		(q4) edge [thick, loop above]   		 node [align=center]  {$a,b$} (q4);
+	\end{tikzpicture}
+\end{figure}
+\noindent
+Ακολουθώντας την ίδια διαδικασία για την κατάσταση $\{q_3\}$
+\begin{equation*}
+	\begin{rcases*}
+		q_3 \xrightarrow{a} $\Epsilon$ (q_3) \bigcup $\Epsilon$ (q_4)
+	\end{rcases*} \text{Άρα η μετάβαση a οδηγεί στο } \Epsilon (q_3) \bigcup \Epsilon (q_4)\\
+\end{equation*}
+\begin{equation*}
+	\begin{rcases*}
+		q_3 \xrightarrow{b} $\Epsilon$ (q_2)
+	\end{rcases*} \text{Άρα η μετάβαση b οδηγεί στο } \Epsilon (q_2)
+\end{equation*}
+
+οπότε το τελικό σχήμα προκύπτει ως εξής:
+\clearpage
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 					(q0)	 																	  {$\{q_1, q_3\}$};
+		\node[state, thick, shape=ellipse]									 (q1)    [above right=0.5cm and 1cm of q0]     {$\{q_1, q_3, q_4\}$};
+		\node[state, thick]           							    					(q3) 	[right=2cm  of q1]     			   				  	  {$\{q_3\}$};
+		\node[state, thick, accepting]  				   						(q2)    [below right=0.2cm and 1.6cm of  q0]  {$\{q_2\}$};
+		\node[state, thick]										    					(q4) 	[right= 3cm of q2]  			   			 		 {$\{ \}$};
+		
+		\path[->] (q0) edge [thick]     				   		 	node [align=center]  {$a$} (q1)
+		(q0) edge [thick, below]     				 node [align=center, xshift=-7pt, yshift=-1pt]  {$b$} (q2)
+		(q1) edge [thick,loop above]    		 node [align=center]  {$a$} (q1)
+		(q1) edge [thick]    			   		  		   node [align=center]  {$b$} (q2)
+		(q3) edge [thick, above]    				 node [align=center]  {$a$} (q1)
+		(q3) edge [thick, bend right=-10 ]    node [align=center]  {$b$} (q2)
+		(q2) edge [thick, bend right=-10 ]    node [align=center]  {$a$} (q3)
+		(q2) edge [thick, below]    				 node [align=center]  {$b$} (q4)
+		(q4) edge [thick, loop above]   		 node [align=center]  {$a,b$} (q4);
+	\end{tikzpicture}
+\end{figure}
+\noindent\\
+Τελική κατάσταση θεωρείται μόνο η κατάσταση που περιέχει την κατάσταση $q_2$\\\\
+
+\subsection[Ερώτημα β]{\textbf{β) }} Κατασκευάστε αναλυτικά την κανονική έκφραση για την L(M??) με σειρά απαλοιφής q4, q2, q1, q3.
+
+\noindent\\
+Για την απαλοιφή μίας κατάστασης, είναι απαραίτητο να αντικατασταθούν όλες οι μεταβάσεις που αξιοποιούν την εκάστοτε κατάσταση, είτε δημιουργώντας νέες είτε ανανεώνοντας τις ήδη υπάρχουσες.
+
+\noindent\\
+Για την μετατροπή του μη ντετερμινιστικού αυτόματου (figure \ref{fig:not_det}) απαιτείται η εισαγωγή 2 επιπλέον καταστάσεων οι οποίες αντικαθιστούν την υπάρχουσα αρχική και την υπάρχουσα τελική κατάσταση. Μεταξύ των νέων και των παλιών καταστάσεων δημιουργείται κενή μετάβαση.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Init state %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q0) [color=orange]  							{$q_0$};
+		\node[state, thick]  			 			(q1) [right of=q0]   							   {$q_1$};
+		\node[state, thick]     					(q2) [right of=q1]   							  {$q_2$};
+		\node[state, thick]           				(q3) [right of=q2]   							   {$q_3$};
+		\node[state, thick]           				(q4) [right of=q3]   							   {$q_4$};
+		\node[state, thick, accepting]     (q5) [below of=q2, color=orange]   	{$q_5$};
+		
+		\path[->] 	 (q0) edge [thick, color=orange]      node [align=center]  {$e$} (q1)
+		(q1) edge [thick]     							 node [align=center]  {$b$} (q2)
+		(q1) edge [thick, bend right=-40 ]    node [align=center]  {$e$} (q3)
+		(q2) edge [thick, bend right=-10 ]    node [align=center]  {$a$} (q3)
+		(q3) edge [thick, bend right=-10 ]    node [align=center]  {$b$} (q2)
+		(q3) edge [thick]     							   node [align=center]  {$a$} (q4)
+		(q3) edge [thick,loop above]   		     node [align=center]  {$a$} (q3)
+		(q4) edge [thick, bend right=-25]     node [align=center]  {$e$} (q1)
+		(q2) edge [thick, color=orange]       node [align=center]  {$e$} (q5);
+	\end{tikzpicture}
+\end{center}
+
+\noindent
+\textbf{Απαλοιφή της κατάστασης $q_4$}
+\noindent\\Είναι απαραίτητο να αντικατασταθούν οι εξής μεταβάσεις:
+η μετάβαση $q_3 \xrightarrow{q_4} q_1$. Η αντικατάσταση γίνεται με δημιουργία νέας μετάβασης από την κατάσταση $q_3$ στην κατάσταση $q_4$ όταν το (σύμβολο???) είναι a:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Eliminate q4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q0) [color=orange]  							{$q_0$};
+		\node[state, thick]  			 			(q1) [right of=q0]   							   {$q_1$};
+		\node[state, thick]     					(q2) [right of=q1]   							  {$q_2$};
+		\node[state, thick]           				(q3) [right of=q2]   							   {$q_3$};
+		\node[state, thick, accepting]     (q5) [below of=q2, color=orange]   	{$q_5$};
+		
+		
+		\path[->] 	 (q0) edge [thick, color=orange]      						 node [align=center]  									   {$e$} (q1)
+		(q1) edge [thick]     							 						node [align=center]  									  {$b$} (q2)
+		(q1) edge [thick, bend right=-40]   					   node [align=center]  									 {$e$} (q3)
+		(q2) edge [thick, bend right=-10]   					   node [align=center] 									 	 {$a$} (q3)
+		(q3) edge [thick, bend right=-10]   					   node [align=center]  									 {$b$} (q2)
+		(q3) edge [thick,loop above]   		   						  node [align=center]  										{$a$} (q3)
+		(q3) edge [thick, color=red, , bend right=-37]     node [align=center, xshift=-10pt, above]  {$a$} (q1)
+		(q2) edge [thick, color=orange]       						node [align=center]  									  {$e$} (q5);
+	\end{tikzpicture}
+\end{center}
+
+\clearpage
+\noindent
+\textbf{Απαλοιφή της κατάστασης $q_2$}
+\noindent\\Είναι απαραίτητο να αντικατασταθούν οι εξής μεταβάσεις:
+\begin{align*}
+	q_1 \xrightarrow{q_2} q_3 &\xRightarrow{} ba\\
+	q_1 \xrightarrow{q_2} q_5 &\xRightarrow{} b\\
+	q_3 \xrightarrow{q_2} q_3 &\xRightarrow{} ba\\
+	q_3 \xrightarrow{q_2} q_5 &\xRightarrow{} b\\
+\end{align*}
+\noindent
+Η πρώτη μετάβαση προστίθεται στην ήδη υπάρχουσα κενή μετάβαση που υπήρχε μεταξύ της κατάστασης $q_1$ και της $q_3$ ενώ η δεύτερη μετάβαση δημιουργείται καθώς δεν προϋπάρχει μετάβαση. Αντίστοιχα, η τρίτη μετάβαση προστίθεται στο ήδη υπάρχον self loop της κατάστασης $q_3$ ενώ για την τέταρτη μετάβαση δημιουργεί και πάλι νέα.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Eliminate q2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q0) [color=orange]  																		 	 {$q_0$};
+		\node[state, thick]  			 			(q1) [right of=q0]   							   												   {$q_1$};
+		\node[state, thick]           				(q3) [right=3cm of q1]   					  												  {$q_3$};
+		\node[state, thick, accepting]      (q5) [below right = 0.9cm and -2.5cm of q3, color=orange]   	{$q_5$};
+		
+		
+		\path[->] 	 (q0) edge [thick, color=orange]      						 node [align=center]  						{$e$} (q1)
+		(q1) edge [thick, color=red, below]        				  node [align=center, xshift=-5pt] 	{$b$} (q5)
+		(q1) edge [thick, color=red, bend right=-15]   	   node [align=center]  					  {$e \cup ba$} (q3)
+		(q3) edge [thick,loop above]   		   						  node [align=center]  						 {$a$\color{red}{$\cup ba$}} (q3)
+		(q3) edge [thick, color=red]       							    node [align=center]  					  {$b$} (q5)
+		(q3) edge [thick, bend right=-15]     					   node [align=center, above]  			{$a$} (q1);
+	\end{tikzpicture}
+\end{center}
+
+\noindent\\
+\textbf{Απαλοιφή της κατάστασης $q_1$}
+\noindent\\Ομοίως, είναι απαραίτητο να αντικατασταθούν οι εξής μεταβάσεις:
+\begin{align*}
+	q_0 \xrightarrow{q_1} q_3 &\xRightarrow{} ba\\
+	q_0 \xrightarrow{q_1} q_5 &\xRightarrow{} b\\
+	q_3 \xrightarrow{q_1} q_3 &\xRightarrow{}a (e \cup ba)\\
+	q_3 \xrightarrow{q_1} q_4&\xRightarrow{} ab\\
+\end{align*}
+\noindent
+Για την πρώτη μετάβαση δημιουργείται νέα μετάβαση μεταξύ της $q_0$ και $q_3$ ενώ νέα μετάβαση δημιουργείται και για την δεύτερη μετάβαση μεταξύ της $q_0$ και $q_5$. Αντίστοιχα, η τρίτη μετάβαση προστίθεται στο ήδη υπάρχον self loop της κατάστασης $q_3$ ενώ το ίδιο γίνεται και για την τέταρτη μετάβαση.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Eliminate q1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q0) [color=orange]  							 												 {$q_0$};
+		\node[state, thick]           				(q3) [right=3cm of q0]   					  												  {$q_3$};
+		\node[state, thick, accepting]      (q5) [below right = 0.9cm and -2.5cm of q3, color=orange]   	{$q_5$};
+		
+		
+		\path[->] 	 (q0) edge [thick, color=red]      node [align=center]     {$e \cup ba$} (q3)
+		(q0) edge [thick, color=red]      node [align=center]  	  {$b$} (q5)
+		(q3) edge [thick,loop above]    node [align=center]  	{$(a\cup ba)$\color{red}{$\cup(a (e \cup ba))$}} (q3)
+		(q3) edge [thick]       				  node [align=center]  	  {$b$\color{red}{$\cup ab$}} (q5);
+	\end{tikzpicture}
+\end{center}
+
+\clearpage
+\noindent
+\textbf{Απαλοιφή της κατάστασης $q_3$}
+\noindent\\ Τέλος, είναι απαραίτητο να αντικατασταθεί η μετάβαση $q_0 \xrightarrow{q_3} q_4$.  Η αντικατάσταση γίνεται προσθέτοντας την εξής έκφραση στην ήδη υπάρχουσα μετάβαση μεταξύ $q_0$ και $q_5$:
+\begin{equation}
+	\bigg(e \cup ba\bigg) \bigg((a\cup ba)\cup \big(a (e \cup ba) \big) \bigg)^* \bigg(b\cup ab \bigg)
+\end{equation}
+
+\noindent\\
+Στην παραπάνω έκφραση ο πρώτος όρος προέρχεται από την μετάβαση μεταξύ της $q_0$ και $q_3$, ο δεύτερος αποτελεί το self loop στην $q_3$, για αυτό και χρησιμοποιήθηκε αστερίσκος και ο τρίτος όρος προέρχεται από την μετάβαση μεταξύ της $q_3$ και $q_5$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Eliminate q3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance=2.3 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q0) [color=orange]  							 			{$q_0$};
+		\node[state, thick, accepting]     (q5) [right = 9cm of q0, color=orange]   	{$q_5$};
+		
+		\path[->]  (q0) edge [thick]	node [align=center]		{\textcolor{red}{$\Bigg( \bigg(e \cup ba\bigg) \bigg((a\cup ba)\cup \big(a (e \cup ba) \big) \bigg)^* \bigg(b\cup ab \bigg)\Bigg) \bigcup$} $b$} (q5);
+	\end{tikzpicture}
+\end{center}
+
+Έτσι, η τελική κανονική έκφραση είναι η εξής : $\Bigg( \bigg(e \cup ba\bigg) \bigg((a\cup ba)\cup \big(a (e \cup ba) \big) \bigg)^*b\cup ab\Bigg) \bigcup b$

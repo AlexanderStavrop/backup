@@ -1,0 +1,393 @@
+\section{Ελαχιστοποίηση καταστάσεων}
+
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.5 cm, scale = 1, transform shape]
+		\node[initial,state, thick]  			 (q2)   						  {$q_2$};
+		\node[state, thick]					        (q3) [right of=q2]     {$q_3$};
+		\node[state, thick]           				(q1) [right of=q3]     {$q_1$};
+		\node[state, thick]           				(q7) [right of=q1]     {$q_7$};
+		\node[state, thick]							(q5) [below of=q2]  {$q_5$};
+		\node[state, thick]							(q6) [below of=q3]  {$q_6$};
+		\node[state, thick, accepting]	   (q4) [below of=q1]  {$q_4$};
+		\node[state, thick]							(q8) [below of=q7] 	{$q_8$};
+		
+		\path[->] (q1) edge [thick]     							node [align=center]  												  {$a$} (q7)
+		(q1) edge [thick, bend right=-10]     node [align=center]  													{$b$} (q8)
+		(q2) edge [thick]    							   node [align=center]  												 {$a$} (q3)
+		(q2) edge [thick, bend right=-10]     node [align=center] 		 											{$b$} (q5)
+		(q3) edge [thick, loop right]     		   node [align=center]  												 {$a$} (q3)
+		(q3) edge [thick, bend right=-10]     node [at start, below, xshift=10pt, yshift=-10pt]  {$b$} (q4)
+		(q4) edge [thick]    							   node [align=center, below]									   {$a$} (q8)
+		(q4) edge [thick]    							   node [align=center, right]  										 {$b$} (q1)
+		(q5) edge [thick]    							   node [align=center]  										 		 {$a$} (q6)
+		(q5) edge [thick, bend right=-10]     node [align=center]  													{$b$} (q2)
+		(q6) edge [thick, loop right]     		   node [align=center]  												 {$a$} (q6)
+		(q6) edge [thick, bend right=10]      node [at start, above, xshift=9pt, yshift=10pt]      {$b$} (q1)
+		(q7) edge [thick, loop right]     		   node [align=center]  												 {$a$} (q7)
+		(q7) edge [thick, bend right=-30]     node [at start]  												  			 {$b$} (q4)
+		(q8) edge [thick, bend right=-30]     node [align=center] 	 												{$a$} (q5)
+		(q8) edge [thick, bend right=-10]     node [align=center] 	 												{$b$} (q1);
+	\end{tikzpicture}
+\end{center}
+
+\subsection[Ερώτημα α]{\textbf{α) }} Κατασκευάστε αναλυτικά το ισοδύναμο πρότυπο αυτόματο
+\label{q51}
+
+\noindent\\
+\textbf{Σχέση $\Xi_o$) } Χωρίζουμε τις τελικές με τις μη τελικές καταστάσεις οπότε προκύπτουν ως εξής: 
+\begin{equation}
+	\{q_4\} \text{ } \{q_1, q_2, q_3, q_5, q_6, q_7, q_8\}
+\end{equation}
+
+\noindent\\
+\textbf{Σχέση $\Xi_1$) } Εξετάζεται αν είναι εφικτό να σπάσει μία κλάση σε υποκλάσεις. Προφανώς ελέγχεται μόνο η δεύτερη κλάση εφόσον η πρώτη έχει μόνο ένα μία κατάσταση. 
+
+\noindent\\\\
+Ο έλεγχος γίνεται εξετάζοντας τις διαδρομές για όλα τα σύμβολα της γλώσσας ($a,b$) από ένα συγκεκριμένο q με τις αντίστοιχες διαδρομές ενός διαφορετικού q που ανήκει σε μία από τις υποκλάσεις. Στην περίπτωση που καταλήγουν σε κατάσταση της ίδια υποκλάσεις για όλα τα σύμβολα, τότε ανήκουν και στην ίδια υποκλάση αλλιώς το επιλεγμένο q εξετάζεται αν θα τοποθετηθεί σε μία από τις άλλες ήδη υπάρχουσες υποκλάσεις ή θα δημιουργηθεί μία νέα υποκλάση γι αυτό.
+
+\noindent\\
+\textbf{Εξετάζεται το $q_1$ με το $q_2$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_2 \xrightarrow{a} q_3
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_2 \xrightarrow{b} q_5
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_2$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_3$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_3 \xrightarrow{a} q_3
+		\end{rcases*} \text{Ίδιο υποσύνολο }\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_3 \xrightarrow{b} q_4
+		\end{rcases*} \text{Διαφορετικό υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_3$ ανήκουν σε \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_5$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_5 \xrightarrow{a} q_6
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_6\\
+			q_5 \xrightarrow{b} q_2
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_5$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_6$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_6 \xrightarrow{a} q_6
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_6 \xrightarrow{b} q_1
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_6$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_7$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_7 \xrightarrow{a} q_7
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_7 \xrightarrow{b} q_4
+		\end{rcases*} \text{Διαφορετικό υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_7$ ανήκουν σε \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_7$ με το $q_3$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_7 \xrightarrow{a} q_7\\
+			q_3 \xrightarrow{a} q_3
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_7\xrightarrow{b} q_4\\
+			q_3 \xrightarrow{b} q_4
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_3$, $q_7$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_8$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_8 \xrightarrow{a} q_5
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_8 \xrightarrow{b} q_1
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_8$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\
+Τελικά, τα υποσύνολα είναι τα εξής:
+\begin{equation}
+	\{q_4\} \text{ } \{q_3, q_7\} \text{ }  \{q_1, q_2, q_5, q_6, q_8\}
+\end{equation}
+
+
+\noindent\\
+\textbf{Σχέση $\Xi_2$) } Ομοίως με την προηγούμενη περίπτωση, εξετάζονται οι κλάσεις $\{q_3, q_7\} \text{ και }  \{q_1, q_2, q_5, q_6, q_8\}$
+\noindent\\\\
+\textbf{Εξετάζεται το $q_3$ με το $q_7$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_3 \xrightarrow{a} q_3\\
+			q_7 \xrightarrow{a} q_7
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_3 \xrightarrow{b} q_4\\
+			q_7 \xrightarrow{b} q_4
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_3$, $q_7$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\textbf{Εξετάζεται το $q_1$ με το $q_2$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_2 \xrightarrow{a} q_3
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_2 \xrightarrow{b} q_5
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_2$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\noindent
+\textbf{Εξετάζεται το $q_1$ με το $q_5$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} q_7\\
+		q_5 \xrightarrow{a} q_6
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_1$, $q_5$ ανήκουν στο \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+\noindent\\\\
+\textbf{Εξετάζεται το $q_5$ με το $q_3$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_5 \xrightarrow{a} q_6\\
+		q_3 \xrightarrow{a} q_3
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_5$, $q_3$ ανήκουν στο \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+\noindent
+Άρα, δημιουργείται νέο υποσύνολο για το $q_5$
+
+\noindent\\\\
+\textbf{Εξετάζεται το $q_1$ με το $q_6$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} q_7\\
+		q_6 \xrightarrow{a} q_6
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_1$, $q_6$ ανήκουν στο \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+
+\noindent\\\\
+\textbf{Εξετάζεται το $q_6$ με το $q_3$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_6 \xrightarrow{a} q_6\\
+		q_3 \xrightarrow{a} q_3
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_6$, $q_3$ ανήκουν στο \underline{διαφορετικό} υποσύνολο}
+\end{equation*}
+
+\noindent
+\textbf{Εξετάζεται το $q_6$ με το $q_5$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_6 \xrightarrow{a} q_6\\
+			q_5 \xrightarrow{a} q_6
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_6 \xrightarrow{b} q_1\\
+			q_5 \xrightarrow{b} q_2
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_6$, $q_5$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\
+\textbf{Εξετάζεται το $q_1$ με το $q_8$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} q_7\\
+		q_8 \xrightarrow{a} q_5
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_1$, $q_8$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\
+\textbf{Εξετάζεται το $q_8$ με το $q_3$}\\
+\begin{equation*}
+	\begin{rcases*}
+		q_1 \xrightarrow{a} q_7\\
+		q_8 \xrightarrow{a} q_1
+	\end{rcases*} \text{Διαφορετικό υποσύνολο} \xRightarrow{}
+	\text{Άρα τα $q_1$, $q_8$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\
+\textbf{Εξετάζεται το $q_8$ με το $q_5$}\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_8 \xrightarrow{a} q_1\\
+			q_5 \xrightarrow{a} q_6
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_8 \xrightarrow{b} q_1\\
+			q_5 \xrightarrow{b} q_2
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_8$, $q_5$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+
+\noindent\\
+Τελικά, τα υποσύνολα είναι τα εξής:
+\begin{equation}
+	\{q_4\} \text{ } \{q_3, q_7\} \text{ }  \{q_1, q_2\} \text{ } \{q_5, q_6, q_8\}
+\end{equation}
+
+\noindent\\
+\textbf{Σχέση $\Xi_3$) } Ομοίως με την προηγούμενη περίπτωση, εξετάζονται οι κλάσεις $\{q_3, q_7\} \text{ }  \{q_1, q_2\} \text{ } \{q_5, q_6, q_8\}$
+\noindent\\\\
+\textbf{Εξετάζεται το $q_1$ με το $q_2$ }\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_1 \xrightarrow{a} q_7\\
+			q_2 \xrightarrow{a} q_3
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_1 \xrightarrow{b} q_8\\
+			q_2 \xrightarrow{b} q_5
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_1$, $q_2$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+\noindent\\\\
+\textbf{Εξετάζεται το $q_3$ με το $q_7$ }\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_3 \xrightarrow{a} q_3\\
+			q_7 \xrightarrow{a} q_7
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_3 \xrightarrow{b} q_4\\
+			q_7 \xrightarrow{b} q_4
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_3$, $q_7$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\\\
+\textbf{Εξετάζεται το $q_5$ με το $q_6$ }\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_5 \xrightarrow{a} q_6\\
+			q_6 \xrightarrow{a} q_6
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_5 \xrightarrow{b} q_2\\
+			q_6 \xrightarrow{b} q_1
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_5$, $q_6$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\\\
+\textbf{Εξετάζεται το $q_5$ με το $q_8$ }\\
+\begin{equation*}
+	\begin{rcases*}
+		\begin{rcases*}
+			q_5 \xrightarrow{a} q_6\\
+			q_8 \xrightarrow{a} q_5
+		\end{rcases*} \text{Ίδιο υποσύνολο}\\
+		\begin{rcases*}
+			q_5 \xrightarrow{b} q_2\\
+			q_8 \xrightarrow{b} q_1
+		\end{rcases*} \text{Ίδιο υποσύνολο}
+	\end{rcases*} \text{Άρα τα $q_5$, $q_8$ ανήκουν στο \underline{ίδιο} υποσύνολο}
+\end{equation*}
+
+\noindent\\
+Εφόσον μεταξύ της  $\Xi_2$ και της  $\Xi_3$ δεν μεταβλήθηκε κανένα από τα υποσύνολα, δεν μπορούν να γίνουν άλλες απλοποιήσεις και άρα η  ελαχιστοποιημένες καταστάσεις είναι οι εξής:
+\begin{equation*}
+	\{q_4\} \text{ } \{q_3, q_7\} \text{ }  \{q_1, q_2\} \text{ } \{q_5, q_6, q_8\}
+\end{equation*}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto, node distance = 4cm, scale = 1, transform shape]
+		\node[initial,state, thick, shape=ellipse]	 				     (q0)	 																	  {$\{q_1, q_3\}$};
+		\node[state, thick, shape=ellipse]									 (q1)    [right of=q0]   	 									   {$\{q_5, q_6, q_8\}$};
+		\node[state, thick, shape=ellipse]           						(q2) 	[below of=q0]     			   				  	         {$\{q_3, q_7\}$};
+		\node[state, thick, accepting]  				   						(q3)    [below of=q1]  {$\{q_4\}$};
+		
+		\path[->] (q0) edge [thick]    								node [align=center]  {$a$} (q2)
+		(q0) edge [thick, bend right=-10 ]    node [align=center]  {$b$} (q1)
+		(q1) edge [thick, loop above]    		 node [align=center]  {$a$} (q1)
+		(q1) edge [thick, bend right=-10]     node [align=center]  {$b$} (q0)
+		(q2) edge [thick, loop below]    		 node [align=center]  {$a$} (q2)
+		(q2) edge [thick]    								node [align=center]  {$b$} (q3)
+		(q3) edge [thick, below]    				 node [align=center]  {$b$} (q0)
+		(q3) edge [thick, right]    				 node [align=center]  {$a$} (q1);
+	\end{tikzpicture}
+\end{figure}
+
+\noindent
+\subsection[Ερώτημα β]{\textbf{β) }} Πόσες κλάσεις ισοδυναμίας έχει κάθε μία από τις παρακάτω σχέσεις; ($\sim M \sim M' \approx L(M) \approx L(M')$
+
+\noindent\\
+Ο αριθμός της σχέση $\sim M$ είναι ίσος με τον αριθμός των κλάσεων του αυτομάτου Μ, δηλαδή ίσος με 8 ενώ ο αριθμός της σχέσης $\sim M'$ είναι ίσος με 4 αντίστοιχα. Οι σχέσεις $\approx L(M ) \approx L(M')$ παρουσιάζουν ίδιο αριθμό εφόσον και τα δύο αυτόματα έχουν την ίδια γλώσσα και ως αποτέλεσμα, ισούται με τον αριθμό των κλάσεων του ελαχιστοποιημένου αυτομάτου, δηλαδή 4.
+
+\subsection[Ερώτημα γ]{\textbf{γ) }} Περιγράψτε τις κλάσεις ισοδυναμίας της σχέσης $\approx L(M')$ συναρτήσει των κλάσεων της σχέσης $\sim M$.
+
+\noindent\\
+Δεδομένου του ότι η σχέση $\sim M$ αποτελεί εκλέπτυνση της $\sim M'$ καθώς και πως για τα $\Epsilon$ ισχύουν οι εξής σχέσης, σύμφωνα με το υποερώτημα \ref{q51}:
+\begin{align*}
+	\Epsilon_{q_4}^{M'} &= \Epsilon_{q_4}^{M}\\
+	\Epsilon_{q_1, q_2}^{M'} &= \Epsilon_{q_1}^{M} \cup \Epsilon_{q_2}^{M}\\
+	\Epsilon_{q_3, q_7}^{M'} &= \Epsilon_{q_3}^{M} \cup \Epsilon_{q_7}^{M}\\
+	\Epsilon_{q_5, q_6, q_8}^{M'} &= \Epsilon_{q_5}^{M} \cup \Epsilon_{q_6}^{M} \cup \Epsilon_{q_8}^{M}\\
+\end{align*}
+
+συμπεραίνεται πως οι κλάσεις ισοδυναμίας της σχέσης $\approx L(M')$ ταυτίζονται με τις $\sim M'$.
+
+\noindent\\
+Έτσι, οι 4 κλάσεις ισοδυναμίας της σχέσης $\approx L(M')$ προκύπτουν ως εξής:
+\begin{align}
+	Class_1 &= \Epsilon_{q_4}^{M}\\
+	Class_2 &= \Epsilon_{q_1}^{M} \cup \Epsilon_{q_2}^{M}\\
+	Class_3 &= \Epsilon_{q_3}^{M} \cup \Epsilon_{q_7}^{M}\\
+	Class_4 &= \Epsilon_{q_5}^{M} \cup \Epsilon_{q_6}^{M} \cup \Epsilon_{q_8}^{M}\\
+\end{align}
