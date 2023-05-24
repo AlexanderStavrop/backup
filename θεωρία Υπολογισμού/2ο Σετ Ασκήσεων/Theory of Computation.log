@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  24 MAY 2023 05:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  24 MAY 2023 20:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1414,15 +1414,15 @@ LaTeX Font Info:    ... okay on input line 119.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(43.36243pt, 527.57014pt, 43.36243pt)
-* v-part:(T,H,B)=(43.36243pt, 708.24513pt, 43.36243pt)
+* h-part:(L,W,R)=(40.47102pt, 533.35295pt, 40.47102pt)
+* v-part:(T,H,B)=(40.47102pt, 714.02794pt, 40.47102pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=527.57014pt
-* \textheight=708.24513pt
-* \oddsidemargin=-28.90756pt
-* \evensidemargin=-28.90756pt
-* \topmargin=-65.90756pt
+* \textwidth=533.35295pt
+* \textheight=714.02794pt
+* \oddsidemargin=-31.79897pt
+* \evensidemargin=-31.79897pt
+* \topmargin=-68.79897pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -1530,11 +1530,11 @@ Package hyperref Info: Link coloring ON on input line 119.
 
 
 (./Titlepage/title.tex
-<Images/university.png, id=43, 67.452pt x 108.1641pt>
+<Images/university.png, id=47, 67.452pt x 108.1641pt>
 File: Images/university.png Graphic file (type png)
 <use Images/university.png>
 Package pdftex.def Info: Images/university.png  used on input line 25.
-(pdftex.def)             Requested size: 158.27264pt x 253.85388pt.
+(pdftex.def)             Requested size: 160.0075pt x 256.63654pt.
  [1
 
 
@@ -1643,7 +1643,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--116
  []
 
 
-Overfull \hbox (24.8051pt too wide) in paragraph at lines 78--116
+Overfull \hbox (21.33539pt too wide) in paragraph at lines 78--116
 [] 
  []
 
@@ -1701,24 +1701,24 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 21.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 21.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 21.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 21.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 21--23
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
  []
 
 
-Overfull \hbox (49.53944pt too wide) detected at line 52
+Overfull \hbox (45.49806pt too wide) detected at line 54
 []
  []
 
@@ -1729,55 +1729,55 @@ Overfull \hbox (49.53944pt too wide) detected at line 52
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 56.
+(hyperref)                removing `math shift' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 56.
+(hyperref)                removing `subscript' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 56.
+(hyperref)                removing `\in' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 56.
+(hyperref)                removing `superscript' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 56.
+(hyperref)                removing `math shift' on input line 58.
 
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+LaTeX Warning: Command \textMu invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+LaTeX Warning: Command \textMu invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+LaTeX Warning: Command \textMu invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+LaTeX Warning: Command \textMu invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 100.
 
 
-LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+LaTeX Warning: Command \textKappa invalid in math mode on input line 100.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--100
+Underfull \hbox (badness 10000) in paragraph at lines 62--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
+Underfull \hbox (badness 10000) in paragraph at lines 103--105
 
  []
 
@@ -1869,51 +1869,251 @@ LaTeX Warning: Command \textMu invalid in math mode on input line 14.
 LaTeX Warning: Command \textMu invalid in math mode on input line 14.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--18
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 23.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 23.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 33.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 33.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--39
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--18
+Underfull \hbox (badness 10000) in paragraph at lines 40--42
 
  []
 
 
-LaTeX Warning: Command \textAlpha invalid in math mode on input line 21.
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
 
 
-LaTeX Warning: Command \textAlpha invalid in math mode on input line 21.
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
 
 
-LaTeX Warning: Command \textAlpha invalid in math mode on input line 32.
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
 
 
-LaTeX Warning: Command \textAlpha invalid in math mode on input line 32.
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
 
-)
-Overfull \hbox (8.88773pt too wide) in paragraph at lines 19--132
-[]$[]$ $[]$ 
- []
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 55.
 
 [6
 
 
 
-] (./Theory of Computation.aux (./Titlepage/title.aux)
+]
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 86.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 104.
+
+[7]
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 171.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 171.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 171.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 171.
+
+[8]
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 194.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 194.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 194.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 194.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--225
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--225
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--225
+
+ []
+
+[9
+
+]) [10] (./Theory of Computation.aux (./Titlepage/title.aux)
 (./Chapters/chapter1.aux) (./Chapters/chapter2.aux) (./Chapters/chapter3.aux)
 (./Chapters/chapter4.aux))
 Package rerunfilecheck Info: File `"Theory of Computation".out' has not changed
 .
-(rerunfilecheck)             Checksum: 2CEFA57F6E2D157DDA8E6F2487E88BCD;3359.
+(rerunfilecheck)             Checksum: F7D2754089DA2B14E27EB7A0A5654316;3827.
  ) 
 Here is how much of TeX's memory you used:
- 32326 strings out of 476025
- 617942 string characters out of 5796533
- 1888388 words of memory out of 5000000
- 52147 multiletter control sequences out of 15000+600000
+ 32421 strings out of 476025
+ 619630 string characters out of 5796533
+ 1885388 words of memory out of 5000000
+ 52236 multiletter control sequences out of 15000+600000
  529889 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,36n,89p,716b,1608s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,36n,89p,785b,1608s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publ
@@ -1930,10 +2130,10 @@ onts/grmn1200.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pf
 b></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/te
 xmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></usr/share/texmf-dist/fonts/t
 ype1/public/cbfonts/grxn1728.pfb>
-Output written on "Theory of Computation.pdf" (8 pages, 331172 bytes).
+Output written on "Theory of Computation.pdf" (12 pages, 345248 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 141 compressed objects within 2 object streams
- 16 named destinations out of 1000 (max. 500000)
- 90 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

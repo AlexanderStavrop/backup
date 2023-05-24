@@ -8,3 +8,4 @@
 \contentsline {section}{\numberline {3}Γλώσσες Χωρίς Συμφραζόμενα}{5}{section.3}%
 \contentsline {section}{\numberline {4}Αναγνώριση Γλωσσών Χωρίς Συμφραζόμενα}{6}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Μετατροπή γραμματικής G σε κανονική μορφή Chomsky}{6}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}πίνακας Συντακτικής Ανάλυσης και Συντακτικό Δένδρο}{9}{subsubsection.4.1.1}%

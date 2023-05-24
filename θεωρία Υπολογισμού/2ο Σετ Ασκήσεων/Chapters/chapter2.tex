@@ -2,6 +2,8 @@
 
 \subsection{$L_1 = \{uw : u \in{a, c}^*, w \in a^*b^*a^* \text{ και } 2|u| = |w| \}$}
 
+\noindent\\
+Εφόσον, δεν είναι γνωστό το μήκος του input αλλά μόνο το σύμβολο στην αρχή του και το σύμβολο στην κορυφή της στοίβας, η γραμματική σχεδιάστηκε ώστε να τρέχουν παράλληλα διαδικασίες έως ότου τερματίσουν.
 \begin{align*}
 M = (Κ, Σ,& Γ, Δ, s, F)\\
 			K = \{&s, q, d, f\}\\
@@ -19,36 +21,36 @@ M = (Κ, Σ,& Γ, Δ, s, F)\\
 \end{align*}
 
 \noindent\\\\
-Υπολογισμός αποδοχής συμβολοσειράς acaaabbba σύμφωνα με το παραπάνω αυτόματο:
+Υπολογισμός αποδοχής συμβολοσειράς acaaabbba σύμφωνα με το παραπάνω αυτόματο. 
 \begin{align*}
-	(s, aca&aabbba, e)  \xrightarrow{Δ_1} (q, acaaabbba, 0)  \xrightarrow{Δ_2} (q, caaabbba, 110) \xrightarrow{Δ_3} (q, aaabbba, 11110) \xRightarrow{}\\ 
+	(s, aca&aabbba, e)  \vdash^{Δ_1} (q, acaaabbba, 0)  \vdash^{Δ_2} (q, caaabbba, 110) \vdash^{Δ_3} (q, aaabbba, 11110) \xRightarrow{}\\ 
 					&\hspace{1.7cm} \xRightarrow{}	\begin{cases}
-											 							    		\xrightarrow{Δ2} (q, aabbba, 1111110) 	\begin{cases}
-																													 							    			\xrightarrow{Δ2} 						(q, abbba, 111111110) 	 \text{ (1)} \\
-																													 							    			\xrightarrow{Δ4} 					(d, abbba, 111110) \text{ (2)} 
+											 							    		\vdash^{Δ2} (q, aabbba, 1111110) 	\begin{cases}
+																													 							    			\vdash^{Δ2} 						(q, abbba, 111111110) 	 \text{ (1)} \\
+																													 							    			\vdash^{Δ4} 					(d, abbba, 111110) \text{ (2)} 
 																													 							    		\end{cases} \\
-													 							    \xrightarrow{Δ4} (d, aabbba, 1110) \xrightarrow{Δ_6} (d, abbba, 110) \xrightarrow{Δ6} (d, bbba, 10) \xrightarrow{Δ7} (d, bba, 0) \xrightarrow{} X
+													 							    \vdash^{Δ4} (d, aabbba, 1110) \vdash^{Δ_6} (d, abbba, 110) \vdash^{Δ6} (d, bbba, 10) \xrightarrow{Δ7} (d, bba, 0) \xrightarrow{} X
 							 							    					\end{cases} \\ \\
 		    	(1) &\xRightarrow{} \begin{cases}
-										    			\xrightarrow{Δ2} (q, bbba, 11111111110) \text{ (3)} \\
-												    	\xrightarrow{Δ4} (d, bbba, 11111110)  \xrightarrow{Δ7} (d, bba, 1111110) \xrightarrow{Δ7} (d, ba, 111110) \xrightarrow{Δ7} (d, a, 11110) \xrightarrow{Δ6} (d, e, 1110) \xrightarrow{} X
+										    			\vdash^{Δ2} (q, bbba, 11111111110) \text{ (3)} \\
+												    	\vdash^{Δ4} (d, bbba, 11111110)  \vdash^{Δ7} (d, bba, 1111110) \vdash^{Δ7} (d, ba, 111110) \vdash^{Δ7} (d, a, 11110) \vdash^{Δ6} (d, e, 1110) \xrightarrow{} X
 												     \end{cases}\\\\
      			(3) &\xRightarrow{} \begin{cases}
-									     				\xrightarrow{Δ3} (q, bba, 1111111111110) \text{ (6)} \\
-									     				\xrightarrow{Δ4} (d, bba, 1111111110)  \xrightarrow{Δ7} (d, ba, 111111110) \xrightarrow{Δ7} (d, a, 11111110) \xrightarrow{Δ4} (d, e, 1111110) \xrightarrow{} X
+									     				\vdash^{Δ3} (q, bba, 1111111111110) \text{ (6)} \\
+									     				\vdash^{Δ4} (d, bba, 1111111110)  \vdash^{Δ7} (d, ba, 111111110) \vdash^{Δ7} (d, a, 11111110) \vdash^{Δ4} (d, e, 1111110) \xrightarrow{} X
 									     			\end{cases}\\ \\	
      			(6) &\xRightarrow{} \begin{cases}
-									     				\xrightarrow{Δ3} (q, ba, 111111111111110) \begin{cases}
-									     					\xrightarrow{Δ3} (q, a, 11111111111111110) \begin{cases}
-									     						\xrightarrow{Δ2} 											(q, e, 1111111111111111110) \xrightarrow{} X\\
-									     						\xrightarrow{Δ4} 										(d, e, 1111111111111110)  		\xrightarrow{} X
+									     				\vdash^{Δ3} (q, ba, 111111111111110) \begin{cases}
+									     					\vdash^{Δ3} (q, a, 11111111111111110) \begin{cases}
+									     						\vdash^{Δ2} 											(q, e, 1111111111111111110) \xrightarrow{} X\\
+									     						\vdash^{Δ4} 										(d, e, 1111111111111110)  		\xrightarrow{} X
 									     					\end{cases}\\
-									     					\xrightarrow{Δ4} (d, a, 11111111111110)  \xrightarrow{Δ6} (d, e, 1111111111110) \xrightarrow{} X
+									     					\vdash^{Δ4} (d, a, 11111111111110)  \vdash^{Δ6} (d, e, 1111111111110) \xrightarrow{} X
 									     				\end{cases} \\
-									     				\xrightarrow{Δ4} (d, ba, 111111111110)  \xrightarrow{Δ7} (d, a, 11111111110) \xrightarrow{Δ6} (d, e, 11111111110) \xrightarrow{} X
+									     				\vdash^{Δ4} (d, ba, 111111111110)  \vdash^{Δ7} (d, a, 11111111110) \vdash^{Δ6} (d, e, 11111111110) \xrightarrow{} X
 									     			\end{cases}\\
      			\text{Εφό} &\text{σον η σχέση (6) καταλήγει σε άτοπο, η σχέση (3) καταλήγει και αυτή σε άτοπο και ως άρα και η σχέση (1)}\\\\
-     			(2) &\xrightarrow{Δ7} (q, bbba, 11110) \xrightarrow{Δ7} (q, bba, 1110) \xrightarrow{Δ7} (q, ba, 110) \xrightarrow{Δ7} (q, a, 10) \xrightarrow{Δ6} (q, e, 0) \xrightarrow{Δ8} (f, e, 0)   
+     			(2) &\vdash^{Δ7} (q, bbba, 11110) \vdash^{Δ7} (q, bba, 1110) \vdash^{Δ7} (q, ba, 110) \vdash^{Δ7} (q, a, 10) \vdash^{Δ6} (q, e, 0) \vdash^{Δ8} (f, e, 0)   
 \end{align*}
 
 
@@ -101,51 +103,51 @@ M = (Κ, Σ,& Γ, Δ, s, F)\\
 \noindent\\\\
 Υπολογισμός αποδοχής συμβολοσειράς baaaaaaaab σύμφωνα με το παραπάνω αυτόματο:
 \begin{align*}
-(p, baa&aaaaaab, e)  \xrightarrow{Δ_1} (q, baaaaaaaab, S)  \xrightarrow{Δ_2} (q, baaaaaaaab, \textcolor{red}{S_1}aS_1aS_1) \xRightarrow{}\\
+(p, baa&aaaaaab, e)  \vdash^{Δ_1} (q, baaaaaaaab, S)  \vdash^{Δ_2} (q, baaaaaaaab, \textcolor{red}{S_1}aS_1aS_1) \xRightarrow{}\\
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, baaaaaaaab, \textcolor{red}{bS_1aaaS_1}aS_1aS_1) \xrightarrow{Δ_9}(q, aaaaaaaab, \textcolor{red}{S_1}aaaS_1aS_1aS_1) \xRightarrow{}\\ 
-									\xrightarrow{Δ_4} (q, baaaaaaaab, \textcolor{red}{abS_1aaS_1}aS_1aS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_5} (q, baaaaaaaab, \textcolor{red}{aabS_1aS_1}aS_1aS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_6} (q, baaaaaaaab, \textcolor{red}{aaabS_1}aS_1aS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_7} (q, baaaaaaaab, aS_1aS_1) \xrightarrow{} X
+									\vdash^{Δ_3} (q, baaaaaaaab, \textcolor{red}{bS_1aaaS_1}aS_1aS_1) \vdash^{Δ_9}(q, aaaaaaaab, \textcolor{red}{S_1}aaaS_1aS_1aS_1) \xRightarrow{}\\ 
+									\vdash^{Δ_4} (q, baaaaaaaab, \textcolor{red}{abS_1aaS_1}aS_1aS_1) \xrightarrow{} X\\
+									\vdash^{Δ_5} (q, baaaaaaaab, \textcolor{red}{aabS_1aS_1}aS_1aS_1) \xrightarrow{} X\\
+									\vdash^{Δ_6} (q, baaaaaaaab, \textcolor{red}{aaabS_1}aS_1aS_1) \xrightarrow{} X\\
+									\vdash^{Δ_7} (q, baaaaaaaab, aS_1aS_1) \xrightarrow{} X
 								\end{cases}\\\\
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, aaaaaaaab, \textcolor{red}{bS_1aaaS_1}aaaS_1aS_1aS_1) \xrightarrow{} X\\ 
-									\xrightarrow{Δ_4} (q, aaaaaaaab, \textcolor{red}{abS_1aaS_1}aaaS_1aS_1aS_1) \xrightarrow{Δ_8} (q, aaaaaaaab, bS_1aaS_1aaaS_1aS_1aS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_5} (q, aaaaaaaab, \textcolor{red}{aabS_1aS_1}aaaS_1aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
-									\xrightarrow{Δ_6} (q, aaaaaaaab, \textcolor{red}{aaabS_1}aaaS_1aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
-									\xrightarrow{Δ_7} (q, aaaaaaaab, aaaS_1aS_1aS_1) \xRightarrow{}
+									\vdash^{Δ_3} (q, aaaaaaaab, \textcolor{red}{bS_1aaaS_1}aaaS_1aS_1aS_1) \xrightarrow{} X\\ 
+									\vdash^{Δ_4} (q, aaaaaaaab, \textcolor{red}{abS_1aaS_1}aaaS_1aS_1aS_1) \vdash^{Δ_8} (q, aaaaaaaab, bS_1aaS_1aaaS_1aS_1aS_1) \xrightarrow{} X\\
+									\vdash^{Δ_5} (q, aaaaaaaab, \textcolor{red}{aabS_1aS_1}aaaS_1aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
+									\vdash^{Δ_6} (q, aaaaaaaab, \textcolor{red}{aaabS_1}aaaS_1aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
+									\vdash^{Δ_7} (q, aaaaaaaab, aaaS_1aS_1aS_1) \xRightarrow{}
 								\end{cases}\\\\
-&\xrightarrow{Δ_8} (q, aaaaaaab, aaS_1aS_1aS_1) \xrightarrow{Δ_8} (q, aaaaaab, aS_1aS_1aS_1) \xrightarrow{Δ_8} (q, aaaaab, \textcolor{red}{S_1}aS_1aS_1) \xRightarrow{}
+&\vdash^{Δ_8} (q, aaaaaaab, aaS_1aS_1aS_1) \vdash^{Δ_8} (q, aaaaaab, aS_1aS_1aS_1) \vdash^{Δ_8} (q, aaaaab, \textcolor{red}{S_1}aS_1aS_1) \xRightarrow{}
 \end{align*}
 \clearpage
 \begin{align*}
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, aaaaab, \textcolor{red}{bS_1aaaS_1}aS_1aS_1) \xrightarrow{} X\\ 
-									\xrightarrow{Δ_4} (q, aaaaab, \textcolor{red}{abS_1aaS_1}aS_1aS_1) \xrightarrow{Δ_8} (q, aaaab, bS_1aaS_1aS_1aS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_5} (q, aaaaab, \textcolor{red}{aabS_1aS_1}aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
-									\xrightarrow{Δ_6} (q, aaaaab, \textcolor{red}{aaabS_1}aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
-									\xrightarrow{Δ_7} (q, aaaaab, aS_1aS_1) \xrightarrow{Δ_8} (q, aaaab, \textcolor{red}{S_1}aS_1) \xRightarrow{}
+									\vdash^{Δ_3} (q, aaaaab, \textcolor{red}{bS_1aaaS_1}aS_1aS_1) \xrightarrow{} X\\ 
+									\vdash^{Δ_4} (q, aaaaab, \textcolor{red}{abS_1aaS_1}aS_1aS_1) \xrightarrow{Δ_8} (q, aaaab, bS_1aaS_1aS_1aS_1) \xrightarrow{} X\\
+									\vdash^{Δ_5} (q, aaaaab, \textcolor{red}{aabS_1aS_1}aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
+									\vdash^{Δ_6} (q, aaaaab, \textcolor{red}{aaabS_1}aS_1aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
+									\vdash^{Δ_7} (q, aaaaab, aS_1aS_1) \xrightarrow{Δ_8} (q, aaaab, \textcolor{red}{S_1}aS_1) \xRightarrow{}
 								\end{cases}\\\\
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, aaaab, \textcolor{red}{bS_1aaaS_1}aS_1) \xrightarrow{} X\\ 
-									\xrightarrow{Δ_4} (q, aaaab, \textcolor{red}{abS_1aaS_1}aS_1) \xrightarrow{Δ_8} (q, aaab, bS_1aaS_1aS_1) \xRightarrow{}\\
-									\xrightarrow{Δ_5} (q, aaaab, \textcolor{red}{aabS_1aS_1}aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
-									\xrightarrow{Δ_6} (q, aaaab, \textcolor{red}{aaabS_1}aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
-									\xrightarrow{Δ_7} (q, aaaab, aS_1) \xrightarrow{Δ_8} (q, aaab, \textcolor{red}{S_1}) \xRightarrow{}
+									\vdash^{Δ_3} (q, aaaab, \textcolor{red}{bS_1aaaS_1}aS_1) \xrightarrow{} X\\ 
+									\vdash^{Δ_4} (q, aaaab, \textcolor{red}{abS_1aaS_1}aS_1) \vdash^{Δ_8} (q, aaab, bS_1aaS_1aS_1) \xRightarrow{}\\
+									\vdash^{Δ_5} (q, aaaab, \textcolor{red}{aabS_1aS_1}aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
+									\vdash^{Δ_6} (q, aaaab, \textcolor{red}{aaabS_1}aS_1) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 3 βήματα}\\
+									\vdash^{Δ_7} (q, aaaab, aS_1) \xrightarrow{Δ_8} (q, aaab, \textcolor{red}{S_1}) \xRightarrow{}
 								\end{cases}\\\\
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, aaab, \textcolor{red}{bS_1aaaS_1}) \xrightarrow{} X\\ 
-									\xrightarrow{Δ_4} (q, aaab, \textcolor{red}{abS_1aaS_1}) \xrightarrow{Δ_8} (q, aab, bS_1aaS_1) \xrightarrow{} X\\
-									\xrightarrow{Δ_5} (q, aaab, \textcolor{red}{aabS_1aS_1}) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
-									\xrightarrow{Δ_6} (q, aaab, \textcolor{red}{aaabS_1}) \xrightarrow{Δ_8} (q, aab, aabS_1) \xrightarrow{Δ_8} (q, ab, abS_1) \xrightarrow{Δ_8} (q, b, bS_1) \xrightarrow{Δ_7} (q, e, \textcolor{red}{S_1})  \xRightarrow{}\\
-									\xrightarrow{Δ_7} (q, aaab, e) \xrightarrow{} X
+									\vdash^{Δ_3} (q, aaab, \textcolor{red}{bS_1aaaS_1}) \xrightarrow{} X\\ 
+									\vdash^{Δ_4} (q, aaab, \textcolor{red}{abS_1aaS_1}) \vdash^{Δ_8} (q, aab, bS_1aaS_1) \xrightarrow{} X\\
+									\vdash^{Δ_5} (q, aaab, \textcolor{red}{aabS_1aS_1}) \xRightarrow{}\text{ Ομοίως καταλήγει σε άτοπο μετά από 2 βήματα}\\
+									\vdash^{Δ_6} (q, aaab, \textcolor{red}{aaabS_1}) \vdash^{Δ_8} (q, aab, aabS_1) \vdash^{Δ_8} (q, ab, abS_1) \vdash^{Δ_8} (q, b, bS_1) \vdash^{Δ_7} (q, e, \textcolor{red}{S_1})  \xRightarrow{}\\
+									\vdash^{Δ_7} (q, aaab, e) \xrightarrow{} X
 								\end{cases}\\\\
 &\xRightarrow{}  \begin{cases}
-									\xrightarrow{Δ_3} (q, e, \textcolor{red}{bS_1aaaS_1}) \xrightarrow{} X\\ 
-									\xrightarrow{Δ_4} (q, e, \textcolor{red}{abS_1aaS_1}) \xrightarrow{} X\\
-									\xrightarrow{Δ_5} (q, aeaab, \textcolor{red}{aabS_1aS_1}) \xrightarrow{} X\\
-									\xrightarrow{Δ_6} (q, e, \textcolor{red}{aaabS_1}) \xrightarrow{} X\\
-									\xrightarrow{Δ_7} (q, e, e) \xrightarrow{} \text{ Αποδεκτή κατάσταση}
+									\vdash^{Δ_3} (q, e, \textcolor{red}{bS_1aaaS_1}) \xrightarrow{} X\\ 
+									\vdash^{Δ_4} (q, e, \textcolor{red}{abS_1aaS_1}) \xrightarrow{} X\\
+									\vdash^{Δ_5} (q, aeaab, \textcolor{red}{aabS_1aS_1}) \xrightarrow{} X\\
+									\vdash^{Δ_6} (q, e, \textcolor{red}{aaabS_1}) \xrightarrow{} X\\
+									\vdash^{Δ_7} (q, e, e) \xrightarrow{} \text{ Αποδεκτή κατάσταση}
 								\end{cases}\\\\
 \end{align*}

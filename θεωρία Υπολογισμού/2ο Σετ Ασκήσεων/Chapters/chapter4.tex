@@ -1,7 +1,7 @@
 \section{Αναγνώριση Γλωσσών Χωρίς Συμφραζόμενα}
 \subsection{Μετατροπή γραμματικής G σε κανονική μορφή Chomsky}
 \noindent
-Στην δεδομένη γραμματική οι "ΠΩΣ ΛΈΓΟΝΤΑΙ ΤΑ R" είναι οι εξής:
+Στην δεδομένη γραμματική οι κανόνες είναι οι εξής:
 \begin{align*}
 	R = \{&S \xrightarrow{} Α\\
 			  &Α \xrightarrow{} Μ\\	
@@ -13,17 +13,18 @@
 			  &T \xrightarrow{} b\}
 \end{align*}
 
-\noindent\\
-\textbf{Πρώτο βήμα)} Αλλάζουμε οτι είναι μεγαλύτερο του 2 στα δεξια φαδφασδφασδξηφαλκσδξφηακσδξφλ!!!!!!!!!!!!!!!!!\\\\
+\noindent
+\textbf{Πρώτο βήμα)} Αλλαγή κανόνων οι οποίοι στο δεξί τους μέρος έχουν περισσότερα από 2 σύμβολα.
 
+\noindent\\
+Για κάθε κανόνα που έχει πάνω από 2 σύμβολα στο δεξί του μέρος, δημιουργούνται νέοι κανόνες οι οποίοι στο δεξί τους μέρος έχουν 2 ακριβώς σύμβολα. Οι κανόνες προς αλλαγή είναι οι εξής:\\\\
 \begin{minipage}{0.49\textwidth}
 	\begin{equation*}
 		Α \xrightarrow{} bbAaT \xRightarrow{}  \begin{cases*}
 																					A \xrightarrow{} bS_{11}\\
 																					S_{11} \xrightarrow{} bS_{12}\\
 																					S_{12} \xrightarrow{} AS_{13}\\
-																					S_{13} \xrightarrow{} aS_{14}\\
-																					S_{14} \xrightarrow{} T\\
+																					S_{13} \xrightarrow{} aT
 																				\end{cases*} 
 	\end{equation*}
 \end{minipage}
@@ -31,8 +32,219 @@
 	\begin{equation*}
 		Α \xrightarrow{} MaT \xRightarrow{}  \begin{cases*}
 																				A \xrightarrow{} MS_{21}\\
-																				S_{21} \xrightarrow{} aS_{22}\\
-																				S_{22} \xrightarrow{} T\\
+																				S_{21} \xrightarrow{} aT
 																			\end{cases*} 
 	\end{equation*}
 \end{minipage}
+
+\noindent\\\\
+Παρατηρείται πως οι κανόνες $S_{13} \xrightarrow{} aT$ και $S_{21} \xrightarrow{} aT$ οδηγούν στα ίδια σύμβολα, οπότε μπορούν να αντικατασταθούν με έναν, οπότε η νέα γραμματική $G' = (V', Σ, R', S)$ είναι η εξής:
+\begin{align*}
+	V' = \{&S, A, S_{11}, S_{12}, S_{13}, M, T, a, b\}\\
+	R' = \{&S \xrightarrow{} Α\\
+			  &Α \xrightarrow{} Μ\\	
+			  &\textcolor{red}{Α \xrightarrow{} bS_{11}}\\
+			  &\textcolor{red}{S_{11} \xrightarrow{} bS_{12	}}\\
+			  &\textcolor{red}{S_{12} \xrightarrow{} AS_{13}}\\
+			  &\textcolor{orange}{Α \xrightarrow{} MS_{13}}\\
+			  &\textcolor{blue}{S_{13} \xrightarrow{} aT}\\
+			  &M \xrightarrow{} a\\
+			  &M \xrightarrow{} e\\
+			  &T \xrightarrow{} bT\\
+			  &T \xrightarrow{} b\}
+\end{align*}
+
+
+\noindent
+\textbf{Δεύτερο Βήμα)} Απαλοιφή κενών κανόνων
+
+\noindent\\
+Υπολογίζεται το διάνυσμα $\mathcal{E}$ στο οποίο τοποθετούνται όλα τα σύμβολα για τα οποία υπάρχει κενός κανόνας (κανόνας που οδηγεί σε e) ή κανόνες που μπορούν να οδηγήσουν σε κενό κανόνα.
+
+\noindent\\
+Έτσι το διάνυσμα $\mathcal{E}$ περιέχει τα εξής σύμβολα:
+\begin{equation*}
+	\mathcal{E} = \{S, A, M\} \text{ εφόσον} \begin{cases*}
+																				S \xrightarrow{} A \xrightarrow{} M \xrightarrow{} e\\
+																				A \xrightarrow{} M \xrightarrow{} e\\
+																				M \xrightarrow{} e
+																			\end{cases*}
+\end{equation*}
+\noindent
+Ο κενός κανόνας ($M \xrightarrow{} e$) απαλείφεται ενώ ο ελέγχονται όλοι οι κανόνες που περιέχουν ένα από τα τρία σύμβολα και για κάθε έναν από αυτούς, δημιουργούνται οι αντίστοιχοι νέοι:
+\begin{align*}
+ S \xrightarrow{} Α &\xRightarrow{} \text{ Μένει όπως έχει}\\
+A \xrightarrow{} Μ &\xRightarrow{} \text{ Μένει όπως έχει}\\
+S_{12} \xrightarrow{} AS_{13} &\xRightarrow{} \begin{cases*}
+																						S_{12} \xrightarrow{} AS_{13}\\
+																						S_{12} \xrightarrow{} S_{13}
+																					\end{cases*}\\
+	Α \xrightarrow{} MS_{13} &\xRightarrow{}  	\begin{cases*}
+																				 		S_{12} \xrightarrow{} MS_{13}\\
+																				 		S_{12} \xrightarrow{} S_{13}			 	
+																				 	\end{cases*}\\
+\end{align*}
+
+\noindent\\
+Έτσι η νέα γραμματική $G'' = (V'', Σ, R'', S)$ είναι η εξής:
+\begin{align*}
+	V'' = \{&S, A, S_{11}, S_{12}, S_{13}, M, T, a, b\}\\
+	R'' = \{&S \xrightarrow{} Α\\
+	&Α \xrightarrow{} Μ\\	
+	&Α \xrightarrow{} bS_{11}\\
+	&Α \xrightarrow{} MS_{13}\\
+	&\textcolor{orange}{A \xrightarrow{} S_{13}}\\
+	&S_{11} \xrightarrow{} bS_{12}\\
+	&S_{12} \xrightarrow{} AS_{13}\\
+	&\textcolor{red}{S_{12} \xrightarrow{} S_{13}}\\
+	&S_{13} \xrightarrow{} aT\\
+	&M \xrightarrow{} a\\
+	&T \xrightarrow{} bT\\
+	&T \xrightarrow{} b\}
+\end{align*}
+
+\noindent\\
+\textbf{Τρίτο βήμα )} Απαλοιφή μικρών κανόνων
+
+\noindent\\
+Για την απαλοιφή κανόνων που οδηγούν σε ένα μόνο σύμβολο, απαιτείται ο υπολογισμός των διανυσμάτων $\mathcal{D}$ για κάθε ένα από τα μη τερματικά σύμβολα (Τα τερματικά περιέχουν μόνο το εαυτό τους).
+
+\noindent\\
+Στο διάνυσμα $\mathcal{D}$ τοποθετούνται, πέραν του ίδιου του συμβόλου, όλα τα μονά σύμβολα στα οποία μπορεί να καταλήξει σύμφωνα με τους κανόνες γραμματικής. Τα διανύσματα $\mathcal{D}$ υπολογίζονται ως εξής:
+\begin{align*}
+	&\mathcal{D} (S) = \{S, A, M, a, S_{21}\} \\
+	&\mathcal{D} (A) = \{A, M, a, S_{21} \} \\
+	&\mathcal{D} (S_{11}) = \{S_{11}\} \\
+	&\mathcal{D} (S_{12}) = \{S_{12}, S_{13}\}\\
+	&\mathcal{D} (S_{13}) = \{S_{13}\}\\
+	&\mathcal{D} (M) = \{M, a\}\\
+	&\mathcal{D} (T)  = \{T, b\}
+\end{align*}
+
+\noindent\\
+Σύμφωνα με  τα παραπάνω διανύσματα, τα σύμβολα S, A, $S_{12}$, M, T έχουν κανόνες οι οποίοι οδηγούν σε ένα μόνο σύμβολο. Έτσι, ομοίως με το προηγούμενο ερώτημα, θα γίνει απαλοιφή αυτών και δημιουργία νέων.
+
+\begin{align*}
+	&\text{Κανόνας }A \xrightarrow{} \textcolor{red}{M}S_{13} \text{: προστίθεται ο εξής κανόνας } A \xrightarrow{} aS_{13} \\\\
+	&\text{Κανόνας }S_{11} \xrightarrow{} b\textcolor{red}{S_{12}} \text{: προστίθεται ο κανόνας } S_{11}\xrightarrow{} bS_{13}\\
+	&\text{Κανόνας }S_{12} \xrightarrow{} \textcolor{red}{A}S_{13} \text{: προστίθενται οι εξής κανόνες}
+			\begin{cases*}
+				S_{12}\xrightarrow{} MS_{13}\\
+				S_{12}\xrightarrow{} aS_{13}\\
+				S_{12}\xrightarrow{} S_{13}S_{13}
+			\end{cases*}\\
+	&\text{Κανόνας }S_{13} \xrightarrow{} a\textcolor{red}{T} \text{: προστίθεται ο εξής κανόνας } S_{13}\xrightarrow{} ab\\\\
+	&\text{Κανόνας }T \xrightarrow{} b\textcolor{red}{T} \text{: προστίθεται ο εξής κανόνας } T \xrightarrow{} bb
+\end{align*}
+\noindent\\
+Εφόσον, απαλείφεται ο κανόνας $M \xrightarrow{} a$, όλοι οι κανόνες που έχουν το σύμβολο M στο δεξί τους χέρι απαλείφονται.
+
+\noindent\\
+Εφόσον απαλείφεται ο κανόνας $S \xrightarrow{} A$ είναι απαραίτητο να δημιουργηθούν νέοι ώστε το αυτόματο να μπορεί να εκκινήσει. Οι κανόνες αυτοί προκύπτουν μέσω σύγκρισης του διανύσματος $\mathcal{D}(S)$ και των ήδη υπάρχοντων κανόνων. Στην περίπτωση που κάποιο από τα σύμβολα του $\mathcal{D}$ (S) υπάρχει στο αριστερό μέρος κάποιου κανόνα, δημιουργείται νέος κανόνας ο οποίος έχει αριστερά την τιμή $S$.
+\begin{equation*}
+	S \xrightarrow{} A \xRightarrow{}  	 \begin{cases*}
+																		\textcolor{orange}{S \xrightarrow{} bS_{11}} \text{ }(A \xrightarrow{} bS_{11})\\
+																		\textcolor{orange}{S \xrightarrow{} aS_{13}} \text{ }(A \xrightarrow{} aS_{13})\\
+																		\textcolor{orange}{S \xrightarrow{} aT}  \hspace{0.4cm} (S_{13} \xrightarrow{} aT)\\
+																		\textcolor{orange}{S \xrightarrow{} ab} \hspace{0.5cm} (S_{13} \text{ } \xrightarrow{} ab)\\
+																	\end{cases*}
+\end{equation*}
+\noindent\\
+Έτσι η νέα γραμματική $G''' = (V''', Σ, R''', S)$ είναι η εξής:
+\begin{align*}
+	V''' = \{&S, A, S_{11}, S_{12}, S_{13}, T, a, b\}\\
+	R''' = \{&\textcolor{orange}{S \xrightarrow{} bS_{11}}\\
+				&\textcolor{orange}{S \xrightarrow{} aS_{13}}\\
+				&\textcolor{orange}{S \xrightarrow{} aT	}\\
+				&\textcolor{orange}{S \xrightarrow{} ab}\\
+				&Α \xrightarrow{} bS_{11}\\
+				&\textcolor{red}{A \xrightarrow{} aS_{13}}\\
+				&S_{11} \xrightarrow{} bS_{12}\\	
+				&\textcolor{red}{S_{11} \xrightarrow{} bS_{13}}\\	
+				&S_{12} \xrightarrow{} AS_{13}\\
+				&\textcolor{red}{S_{12} \xrightarrow{} aS_{13}}\\
+				&\textcolor{red}{S_{12} \xrightarrow{} S_{13}S_{13}}\\
+				&S_{13} \xrightarrow{} aT\\
+				&\textcolor{red}{S_{13} \xrightarrow{} ab}\\
+				&T \xrightarrow{} bT \\
+				&\textcolor{red}{T \xrightarrow{} bb}\}
+\end{align*}
+
+\clearpage
+\noindent
+Η τελική γραμματική σε μορφή Chomsky είναι η $G''' = (V''', Σ, R''', S)$ είναι η εξής:
+\begin{align*}
+	V''' = \{&S, A, S_{11}, S_{12}, S_{13}, T, a, b\}\\
+	Σ = \{&a, b\}\\
+	R''' = \{&S \xrightarrow{} bS_{11} \hspace{1cm} [1] \\
+				&S \xrightarrow{} aS_{13} \hspace{1cm} [2] \\
+				&S \xrightarrow{} aT \hspace{1.3cm} [3] \\
+				&S \xrightarrow{} ab \hspace{1.4cm} [4] \\
+				&Α \xrightarrow{} bS_{11} \hspace{1cm} [5] \\
+				&A \xrightarrow{} aS_{13} \hspace{1cm} [6] \\
+				&S_{11} \xrightarrow{} bS_{12} \hspace{0.8cm} [7] \\	
+				&S_{11} \xrightarrow{} bS_{13} \hspace{0.8cm} [8] \\	
+				&S_{12} \xrightarrow{} AS_{13} \hspace{0.7cm} [9] \\
+				&S_{12} \xrightarrow{} aS_{13} \hspace{0.7cm} [10] \\
+				&S_{12} \xrightarrow{} S_{13}S_{13} \hspace{0.3cm}[11] \\
+				&S_{13} \xrightarrow{} aT \hspace{0.9cm} [12] \\
+				&S_{13} \xrightarrow{} ab \hspace{1cm} [13] \\
+				&T \xrightarrow{} bT \hspace{1.2cm} [14] \\
+				&T \xrightarrow{} bb \hspace{1.3cm} [15] \}
+\end{align*}	
+
+\noindent\\
+\subsubsection{πίνακας Συντακτικής Ανάλυσης και Συντακτικό Δένδρο}
+
+\noindent\\
+Αρχικά είναι απαραίτητο να ελεγχθεί αν η συμβολοσειρά εισόδου  $ w = bbababb$ παράγεται από την αρχική γραμματική:
+\begin{equation*}
+	S \vdash A \vdash bbAaT \vdash bbMaTaT \vdash bbaTaT \vdash bbabaT \vdash bbababT \vdash bbababb
+\end{equation*}
+
+\noindent\\
+Εφόσον η είσοδος παράγεται από την αρχική γραμματική θα πρέπει να παράγεται και από την τελική γραμματική σε μορφή Chomsky. 
+
+\noindent\\
+Ο πίνακας της συντακτικής ανάλυσης και τo συντακτικό δένδρο φαίνονται παρακάτω ενώ σε τετράγωνες αγκύλες φαίνεται
+ο αριθμός του κανόνα:
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{cccccc|c|}
+			\cline{7-7}
+			&   &    &    &    &    & b                                                        \\ \cline{6-7} 
+			&   &    &    &\multicolumn{1}{c|}{}  & b                                                        & T [15]                                                   \\ \cline{5-7} 
+			&                             &                        & \multicolumn{1}{c|}{}                                                         & \multicolumn{1}{c|}{a} & \begin{tabular}[c]{@{}c@{}}$S_{13}$ [13]\\ S [4]\end{tabular} & \begin{tabular}[c]{@{}c@{}}$S_{13}$ [12]\\ S [3]\end{tabular} \\ \cline{4-7} 
+			&                             & \multicolumn{1}{c|}{}  & \multicolumn{1}{c|}{b}                                                        & \multicolumn{1}{c|}{0} & $S_{11}$ [8]                                                  & $S_{11}$ [8]                                                  \\ \cline{3-7} 
+			& \multicolumn{1}{c|}{}       & \multicolumn{1}{c|}{a} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}$S_{13}$ [13]\\ S [4]\end{tabular}} & \multicolumn{1}{c|}{0} &$S_{13}$ [11]                                                 & $S_{13}$[11]                                                 \\ \cline{2-7} 
+			\multicolumn{1}{c|}{}   & \multicolumn{1}{c|}{b}      & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{$S_{11}$ [8]}                                                  & \multicolumn{1}{c|}{0} & $S_{11}$ [7]                                                  & $S_{11}$ [8]                                                  \\ \hline
+			\multicolumn{1}{|c|}{b} & \multicolumn{1}{c|}{T [15]} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}A [5]\\ S [1]\end{tabular}}    & \multicolumn{1}{c|}{0} & \begin{tabular}[c]{@{}c@{}}A [5]\\ S[1]\end{tabular}     & S [1]                                                    \\ \hline
+		\end{tabular}
+	\end{table}
+\noindent\\\\\\
+\begin{center}
+	\begin{tikzpicture}[  level 1/.style={level distance=15mm,sibling distance=30mm},
+										level 2/.style={level distance=15mm,sibling distance=30mm},
+										level 3/.style={level distance=15mm, sibling distance=30mm},
+										level 4/.style={level distance=15mm, sibling distance=25mm},
+										font=\scriptsize,inner sep=1pt,every node/.style={minimum size=3ex}, text=black, >=latex ]
+\node (1){\(S\)} 
+child { node {b}}
+child { node {$S_{11} [8]$}
+	child { node {b}}
+	child { node {$S_{13} [11]$}
+		child { node {$S_{13} [13]$}
+			child { node {$a$}}
+			child { node {$b$}}
+		}
+		child { node {$S_{13} [12]$}
+			child { node {$a$}}
+			child { node {$T [15]$}
+				child { node {$b$}}
+				child { node {$b$}}
+			}
+		}
+	}
+};
+\end{tikzpicture}
+\end{center}
