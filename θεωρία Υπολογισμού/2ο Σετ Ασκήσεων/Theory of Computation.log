@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  22 MAY 2023 17:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.3)  24 MAY 2023 05:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1328,7 +1328,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip74
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 95.
+Package hyperref Info: Option `colorlinks' set `true' on input line 93.
 
 (/usr/share/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
@@ -1376,36 +1376,35 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box138
 )
 (./Theory of Computation.aux (./Titlepage/title.aux) (./Chapters/chapter1.aux)
-(./Chapters/chapter2.aux) (./Chapters/chapter3.aux) (./Chapters/chapter4.aux)
-(./Chapters/chapter5.aux))
+(./Chapters/chapter2.aux) (./Chapters/chapter3.aux) (./Chapters/chapter4.aux))
 \openout1 = `"Theory of Computation.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 121.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 119.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 1
-21.
+19.
 
 (/usr/share/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1521,7 +1520,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count353
-Package hyperref Info: Link coloring ON on input line 121.
+Package hyperref Info: Link coloring ON on input line 119.
 
 (./Theory of Computation.out) (./Theory of Computation.out)
 \@outlinefile=\write4
@@ -1531,7 +1530,7 @@ Package hyperref Info: Link coloring ON on input line 121.
 
 
 (./Titlepage/title.tex
-<Images/university.png, id=75, 67.452pt x 108.1641pt>
+<Images/university.png, id=43, 67.452pt x 108.1641pt>
 File: Images/university.png Graphic file (type png)
 <use Images/university.png>
 Package pdftex.def Info: Images/university.png  used on input line 25.
@@ -1574,7 +1573,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.129     \newpage
+l.127     \newpage
                    [1
 
 
@@ -1606,34 +1605,59 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--55
+
+ []
+
+
+Overfull \hbox (2.43332pt too wide) in paragraph at lines 4--56
+[]$ $[]$ 
+ []
+
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 17.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 58.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 17.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 17.
+(hyperref)                removing `math shift' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 17.
+(hyperref)                removing `subscript' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 17.
+(hyperref)                removing `\in' on input line 58.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 17.
+(hyperref)                removing `superscript' on input line 58.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 58.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--116
+
+ []
+
+
+Overfull \hbox (24.8051pt too wide) in paragraph at lines 78--116
+[] 
+ []
 
 )
+Overfull \hbox (2.43332pt too wide) in paragraph at lines 60--129
+[]$ $[]$ 
+ []
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.131     \include{Chapters/chapter1}
+l.129     \include{Chapters/chapter1}
                                       [1
 
 ]
@@ -1689,596 +1713,207 @@ LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
 LaTeX Warning: Command \textKappa invalid in math mode on input line 19.
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 21--23
+
+ []
+
+
+Overfull \hbox (49.53944pt too wide) detected at line 52
+[]
+ []
+
+[2
+
+
+
+]
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 21.
+(hyperref)                removing `math shift' on input line 56.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 21.
+(hyperref)                removing `subscript' on input line 56.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\in' on input line 21.
+(hyperref)                removing `\in' on input line 56.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 21.
+(hyperref)                removing `superscript' on input line 56.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 21.
-
-) [2
+(hyperref)                removing `math shift' on input line 56.
 
 
+LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+
+
+LaTeX Warning: Command \textKappa invalid in math mode on input line 98.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--100
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
+
+ []
+
+[3
+
+]) [4
 
 ]
 \openout2 = `Chapters/chapter3.aux'.
 
- (./Chapters/chapter3.tex
+ (./Chapters/chapter3.tex) [5
 
-LaTeX Warning: Command \textMu invalid in math mode on input line 23.
 
-
-LaTeX Warning: Command \textMu invalid in math mode on input line 23.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 26.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 32.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 35.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 49.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 55.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 55.
-
-[3
-
-
-
-]
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 80.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 87.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 87.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--106
-
- []
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 109.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 109.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 139.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 144.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 144.
-
-[4
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--171
-
- []
-
-[5
-
-] [6
-
-]) [7
 
 ]
 \openout2 = `Chapters/chapter4.aux'.
 
  (./Chapters/chapter4.tex
-Underfull \hbox (badness 10000) in paragraph at lines 11--13
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+LaTeX Warning: Command \textMu invalid in math mode on input line 14.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
-
- []
-
-) [8
-
-
-
-]
-\openout2 = `Chapters/chapter5.aux'.
-
- (./Chapters/chapter5.tex
-Underfull \hbox (badness 10000) in paragraph at lines 45--47
+Underfull \hbox (badness 10000) in paragraph at lines 16--18
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--50
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 21.
 
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 21.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 32.
+
+
+LaTeX Warning: Command \textAlpha invalid in math mode on input line 32.
+
+)
+Overfull \hbox (8.88773pt too wide) in paragraph at lines 19--132
+[]$[]$ $[]$ 
  []
 
+[6
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--64
 
- []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--78
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--92
-
- []
-
-[9
-
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 103--106
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--120
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--135
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 170--172
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 183--186
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 192--195
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 192--195
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--207
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--207
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 215--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--227
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--242
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 250--252
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 260--262
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 282--286
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 282--286
-
- []
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 297--300
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--300
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--330
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--330
-
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[12]
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 376.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 376.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 382.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-
-LaTeX Warning: Command \textEpsilon invalid in math mode on input line 393.
-
-) [13] (./Theory of Computation.aux (./Titlepage/title.aux)
+] (./Theory of Computation.aux (./Titlepage/title.aux)
 (./Chapters/chapter1.aux) (./Chapters/chapter2.aux) (./Chapters/chapter3.aux)
-(./Chapters/chapter4.aux) (./Chapters/chapter5.aux))
-
-Package rerunfilecheck Warning: File `"Theory of Computation".out' has changed.
-
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Theory of Computation".out':
-(rerunfilecheck)             Before: 5C97E9F69EA7690041D8634B31A33BA5;4241
-(rerunfilecheck)             After:  FBD42BAAE0889619830BA171DCD08DAF;4209.
+(./Chapters/chapter4.aux))
+Package rerunfilecheck Info: File `"Theory of Computation".out' has not changed
+.
+(rerunfilecheck)             Checksum: 2CEFA57F6E2D157DDA8E6F2487E88BCD;3359.
  ) 
 Here is how much of TeX's memory you used:
- 32464 strings out of 476025
- 621044 string characters out of 5796533
- 1880388 words of memory out of 5000000
- 52246 multiletter control sequences out of 15000+600000
+ 32326 strings out of 476025
+ 617942 string characters out of 5796533
+ 1888388 words of memory out of 5000000
+ 52147 multiletter control sequences out of 15000+600000
  529889 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,23n,89p,908b,1000s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,36n,89p,716b,1608s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publ
@@ -2289,17 +1924,16 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf
 e1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cb
-fonts/grmn1095.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grmn1200.p
-fb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pfb></usr/share/t
-exmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/texmf-dist/fonts/
-type1/public/cbfonts/grxn1440.pfb></usr/share/texmf-dist/fonts/type1/public/cbf
-onts/grxn1728.pfb>
-Output written on "Theory of Computation.pdf" (15 pages, 367405 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/
+type1/public/cbfonts/grmn1095.pfb></usr/share/texmf-dist/fonts/type1/public/cbf
+onts/grmn1200.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1095.pf
+b></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1200.pfb></usr/share/te
+xmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cbfonts/grxn1728.pfb>
+Output written on "Theory of Computation.pdf" (8 pages, 331172 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 141 compressed objects within 2 object streams
+ 16 named destinations out of 1000 (max. 500000)
+ 90 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,29 +1,38 @@
-\section{Κανονικές γλώσσες}
-\subsection[Ερώτημα α]{\textbf{α) }} Η τομή μιας κανονικής γλώσσας με μια μη κανονική γλώσσα είναι πάντα κανονική γλώσσα.
+\section{Αναγνώριση Γλωσσών Χωρίς Συμφραζόμενα}
+\subsection{Μετατροπή γραμματικής G σε κανονική μορφή Chomsky}
+\noindent
+Στην δεδομένη γραμματική οι "ΠΩΣ ΛΈΓΟΝΤΑΙ ΤΑ R" είναι οι εξής:
+\begin{align*}
+	R = \{&S \xrightarrow{} Α\\
+			  &Α \xrightarrow{} Μ\\	
+			  &Α \xrightarrow{} bbAaT\\
+			  &Α \xrightarrow{} ΜaT\\
+			  &M \xrightarrow{} a\\
+			  &M \xrightarrow{} e\\
+			  &T \xrightarrow{} bT\\
+			  &T \xrightarrow{} b\}
+\end{align*}
 
 \noindent\\
-\textbf{Λάθος} Ακολουθεί αντιπαράδειγμα:
+\textbf{Πρώτο βήμα)} Αλλάζουμε οτι είναι μεγαλύτερο του 2 στα δεξια φαδφασδφασδξηφαλκσδξφηακσδξφλ!!!!!!!!!!!!!!!!!\\\\
 
-\noindent\\
-Έστω μία κανονική γλώσσα $L_1 = \{a^*\}$ και μία μη κανονική γλώσσα $L_2 = \{a^n b^n, n > 0\}$ και έστω ότι η τομή των δύο γλωσσών παράγει μία κανονική γλώσσα:
-\begin{equation*}
-	L_1 \cap L_2 = \{a^n, n>0\}
-\end{equation*}
-Άτοπο το αποτέλεσμα της τομής δεν είναι κανονικό.\\
-
-\subsection[Ερώτημα β]{\textbf{β) }} Το συμπλήρωμα μιας πεπερασμένης γλώσσας είναι πάντα κανονική γλώσσα.
-
-\noindent\\
-\textbf{Σωστό}
-
-\noindent\\
-Κάθε πεπερασμένη γλώσσα είναι κανονική και επίσης το συμπλήρωμα μίας κανονικής γλώσσας είναι επίσης κανονική γλώσσα λόγω κλειστότητας της πράξης.\\
-
-\subsection[Ερώτημα γ]{\textbf{γ) }} Κάθε μη κανονική γλώσσα περιέχει μη μετρήσιμο πλήθος συμβολοσειρών.
-
-\noindent\\
-\textbf{Λάθος}
-
-\noindent\\
-Κάθε κανονική γλώσσα είναι υποσύνολο του $\Sigma^*$ το οποίο είναι ένα μετρήσιμα άπειρο σύνολο. 
-
+\begin{minipage}{0.49\textwidth}
+	\begin{equation*}
+		Α \xrightarrow{} bbAaT \xRightarrow{}  \begin{cases*}
+																					A \xrightarrow{} bS_{11}\\
+																					S_{11} \xrightarrow{} bS_{12}\\
+																					S_{12} \xrightarrow{} AS_{13}\\
+																					S_{13} \xrightarrow{} aS_{14}\\
+																					S_{14} \xrightarrow{} T\\
+																				\end{cases*} 
+	\end{equation*}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+	\begin{equation*}
+		Α \xrightarrow{} MaT \xRightarrow{}  \begin{cases*}
+																				A \xrightarrow{} MS_{21}\\
+																				S_{21} \xrightarrow{} aS_{22}\\
+																				S_{22} \xrightarrow{} T\\
+																			\end{cases*} 
+	\end{equation*}
+\end{minipage}

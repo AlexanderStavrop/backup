@@ -1,6 +1,10 @@
 \section{Γραμματικές Χωρίς Συμφραζόμενα}
 
 \subsection{ $L_1 = \{1^n0^m1^k : m > n+ k\}$}
+\noindent\\
+\begin{minipage}{0.4\textwidth}
+\noindent\\
+Γραμματική αναπαράσταση της γλώσσας 
 \begin{align*}
 	G = (V, Σ, &R, S)\\
 			V  = \{&0, 1, S, S_1, S_2\}\\
@@ -13,9 +17,51 @@
 					 &S_2 \xrightarrow{} 0S_2      \\
 					 &S_2 \xrightarrow{} e \}
 \end{align*}
+\end{minipage}
+\noindent
+\begin{minipage}{0.6\textwidth}
+\noindent\\
+Συντακτικό δέντρο επίλυσης της συμβολοσειράς: 1000000111\\ \\
+\begin{tikzpicture}[  level 1/.style={level distance=12mm,sibling distance=28mm},
+										level 2/.style={level distance=10mm,sibling distance=21mm},
+										level 3/.style={level distance=10mm, sibling distance=14mm},
+										level 4/.style={level distance=10mm, sibling distance=7mm},
+										font=\scriptsize,inner sep=1pt,every node/.style={minimum size=3ex}, text=black, >=latex ]
+	\node (1){\(S\)} 
+	child { node (11)  {$S_1$}
+		child { node (21) {\textcolor{red}{1}}}
+		child { node (22) {$S_1$}
+			child { node (31) {e}}
+		}
+		child { node (23) {\textcolor{red}{0}}}
+	}
+	child { node (12) {\textcolor{red}{0}}}
+	child { node (13) {$S_2$}
+		child { node (23) {\textcolor{red}{0}}} 
+		child { node (24) {$S_2$}
+			child { node (32) {\textcolor{red}{0}}} 
+			child { node (33) {$S_2$}
+				child { node (41) {\textcolor{red}{0}}} 
+				child { node (42) {$S_2$}
+					child { node (51) {e}}
+				}
+				child { node (43) {\textcolor{red}{1}}}
+			}
+			child { node (34) {\textcolor{red}{1}}}
+		}
+		child { node (25) {\textcolor{red}{1}}}
+	};
+\end{tikzpicture}
+\end{minipage}
 
+\noindent\\
 \subsection{$L_2 = \{w \in {a, b}^* :$ το πλήθος των β είναι 3k + 2, όπου k το πλήθος των a\}}
-\begin{align*}
+\label{sub12}
+\noindent\\
+\begin{minipage}{0.4\textwidth}
+	\noindent\\
+	Γραμματική αναπαράσταση της γλώσσας 
+	\begin{align*}
 	G = (V, Σ, &R, S)\\
 	V  = \{&a, b, S, S_1\}\\
 	Σ = \{&a, b\}\\
@@ -24,7 +70,47 @@
 			 &S_1 \xrightarrow{} baS_1bb S_1\\
 			 &S_1 \xrightarrow{} bbaS_1b S_1\\
 			 &S_1 \xrightarrow{} bbba S_1\\
-			 &S_1 \xrightarrow{} e\\
+			 &S_1 \xrightarrow{} e \}
 \end{align*}
-
-
+\end{minipage}
+\noindent
+\begin{minipage}{0.6\textwidth}
+	Συντακτικό δέντρο επίλυσης της συμβολοσειράς: babbbbabbb\\\\
+	\begin{tikzpicture}[  level 1/.style={level distance=15mm,sibling distance=25mm},
+		level 2/.style={level distance=15mm,sibling distance=6mm},
+		level 3/.style={level distance=14mm, sibling distance=2mm},
+		level 4/.style={level distance=14mm, sibling distance=7mm},
+		font=\scriptsize,inner sep=1pt,every node/.style={minimum size=3ex}, text=black, >=latex ]
+		
+		\node (1){\(S\)} 
+		child { node (11)  {$S_1$}
+			child { node (21)  {e}}
+		}
+		child { node (12)  {\textcolor{red}{b}}}
+		child { node (13)  {$S_1$}	
+			child { node (22)  {\textcolor{red}{a}}}
+			child { node (23)  {$S_1$}
+				child { node (31)  {e}}
+			}
+			child { node (24)  {\textcolor{red}{b}}}
+			child { node (25)  {\textcolor{red}{b}}}
+			child { node (25)  {\textcolor{red}{b}}}
+			child { node (23)  {$S_1$}
+				child { node (32)  {e}}
+			}
+		}
+		child { node (14)  {\textcolor{red}{b}}}
+		child { node (15)  {$S_1$}	
+			child { node (22)  {\textcolor{red}{a}}}
+			child { node (23)  {$S_1$}
+				child { node (31)  {e}}
+			}
+			child { node (24)  {\textcolor{red}{b}}}
+			child { node (25)  {\textcolor{red}{b}}}
+			child { node (25)  {\textcolor{red}{b}}}
+			child { node (23)  {$S_1$}
+				child { node (32)  {e}}
+			}
+		};
+	\end{tikzpicture}
+\end{minipage}
