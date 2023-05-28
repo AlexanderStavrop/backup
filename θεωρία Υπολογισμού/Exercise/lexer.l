@@ -87,7 +87,7 @@ ID      [a-zA-Z][a-zA-Z0-9_]*
 INT     0|[1-9][0-9]*
 
  /* Floats */
-DECIMAL {INT}"."{INT}
+DECIMAL {INT}"."{INT}|"."{INT}
 EXP     ["e""E"][\+\-]?[1-9]
 FLOAT   {DECIMAL}{EXP}?
     
@@ -98,7 +98,6 @@ STRING  \"[^\n]*\"
 LEADING_ZEROS   [0]+({INT}|{FLOAT})
 DECIMAL_LITERAL {INT}[^\n ]+
 STRING_LITERAL  \"[^\n]*
-malakia ([^A-Za-z0-9\n ]|{DECIMAL})[^\n ]*
 
 
 %%   
@@ -150,6 +149,15 @@ malakia ([^A-Za-z0-9\n ]|{DECIMAL})[^\n ]*
 "/="                return OP_DIVCREM;
 "%="                return OP_MODCREM;
 
+";"                 return DEL_QUEST;
+"("                 return DEL_LPAR;
+")"                 return DEL_RPAR;
+","                 return DEL_COMMA;
+"["                 return DEL_LBRAC;
+"]"                 return DEL_RBRAC;
+":"                 return DEL_DOTS;
+"."                 return DEL_DOT;
+
 {ID}                return T_ID;
 {INT}               return T_INT;
 {FLOAT}             return T_FLOAT;
@@ -161,10 +169,8 @@ malakia ([^A-Za-z0-9\n ]|{DECIMAL})[^\n ]*
 {LEADING_ZEROS}     printf("\033[1;33mLine %2d: Leading zeros -> %s\n\033[0m", lineNum, yytext);
 {DECIMAL_LITERAL}   printf("\x1B[1;35mLine %2d: Invalid decimal literal -> %s\n\033[0m", lineNum, yytext);
 {STRING_LITERAL}    printf("\x1B[1;36mLine %2d: Unterminated string literal -> %s\n\033[0m", lineNum, yytext);
-{malakia}           printf("\033[1;31mLine %2d: Lexical error in: %s\n\033[0m", lineNum, yytext);
-
 <<EOF>>             return EOF;
-
+.                   printf("\033[1;31mLine %2d: Lexical error in: %s\n\033[0m", lineNum, yytext);
 %%
 int main(){
    printf("******************************************************\n");
