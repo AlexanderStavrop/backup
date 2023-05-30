@@ -1,0 +1,248 @@
+Terminals unused in grammar
+
+    T_ID
+    KW_integer
+    KW_scalar
+    KW_str
+    KW_boolean
+    KW_True
+    KW_False
+    KW_const
+    KW_if
+    KW_else
+    KW_endif
+    KW_for
+    KW_in
+    KW_endfor
+    KW_while
+    KW_endwhile
+    KW_break
+    KW_continue
+    KW_not
+    KW_and
+    KW_or
+    KW_def
+    KW_enddef
+    KW_main
+    KW_return
+    KW_com
+    KW_endcomp
+    KW_of
+    T_FLOAT
+    T_STRING
+    OP_MUL
+    OP_DIV
+    OP_MOD
+    OP_EXP
+    OP_EQ
+    OP_NOTEQ
+    OP_LESS
+    OP_LEQ
+    OP_GREATER
+    OP_GEQ
+    OP_EQUAL
+    OP_INCREM
+    OP_DECREM
+    OP_MULCREM
+    OP_DIVCREM
+    OP_MODCREM
+    DEL_QUEST
+    DEL_LPAR
+    DEL_RPAR
+    DEL_COMMA
+    DEL_LBRAC
+    DEL_RBRAC
+    DEL_DOTS
+    DEL_DOT
+    COMM_STR
+    '*'
+    '/'
+
+
+Grammar
+
+    0 $accept: input $end
+
+    1 input: ε
+    2      | input expr
+
+    3 expr: T_INT
+    4     | expr OP_PLUS expr
+    5     | expr OP_MINUS expr
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '*' (42)
+    '/' (47)
+    error (256)
+    T_ID <str> (258)
+    KW_integer (259)
+    KW_scalar (260)
+    KW_str (261)
+    KW_boolean (262)
+    KW_True (263)
+    KW_False (264)
+    KW_const (265)
+    KW_if (266)
+    KW_else (267)
+    KW_endif (268)
+    KW_for (269)
+    KW_in (270)
+    KW_endfor (271)
+    KW_while (272)
+    KW_endwhile (273)
+    KW_break (274)
+    KW_continue (275)
+    KW_not (276)
+    KW_and (277)
+    KW_or (278)
+    KW_def (279)
+    KW_enddef (280)
+    KW_main (281)
+    KW_return (282)
+    KW_com (283)
+    KW_endcomp (284)
+    KW_of (285)
+    T_INT <str> (286) 3
+    T_FLOAT <str> (287)
+    T_STRING <str> (288)
+    OP_PLUS (289) 4
+    OP_MINUS (290) 5
+    OP_MUL (291)
+    OP_DIV (292)
+    OP_MOD (293)
+    OP_EXP (294)
+    OP_EQ (295)
+    OP_NOTEQ (296)
+    OP_LESS (297)
+    OP_LEQ (298)
+    OP_GREATER (299)
+    OP_GEQ (300)
+    OP_EQUAL (301)
+    OP_INCREM (302)
+    OP_DECREM (303)
+    OP_MULCREM (304)
+    OP_DIVCREM (305)
+    OP_MODCREM (306)
+    DEL_QUEST (307)
+    DEL_LPAR (308)
+    DEL_RPAR (309)
+    DEL_COMMA (310)
+    DEL_LBRAC (311)
+    DEL_RBRAC (312)
+    DEL_DOTS (313)
+    DEL_DOT (314)
+    COMM_STR (315)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (63)
+        on left: 0
+    input (64)
+        on left: 1 2
+        on right: 0 2
+    expr <str> (65)
+        on left: 3 4 5
+        on right: 2 4 5
+
+
+State 0
+
+    0 $accept: • input $end
+    1 input: ε •
+    2      | • input expr
+
+    $default  reduce using rule 1 (input)
+
+    input  go to state 1
+
+
+State 1
+
+    0 $accept: input • $end
+    2 input: input • expr
+    3 expr: • T_INT
+    4     | • expr OP_PLUS expr
+    5     | • expr OP_MINUS expr
+
+    $end   shift, and go to state 2
+    T_INT  shift, and go to state 3
+
+    expr  go to state 4
+
+
+State 2
+
+    0 $accept: input $end •
+
+    $default  accept
+
+
+State 3
+
+    3 expr: T_INT •
+
+    $default  reduce using rule 3 (expr)
+
+
+State 4
+
+    2 input: input expr •  [$end, T_INT]
+    4 expr: expr • OP_PLUS expr
+    5     | expr • OP_MINUS expr
+
+    OP_PLUS   shift, and go to state 5
+    OP_MINUS  shift, and go to state 6
+
+    $default  reduce using rule 2 (input)
+
+
+State 5
+
+    3 expr: • T_INT
+    4     | • expr OP_PLUS expr
+    4     | expr OP_PLUS • expr
+    5     | • expr OP_MINUS expr
+
+    T_INT  shift, and go to state 3
+
+    expr  go to state 7
+
+
+State 6
+
+    3 expr: • T_INT
+    4     | • expr OP_PLUS expr
+    5     | • expr OP_MINUS expr
+    5     | expr OP_MINUS • expr
+
+    T_INT  shift, and go to state 3
+
+    expr  go to state 8
+
+
+State 7
+
+    4 expr: expr • OP_PLUS expr
+    4     | expr OP_PLUS expr •  [$end, T_INT, OP_PLUS, OP_MINUS]
+    5     | expr • OP_MINUS expr
+
+    $default  reduce using rule 4 (expr)
+
+    Conflict between rule 4 and token OP_PLUS resolved as reduce (%left OP_PLUS).
+    Conflict between rule 4 and token OP_MINUS resolved as reduce (%left OP_MINUS).
+
+
+State 8
+
+    4 expr: expr • OP_PLUS expr
+    5     | expr • OP_MINUS expr
+    5     | expr OP_MINUS expr •  [$end, T_INT, OP_PLUS, OP_MINUS]
+
+    $default  reduce using rule 5 (expr)
+
+    Conflict between rule 5 and token OP_PLUS resolved as reduce (%left OP_PLUS).
+    Conflict between rule 5 and token OP_MINUS resolved as reduce (%left OP_MINUS).
