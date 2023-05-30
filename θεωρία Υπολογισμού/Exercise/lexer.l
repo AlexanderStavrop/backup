@@ -14,7 +14,13 @@ ID      [a-zA-Z][a-zA-Z0-9_]*
 INT     0|[1-9][0-9]*
 
 
-
+ /* Floats */
+DECIMAL {INT}"."{INT}|"."{INT}
+EXP     ["e""E"][\+\-]?[1-9]
+FLOAT   {DECIMAL}{EXP}?
+    
+ /* Strings */
+STRING 		\"[^\\'\n\"]*\"
 
 %%   
     /* Rules Section */
@@ -72,14 +78,14 @@ INT     0|[1-9][0-9]*
 "["                 { printf("left bracket\n"); return DEL_LBRAC; }
 "]"                 { printf("right bracket\n"); return DEL_RBRAC; }
 ":"                 { printf("colon\n"); return DEL_DOTS; }
-"."                 { printf("dot\n"); return DEL_DOT; }
+"."                 { printf("dot\n"); return DEL_DOT;}
 
 
 {ID}              	{ printf("identifier\n"); yylval.str = strdup(yytext);  return T_ID; }
 {INT}               { printf("int\n"); yylval.str = strdup(yytext); return T_INT;}
+{FLOAT}           	{ printf("floating-point number\n"); yylval.str = strdup(yytext); return T_FLOAT; }
+{STRING}            { printf("string\n"); yylval.str = strdup(yytext); return T_STRING;}
 [ \r\t]+            printf("whitespace\n");/* eat whitespace */
-\n                  ++line_num;
-
-
+\n					{++line_num; printf("hereeeeeee\n");}
 <<EOF>>             {printf("File ended\n"); return EOF;}
 .                   printf("\033[1;31mLine %2d: Lexical error in: %s\n\033[0m", line_num, yytext);

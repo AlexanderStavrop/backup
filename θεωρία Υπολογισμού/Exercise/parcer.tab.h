@@ -111,7 +111,8 @@ extern int yydebug;
     DEL_RBRAC = 312,               /* DEL_RBRAC  */
     DEL_DOTS = 313,                /* DEL_DOTS  */
     DEL_DOT = 314,                 /* DEL_DOT  */
-    COMM_STR = 315                 /* COMM_STR  */
+    COMM_STR = 315,                /* COMM_STR  */
+    NEW_LINE = 316                 /* NEW_LINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -124,7 +125,7 @@ union YYSTYPE
 
 	char* str;
 
-#line 128 "parcer.tab.h"
+#line 129 "parcer.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

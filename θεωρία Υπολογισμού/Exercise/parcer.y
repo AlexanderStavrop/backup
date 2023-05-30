@@ -84,32 +84,43 @@
 // Comments
 %token COMM_STR
 
+%token NEW_LINE
 
-%start input
+%start program_start
 %type <str> expr
+%type <str> program_body 
 
 
 %left OP_MINUS OP_PLUS
 %left '*' '/'
 
 %%
-input:
-    %empty
-	| input expr // ';'
-    {
-        if (yyerror_count == 0) {
-            puts(c_prologue);
-            printf("%s\n", $2);
-        }
-    }
-    ;
+program_start:
+	%empty
+  |	program_body
+  	{
+		if (yyerror_count == 0) {
+			puts(c_prologue);
+			printf("%s\n", $1);
+		}
+	}
+;
+
+program_body:
+	expr
+  | program_body expr	  {$$ = template("%s%s", $1, $2);}	
+  | program_body expr ';' {$$ = template("%s%s;", $1, $2);}
+;
 
 expr:
-	T_INT			    {$$ = $1;}
+  	T_INT			    {$$ = $1;}
+  | T_STRING			{$$ = $1;}
   | expr OP_PLUS expr	{$$ = template("%s + %s", $1, $3);}
   | expr OP_MINUS expr	{$$ = template("%s - %s", $1, $3);}
-  ;
-  	
+  | expr DEL_QUEST		{$$ = template("%s;", $1);}
+;
+
+
 %%
 int main(){
 	if (yyparse() == 0)

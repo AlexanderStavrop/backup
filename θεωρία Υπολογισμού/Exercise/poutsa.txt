@@ -1,0 +1,20 @@
+int
+whitespace
+plus
+whitespace
+int
+int
+#include "kappalib.h"
+
+
+1 + 1
+whitespace
+minus
+whitespace
+int
+File ended
+#include "kappalib.h"
+
+
+1 - 1
+Accepted

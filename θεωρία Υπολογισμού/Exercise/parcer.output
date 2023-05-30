@@ -29,7 +29,6 @@ Terminals unused in grammar
     KW_endcomp
     KW_of
     T_FLOAT
-    T_STRING
     OP_MUL
     OP_DIV
     OP_MOD
@@ -46,7 +45,6 @@ Terminals unused in grammar
     OP_MULCREM
     OP_DIVCREM
     OP_MODCREM
-    DEL_QUEST
     DEL_LPAR
     DEL_RPAR
     DEL_COMMA
@@ -55,20 +53,31 @@ Terminals unused in grammar
     DEL_DOTS
     DEL_DOT
     COMM_STR
+    NEW_LINE
     '*'
     '/'
 
 
+State 12 conflicts: 1 shift/reduce
+State 13 conflicts: 1 shift/reduce
+
+
 Grammar
 
-    0 $accept: input $end
+    0 $accept: program_start $end
 
-    1 input: ε
-    2      | input expr
+    1 program_start: ε
+    2              | program_body
 
-    3 expr: T_INT
-    4     | expr OP_PLUS expr
-    5     | expr OP_MINUS expr
+    3 program_body: expr
+    4             | program_body expr
+    5             | program_body expr ';'
+
+    6 expr: T_INT
+    7     | T_STRING
+    8     | expr OP_PLUS expr
+    9     | expr OP_MINUS expr
+   10     | expr DEL_QUEST
 
 
 Terminals, with rules where they appear
@@ -76,6 +85,7 @@ Terminals, with rules where they appear
     $end (0) 0
     '*' (42)
     '/' (47)
+    ';' (59) 5
     error (256)
     T_ID <str> (258)
     KW_integer (259)
@@ -105,11 +115,11 @@ Terminals, with rules where they appear
     KW_com (283)
     KW_endcomp (284)
     KW_of (285)
-    T_INT <str> (286) 3
+    T_INT <str> (286) 6
     T_FLOAT <str> (287)
-    T_STRING <str> (288)
-    OP_PLUS (289) 4
-    OP_MINUS (290) 5
+    T_STRING <str> (288) 7
+    OP_PLUS (289) 8
+    OP_MINUS (290) 9
     OP_MUL (291)
     OP_DIV (292)
     OP_MOD (293)
@@ -126,7 +136,7 @@ Terminals, with rules where they appear
     OP_MULCREM (304)
     OP_DIVCREM (305)
     OP_MODCREM (306)
-    DEL_QUEST (307)
+    DEL_QUEST (307) 10
     DEL_LPAR (308)
     DEL_RPAR (309)
     DEL_COMMA (310)
@@ -135,114 +145,224 @@ Terminals, with rules where they appear
     DEL_DOTS (313)
     DEL_DOT (314)
     COMM_STR (315)
+    NEW_LINE (316)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (63)
+    $accept (65)
         on left: 0
-    input (64)
+    program_start (66)
         on left: 1 2
-        on right: 0 2
-    expr <str> (65)
+        on right: 0
+    program_body <str> (67)
         on left: 3 4 5
         on right: 2 4 5
+    expr <str> (68)
+        on left: 6 7 8 9 10
+        on right: 3 4 5 8 9 10
 
 
 State 0
 
-    0 $accept: • input $end
-    1 input: ε •
-    2      | • input expr
+    0 $accept: • program_start $end
+    1 program_start: ε •  [$end]
+    2              | • program_body
+    3 program_body: • expr
+    4             | • program_body expr
+    5             | • program_body expr ';'
+    6 expr: • T_INT
+    7     | • T_STRING
+    8     | • expr OP_PLUS expr
+    9     | • expr OP_MINUS expr
+   10     | • expr DEL_QUEST
 
-    $default  reduce using rule 1 (input)
+    T_INT     shift, and go to state 1
+    T_STRING  shift, and go to state 2
 
-    input  go to state 1
+    $default  reduce using rule 1 (program_start)
+
+    program_start  go to state 3
+    program_body   go to state 4
+    expr           go to state 5
 
 
 State 1
 
-    0 $accept: input • $end
-    2 input: input • expr
-    3 expr: • T_INT
-    4     | • expr OP_PLUS expr
-    5     | • expr OP_MINUS expr
+    6 expr: T_INT •
 
-    $end   shift, and go to state 2
-    T_INT  shift, and go to state 3
-
-    expr  go to state 4
+    $default  reduce using rule 6 (expr)
 
 
 State 2
 
-    0 $accept: input $end •
+    7 expr: T_STRING •
 
-    $default  accept
+    $default  reduce using rule 7 (expr)
 
 
 State 3
 
-    3 expr: T_INT •
+    0 $accept: program_start • $end
 
-    $default  reduce using rule 3 (expr)
+    $end  shift, and go to state 6
 
 
 State 4
 
-    2 input: input expr •  [$end, T_INT]
-    4 expr: expr • OP_PLUS expr
-    5     | expr • OP_MINUS expr
+    2 program_start: program_body •  [$end]
+    4 program_body: program_body • expr
+    5             | program_body • expr ';'
+    6 expr: • T_INT
+    7     | • T_STRING
+    8     | • expr OP_PLUS expr
+    9     | • expr OP_MINUS expr
+   10     | • expr DEL_QUEST
 
-    OP_PLUS   shift, and go to state 5
-    OP_MINUS  shift, and go to state 6
+    T_INT     shift, and go to state 1
+    T_STRING  shift, and go to state 2
 
-    $default  reduce using rule 2 (input)
-
-
-State 5
-
-    3 expr: • T_INT
-    4     | • expr OP_PLUS expr
-    4     | expr OP_PLUS • expr
-    5     | • expr OP_MINUS expr
-
-    T_INT  shift, and go to state 3
+    $default  reduce using rule 2 (program_start)
 
     expr  go to state 7
 
 
+State 5
+
+    3 program_body: expr •  [$end, T_INT, T_STRING]
+    8 expr: expr • OP_PLUS expr
+    9     | expr • OP_MINUS expr
+   10     | expr • DEL_QUEST
+
+    OP_PLUS    shift, and go to state 8
+    OP_MINUS   shift, and go to state 9
+    DEL_QUEST  shift, and go to state 10
+
+    $default  reduce using rule 3 (program_body)
+
+
 State 6
 
-    3 expr: • T_INT
-    4     | • expr OP_PLUS expr
-    5     | • expr OP_MINUS expr
-    5     | expr OP_MINUS • expr
+    0 $accept: program_start $end •
 
-    T_INT  shift, and go to state 3
-
-    expr  go to state 8
+    $default  accept
 
 
 State 7
 
-    4 expr: expr • OP_PLUS expr
-    4     | expr OP_PLUS expr •  [$end, T_INT, OP_PLUS, OP_MINUS]
-    5     | expr • OP_MINUS expr
+    4 program_body: program_body expr •  [$end, T_INT, T_STRING]
+    5             | program_body expr • ';'
+    8 expr: expr • OP_PLUS expr
+    9     | expr • OP_MINUS expr
+   10     | expr • DEL_QUEST
 
-    $default  reduce using rule 4 (expr)
+    OP_PLUS    shift, and go to state 8
+    OP_MINUS   shift, and go to state 9
+    DEL_QUEST  shift, and go to state 10
+    ';'        shift, and go to state 11
 
-    Conflict between rule 4 and token OP_PLUS resolved as reduce (%left OP_PLUS).
-    Conflict between rule 4 and token OP_MINUS resolved as reduce (%left OP_MINUS).
+    $default  reduce using rule 4 (program_body)
 
 
 State 8
 
-    4 expr: expr • OP_PLUS expr
-    5     | expr • OP_MINUS expr
-    5     | expr OP_MINUS expr •  [$end, T_INT, OP_PLUS, OP_MINUS]
+    6 expr: • T_INT
+    7     | • T_STRING
+    8     | • expr OP_PLUS expr
+    8     | expr OP_PLUS • expr
+    9     | • expr OP_MINUS expr
+   10     | • expr DEL_QUEST
 
-    $default  reduce using rule 5 (expr)
+    T_INT     shift, and go to state 1
+    T_STRING  shift, and go to state 2
 
-    Conflict between rule 5 and token OP_PLUS resolved as reduce (%left OP_PLUS).
-    Conflict between rule 5 and token OP_MINUS resolved as reduce (%left OP_MINUS).
+    expr  go to state 12
+
+
+State 9
+
+    6 expr: • T_INT
+    7     | • T_STRING
+    8     | • expr OP_PLUS expr
+    9     | • expr OP_MINUS expr
+    9     | expr OP_MINUS • expr
+   10     | • expr DEL_QUEST
+
+    T_INT     shift, and go to state 1
+    T_STRING  shift, and go to state 2
+
+    expr  go to state 13
+
+
+State 10
+
+   10 expr: expr DEL_QUEST •
+
+    $default  reduce using rule 10 (expr)
+
+
+State 11
+
+    5 program_body: program_body expr ';' •
+
+    $default  reduce using rule 5 (program_body)
+
+
+State 12
+
+    8 expr: expr • OP_PLUS expr
+    8     | expr OP_PLUS expr •  [$end, T_INT, T_STRING, OP_PLUS, OP_MINUS, DEL_QUEST, ';']
+    9     | expr • OP_MINUS expr
+   10     | expr • DEL_QUEST
+
+    DEL_QUEST  shift, and go to state 10
+
+    DEL_QUEST  [reduce using rule 8 (expr)]
+    $default   reduce using rule 8 (expr)
+
+    Conflict between rule 8 and token OP_PLUS resolved as reduce (%left OP_PLUS).
+    Conflict between rule 8 and token OP_MINUS resolved as reduce (%left OP_MINUS).
+
+    shift/reduce conflict on token DEL_QUEST:
+        8 expr: expr OP_PLUS expr •
+       10 expr: expr • DEL_QUEST
+      Example: expr OP_PLUS expr • DEL_QUEST
+      Shift derivation
+        expr
+        ↳ 8: expr OP_PLUS expr
+                          ↳ 10: expr • DEL_QUEST
+      Reduce derivation
+        expr
+        ↳ 10: expr                     DEL_QUEST
+              ↳ 8: expr OP_PLUS expr •
+
+
+
+State 13
+
+    8 expr: expr • OP_PLUS expr
+    9     | expr • OP_MINUS expr
+    9     | expr OP_MINUS expr •  [$end, T_INT, T_STRING, OP_PLUS, OP_MINUS, DEL_QUEST, ';']
+   10     | expr • DEL_QUEST
+
+    DEL_QUEST  shift, and go to state 10
+
+    DEL_QUEST  [reduce using rule 9 (expr)]
+    $default   reduce using rule 9 (expr)
+
+    Conflict between rule 9 and token OP_PLUS resolved as reduce (%left OP_PLUS).
+    Conflict between rule 9 and token OP_MINUS resolved as reduce (%left OP_MINUS).
+
+    shift/reduce conflict on token DEL_QUEST:
+        9 expr: expr OP_MINUS expr •
+       10 expr: expr • DEL_QUEST
+      Example: expr OP_MINUS expr • DEL_QUEST
+      Shift derivation
+        expr
+        ↳ 9: expr OP_MINUS expr
+                           ↳ 10: expr • DEL_QUEST
+      Reduce derivation
+        expr
+        ↳ 10: expr                      DEL_QUEST
+              ↳ 9: expr OP_MINUS expr •
+
