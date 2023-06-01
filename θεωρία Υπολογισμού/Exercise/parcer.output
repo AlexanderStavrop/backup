@@ -46,15 +46,6 @@ Terminals unused in grammar
     '/'
 
 
-Rules useless in parser due to conflicts
-
-   11 function_arguments: variable
-
-
-State 37 conflicts: 1 shift/reduce
-State 39 conflicts: 1 shift/reduce
-
-
 Grammar
 
     0 $accept: program_start $end
@@ -72,31 +63,37 @@ Grammar
     9 function: KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef
    10         | KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
 
-   11 function_arguments: variable
+   11 function_arguments: fcn_variable
+   12                   | function_arguments DEL_COMMA fcn_variable
 
-   12 function_body: expression
-   13              | function_body expression
-   14              | function_body expression DEL_QUEST
+   13 function_body: expression
+   14              | function_body DEL_LPAR
+   15              | function_body DEL_RPAR
+   16              | function_body DEL_QUEST
+   17              | function_body expression
 
-   15 constant: KW_const variable
+   18 fcn_variable: expression
+   19             | fcn_variable expression
+   20             | fcn_variable OP_EQUAL
+   21             | fcn_variable var_type
 
-   16 variable: expression
-   17         | variable expression
-   18         | variable OP_EQUAL
-   19         | variable var_type
+   22 constant: KW_const variable
 
-   20 var_type: DEL_DOTS KW_str
-   21         | DEL_DOTS KW_integer
+   23 variable: expression
+   24         | variable expression
+   25         | variable DEL_COMMA expression
+   26         | variable OP_EQUAL
+   27         | variable var_type
 
-   22 expression: T_ID
-   23           | T_INT
-   24           | T_STRING
-   25           | OP_MINUS
-   26           | OP_PLUS
-   27           | DEL_COMMA
-   28           | DEL_LPAR
-   29           | DEL_RPAR
-   30           | KW_main
+   28 var_type: DEL_DOTS KW_str
+   29         | DEL_DOTS KW_integer
+
+   30 expression: T_ID
+   31           | T_INT
+   32           | T_STRING
+   33           | OP_MINUS
+   34           | OP_PLUS
+   35           | KW_main
 
 
 Terminals, with rules where they appear
@@ -105,14 +102,14 @@ Terminals, with rules where they appear
     '*' (42)
     '/' (47)
     error (256)
-    T_ID <str> (258) 22
-    KW_integer (259) 21
+    T_ID <str> (258) 30
+    KW_integer (259) 29
     KW_scalar (260)
-    KW_str (261) 20
+    KW_str (261) 28
     KW_boolean (262)
     KW_True (263)
     KW_False (264)
-    KW_const (265) 15
+    KW_const (265) 22
     KW_if (266)
     KW_else (267)
     KW_endif (268)
@@ -128,16 +125,16 @@ Terminals, with rules where they appear
     KW_or (278)
     KW_def (279) 9 10
     KW_enddef (280) 9 10
-    KW_main (281) 30
+    KW_main (281) 35
     KW_return (282)
     KW_com (283)
     KW_endcomp (284)
     KW_of (285)
-    T_INT <str> (286) 23
+    T_INT <str> (286) 31
     T_FLOAT <str> (287)
-    T_STRING <str> (288) 24
-    OP_PLUS (289) 26
-    OP_MINUS <str> (290) 25
+    T_STRING <str> (288) 32
+    OP_PLUS (289) 34
+    OP_MINUS <str> (290) 33
     OP_MUL (291)
     OP_DIV (292)
     OP_MOD (293)
@@ -148,19 +145,19 @@ Terminals, with rules where they appear
     OP_LEQ (298)
     OP_GREATER (299)
     OP_GEQ (300)
-    OP_EQUAL <str> (301) 18
+    OP_EQUAL <str> (301) 20 26
     OP_INCREM (302)
     OP_DECREM (303)
     OP_MULCREM (304)
     OP_DIVCREM (305)
     OP_MODCREM (306)
-    DEL_QUEST (307) 3 4 5 6 7 8 14
-    DEL_LPAR (308) 9 10 28
-    DEL_RPAR (309) 9 10 29
-    DEL_COMMA (310) 27
+    DEL_QUEST (307) 3 4 5 6 7 8 16
+    DEL_LPAR (308) 9 10 14
+    DEL_RPAR (309) 9 10 15
+    DEL_COMMA (310) 12 25
     DEL_LBRAC (311)
     DEL_RBRAC (312)
-    DEL_DOTS (313) 9 10 20 21
+    DEL_DOTS (313) 9 10 28 29
     DEL_DOT (314)
     COMM_STR (315)
     NEW_LINE (316)
@@ -180,23 +177,26 @@ Nonterminals, with rules where they appear
         on left: 9 10
         on right: 7 8
     function_arguments <str> (68)
-        on left: 11
-        on right: 10
+        on left: 11 12
+        on right: 10 12
     function_body <str> (69)
-        on left: 12 13 14
-        on right: 9 10 13 14
-    constant <str> (70)
-        on left: 15
+        on left: 13 14 15 16 17
+        on right: 9 10 14 15 16 17
+    fcn_variable <str> (70)
+        on left: 18 19 20 21
+        on right: 11 12 19 20 21
+    constant <str> (71)
+        on left: 22
         on right: 3 4
-    variable <str> (71)
-        on left: 16 17 18 19
-        on right: 5 6 11 15 17 18 19
-    var_type <str> (72)
-        on left: 20 21
-        on right: 19
-    expression <str> (73)
-        on left: 22 23 24 25 26 27 28 29 30
-        on right: 9 10 12 13 14 16 17
+    variable <str> (72)
+        on left: 23 24 25 26 27
+        on right: 5 6 22 24 25 26 27
+    var_type <str> (73)
+        on left: 28 29
+        on right: 21 27
+    expression <str> (74)
+        on left: 30 31 32 33 34 35
+        on right: 9 10 13 17 18 19 23 24 25
 
 
 State 0
@@ -212,172 +212,135 @@ State 0
     8             | • program_body function DEL_QUEST
     9 function: • KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef
    10         | • KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
-   15 constant: • KW_const variable
-   16 variable: • expression
-   17         | • variable expression
-   18         | • variable OP_EQUAL
-   19         | • variable var_type
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   22 constant: • KW_const variable
+   23 variable: • expression
+   24         | • variable expression
+   25         | • variable DEL_COMMA expression
+   26         | • variable OP_EQUAL
+   27         | • variable var_type
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    T_ID       shift, and go to state 1
-    KW_const   shift, and go to state 2
-    KW_def     shift, and go to state 3
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    T_ID      shift, and go to state 1
+    KW_const  shift, and go to state 2
+    KW_def    shift, and go to state 3
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
 
     $default  reduce using rule 1 (program_start)
 
-    program_start  go to state 12
-    program_body   go to state 13
-    function       go to state 14
-    constant       go to state 15
-    variable       go to state 16
-    expression     go to state 17
+    program_start  go to state 9
+    program_body   go to state 10
+    function       go to state 11
+    constant       go to state 12
+    variable       go to state 13
+    expression     go to state 14
 
 
 State 1
 
-   22 expression: T_ID •
+   30 expression: T_ID •
 
-    $default  reduce using rule 22 (expression)
+    $default  reduce using rule 30 (expression)
 
 
 State 2
 
-   15 constant: KW_const • variable
-   16 variable: • expression
-   17         | • variable expression
-   18         | • variable OP_EQUAL
-   19         | • variable var_type
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   22 constant: KW_const • variable
+   23 variable: • expression
+   24         | • variable expression
+   25         | • variable DEL_COMMA expression
+   26         | • variable OP_EQUAL
+   27         | • variable var_type
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
 
-    variable    go to state 18
-    expression  go to state 17
+    variable    go to state 15
+    expression  go to state 14
 
 
 State 3
 
     9 function: KW_def • expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef
    10         | KW_def • expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
 
-    expression  go to state 19
+    expression  go to state 16
 
 
 State 4
 
-   30 expression: KW_main •
+   35 expression: KW_main •
 
-    $default  reduce using rule 30 (expression)
+    $default  reduce using rule 35 (expression)
 
 
 State 5
 
-   23 expression: T_INT •
+   31 expression: T_INT •
 
-    $default  reduce using rule 23 (expression)
+    $default  reduce using rule 31 (expression)
 
 
 State 6
 
-   24 expression: T_STRING •
+   32 expression: T_STRING •
 
-    $default  reduce using rule 24 (expression)
+    $default  reduce using rule 32 (expression)
 
 
 State 7
 
-   26 expression: OP_PLUS •
+   34 expression: OP_PLUS •
 
-    $default  reduce using rule 26 (expression)
+    $default  reduce using rule 34 (expression)
 
 
 State 8
 
-   25 expression: OP_MINUS •
+   33 expression: OP_MINUS •
 
-    $default  reduce using rule 25 (expression)
+    $default  reduce using rule 33 (expression)
 
 
 State 9
 
-   28 expression: DEL_LPAR •
+    0 $accept: program_start • $end
 
-    $default  reduce using rule 28 (expression)
+    $end  shift, and go to state 17
 
 
 State 10
-
-   29 expression: DEL_RPAR •
-
-    $default  reduce using rule 29 (expression)
-
-
-State 11
-
-   27 expression: DEL_COMMA •
-
-    $default  reduce using rule 27 (expression)
-
-
-State 12
-
-    0 $accept: program_start • $end
-
-    $end  shift, and go to state 20
-
-
-State 13
 
     2 program_start: program_body •  [$end]
     4 program_body: program_body • constant DEL_QUEST
@@ -385,179 +348,164 @@ State 13
     8             | program_body • function DEL_QUEST
     9 function: • KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef
    10         | • KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
-   15 constant: • KW_const variable
-   16 variable: • expression
-   17         | • variable expression
-   18         | • variable OP_EQUAL
-   19         | • variable var_type
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   22 constant: • KW_const variable
+   23 variable: • expression
+   24         | • variable expression
+   25         | • variable DEL_COMMA expression
+   26         | • variable OP_EQUAL
+   27         | • variable var_type
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
+
+    T_ID      shift, and go to state 1
+    KW_const  shift, and go to state 2
+    KW_def    shift, and go to state 3
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+
+    $default  reduce using rule 2 (program_start)
+
+    function    go to state 18
+    constant    go to state 19
+    variable    go to state 20
+    expression  go to state 14
+
+
+State 11
+
+    7 program_body: function • DEL_QUEST
+
+    DEL_QUEST  shift, and go to state 21
+
+
+State 12
+
+    3 program_body: constant • DEL_QUEST
+
+    DEL_QUEST  shift, and go to state 22
+
+
+State 13
+
+    5 program_body: variable • DEL_QUEST
+   24 variable: variable • expression
+   25         | variable • DEL_COMMA expression
+   26         | variable • OP_EQUAL
+   27         | variable • var_type
+   28 var_type: • DEL_DOTS KW_str
+   29         | • DEL_DOTS KW_integer
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
     T_ID       shift, and go to state 1
-    KW_const   shift, and go to state 2
-    KW_def     shift, and go to state 3
     KW_main    shift, and go to state 4
     T_INT      shift, and go to state 5
     T_STRING   shift, and go to state 6
     OP_PLUS    shift, and go to state 7
     OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    OP_EQUAL   shift, and go to state 23
+    DEL_QUEST  shift, and go to state 24
+    DEL_COMMA  shift, and go to state 25
+    DEL_DOTS   shift, and go to state 26
 
-    $default  reduce using rule 2 (program_start)
-
-    function    go to state 21
-    constant    go to state 22
-    variable    go to state 23
-    expression  go to state 17
+    var_type    go to state 27
+    expression  go to state 28
 
 
 State 14
 
-    7 program_body: function • DEL_QUEST
+   23 variable: expression •
 
-    DEL_QUEST  shift, and go to state 24
+    $default  reduce using rule 23 (variable)
 
 
 State 15
 
-    3 program_body: constant • DEL_QUEST
+   22 constant: KW_const variable •  [DEL_QUEST]
+   24 variable: variable • expression
+   25         | variable • DEL_COMMA expression
+   26         | variable • OP_EQUAL
+   27         | variable • var_type
+   28 var_type: • DEL_DOTS KW_str
+   29         | • DEL_DOTS KW_integer
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    DEL_QUEST  shift, and go to state 25
+    T_ID       shift, and go to state 1
+    KW_main    shift, and go to state 4
+    T_INT      shift, and go to state 5
+    T_STRING   shift, and go to state 6
+    OP_PLUS    shift, and go to state 7
+    OP_MINUS   shift, and go to state 8
+    OP_EQUAL   shift, and go to state 23
+    DEL_COMMA  shift, and go to state 25
+    DEL_DOTS   shift, and go to state 26
+
+    $default  reduce using rule 22 (constant)
+
+    var_type    go to state 27
+    expression  go to state 28
 
 
 State 16
 
-    5 program_body: variable • DEL_QUEST
-   17 variable: variable • expression
-   18         | variable • OP_EQUAL
-   19         | variable • var_type
-   20 var_type: • DEL_DOTS KW_str
-   21         | • DEL_DOTS KW_integer
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
-
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    OP_EQUAL   shift, and go to state 26
-    DEL_QUEST  shift, and go to state 27
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
-    DEL_DOTS   shift, and go to state 28
-
-    var_type    go to state 29
-    expression  go to state 30
-
-
-State 17
-
-   16 variable: expression •
-
-    $default  reduce using rule 16 (variable)
-
-
-State 18
-
-   15 constant: KW_const variable •  [DEL_QUEST]
-   17 variable: variable • expression
-   18         | variable • OP_EQUAL
-   19         | variable • var_type
-   20 var_type: • DEL_DOTS KW_str
-   21         | • DEL_DOTS KW_integer
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
-
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    OP_EQUAL   shift, and go to state 26
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
-    DEL_DOTS   shift, and go to state 28
-
-    $default  reduce using rule 15 (constant)
-
-    var_type    go to state 29
-    expression  go to state 30
-
-
-State 19
-
     9 function: KW_def expression • DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef
    10         | KW_def expression • DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
 
-    DEL_LPAR  shift, and go to state 31
+    DEL_LPAR  shift, and go to state 29
 
 
-State 20
+State 17
 
     0 $accept: program_start $end •
 
     $default  accept
 
 
-State 21
+State 18
 
     8 program_body: program_body function • DEL_QUEST
 
-    DEL_QUEST  shift, and go to state 32
+    DEL_QUEST  shift, and go to state 30
 
 
-State 22
+State 19
 
     4 program_body: program_body constant • DEL_QUEST
 
-    DEL_QUEST  shift, and go to state 33
+    DEL_QUEST  shift, and go to state 31
 
 
-State 23
+State 20
 
     6 program_body: program_body variable • DEL_QUEST
-   17 variable: variable • expression
-   18         | variable • OP_EQUAL
-   19         | variable • var_type
-   20 var_type: • DEL_DOTS KW_str
-   21         | • DEL_DOTS KW_integer
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   24 variable: variable • expression
+   25         | variable • DEL_COMMA expression
+   26         | variable • OP_EQUAL
+   27         | variable • var_type
+   28 var_type: • DEL_DOTS KW_str
+   29         | • DEL_DOTS KW_integer
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
     T_ID       shift, and go to state 1
     KW_main    shift, and go to state 4
@@ -565,393 +513,445 @@ State 23
     T_STRING   shift, and go to state 6
     OP_PLUS    shift, and go to state 7
     OP_MINUS   shift, and go to state 8
-    OP_EQUAL   shift, and go to state 26
-    DEL_QUEST  shift, and go to state 34
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
-    DEL_DOTS   shift, and go to state 28
+    OP_EQUAL   shift, and go to state 23
+    DEL_QUEST  shift, and go to state 32
+    DEL_COMMA  shift, and go to state 25
+    DEL_DOTS   shift, and go to state 26
 
-    var_type    go to state 29
-    expression  go to state 30
+    var_type    go to state 27
+    expression  go to state 28
 
 
-State 24
+State 21
 
     7 program_body: function DEL_QUEST •
 
     $default  reduce using rule 7 (program_body)
 
 
-State 25
+State 22
 
     3 program_body: constant DEL_QUEST •
 
     $default  reduce using rule 3 (program_body)
 
 
-State 26
+State 23
 
-   18 variable: variable OP_EQUAL •
+   26 variable: variable OP_EQUAL •
 
-    $default  reduce using rule 18 (variable)
+    $default  reduce using rule 26 (variable)
 
 
-State 27
+State 24
 
     5 program_body: variable DEL_QUEST •
 
     $default  reduce using rule 5 (program_body)
 
 
+State 25
+
+   25 variable: variable DEL_COMMA • expression
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
+
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+
+    expression  go to state 33
+
+
+State 26
+
+   28 var_type: DEL_DOTS • KW_str
+   29         | DEL_DOTS • KW_integer
+
+    KW_integer  shift, and go to state 34
+    KW_str      shift, and go to state 35
+
+
+State 27
+
+   27 variable: variable var_type •
+
+    $default  reduce using rule 27 (variable)
+
+
 State 28
 
-   20 var_type: DEL_DOTS • KW_str
-   21         | DEL_DOTS • KW_integer
+   24 variable: variable expression •
 
-    KW_integer  shift, and go to state 35
-    KW_str      shift, and go to state 36
+    $default  reduce using rule 24 (variable)
 
 
 State 29
 
-   19 variable: variable var_type •
+    9 function: KW_def expression DEL_LPAR • DEL_RPAR DEL_DOTS function_body KW_enddef
+   10         | KW_def expression DEL_LPAR • function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
+   11 function_arguments: • fcn_variable
+   12                   | • function_arguments DEL_COMMA fcn_variable
+   18 fcn_variable: • expression
+   19             | • fcn_variable expression
+   20             | • fcn_variable OP_EQUAL
+   21             | • fcn_variable var_type
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    $default  reduce using rule 19 (variable)
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+    DEL_RPAR  shift, and go to state 36
+
+    function_arguments  go to state 37
+    fcn_variable        go to state 38
+    expression          go to state 39
 
 
 State 30
-
-   17 variable: variable expression •
-
-    $default  reduce using rule 17 (variable)
-
-
-State 31
-
-    9 function: KW_def expression DEL_LPAR • DEL_RPAR DEL_DOTS function_body KW_enddef
-   10         | KW_def expression DEL_LPAR • function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
-   11 function_arguments: • variable
-   16 variable: • expression
-   17         | • variable expression
-   18         | • variable OP_EQUAL
-   19         | • variable var_type
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
-
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 37
-    DEL_COMMA  shift, and go to state 11
-
-    function_arguments  go to state 38
-    variable            go to state 39
-    expression          go to state 17
-
-
-State 32
 
     8 program_body: program_body function DEL_QUEST •
 
     $default  reduce using rule 8 (program_body)
 
 
-State 33
+State 31
 
     4 program_body: program_body constant DEL_QUEST •
 
     $default  reduce using rule 4 (program_body)
 
 
-State 34
+State 32
 
     6 program_body: program_body variable DEL_QUEST •
 
     $default  reduce using rule 6 (program_body)
 
 
+State 33
+
+   25 variable: variable DEL_COMMA expression •
+
+    $default  reduce using rule 25 (variable)
+
+
+State 34
+
+   29 var_type: DEL_DOTS KW_integer •
+
+    $default  reduce using rule 29 (var_type)
+
+
 State 35
 
-   21 var_type: DEL_DOTS KW_integer •
+   28 var_type: DEL_DOTS KW_str •
 
-    $default  reduce using rule 21 (var_type)
+    $default  reduce using rule 28 (var_type)
 
 
 State 36
 
-   20 var_type: DEL_DOTS KW_str •
+    9 function: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS function_body KW_enddef
 
-    $default  reduce using rule 20 (var_type)
+    DEL_DOTS  shift, and go to state 40
 
 
 State 37
 
-    9 function: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS function_body KW_enddef
-   29 expression: DEL_RPAR •  [T_ID, KW_main, T_INT, T_STRING, OP_PLUS, OP_MINUS, OP_EQUAL, DEL_LPAR, DEL_RPAR, DEL_COMMA, DEL_DOTS]
+   10 function: KW_def expression DEL_LPAR function_arguments • DEL_RPAR DEL_DOTS function_body KW_enddef
+   12 function_arguments: function_arguments • DEL_COMMA fcn_variable
 
-    DEL_DOTS  shift, and go to state 40
-
-    DEL_DOTS  [reduce using rule 29 (expression)]
-    $default  reduce using rule 29 (expression)
-
-    shift/reduce conflict on token DEL_DOTS:
-       29 expression: DEL_RPAR •
-        9 function: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS function_body KW_enddef
-      First example: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS function_body KW_enddef DEL_QUEST $end
-      Shift derivation
-        $accept
-        ↳ 0: program_start                                                                                   $end
-             ↳ 2: program_body
-                  ↳ 7: function                                                                    DEL_QUEST
-                       ↳ 9: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS function_body KW_enddef
-      Second example: KW_def expression DEL_LPAR DEL_RPAR • DEL_DOTS KW_str DEL_RPAR DEL_DOTS function_body KW_enddef DEL_QUEST $end
-      Reduce derivation
-        $accept
-        ↳ 0: program_start                                                                                                                                           $end
-             ↳ 2: program_body
-                  ↳ 7: function                                                                                                                            DEL_QUEST
-                       ↳ 10: KW_def expression DEL_LPAR function_arguments                                       DEL_RPAR DEL_DOTS function_body KW_enddef
-                                                        ↳ 11: variable
-                                                              ↳ 19: variable               var_type
-                                                                    ↳ 16: expression       ↳ 20: DEL_DOTS KW_str
-                                                                          ↳ 29: DEL_RPAR •
-
+    DEL_RPAR   shift, and go to state 41
+    DEL_COMMA  shift, and go to state 42
 
 
 State 38
 
-   10 function: KW_def expression DEL_LPAR function_arguments • DEL_RPAR DEL_DOTS function_body KW_enddef
+   11 function_arguments: fcn_variable •  [DEL_RPAR, DEL_COMMA]
+   19 fcn_variable: fcn_variable • expression
+   20             | fcn_variable • OP_EQUAL
+   21             | fcn_variable • var_type
+   28 var_type: • DEL_DOTS KW_str
+   29         | • DEL_DOTS KW_integer
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    DEL_RPAR  shift, and go to state 41
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+    OP_EQUAL  shift, and go to state 43
+    DEL_DOTS  shift, and go to state 26
+
+    $default  reduce using rule 11 (function_arguments)
+
+    var_type    go to state 44
+    expression  go to state 45
 
 
 State 39
 
-   11 function_arguments: variable •  [DEL_RPAR]
-   17 variable: variable • expression
-   18         | variable • OP_EQUAL
-   19         | variable • var_type
-   20 var_type: • DEL_DOTS KW_str
-   21         | • DEL_DOTS KW_integer
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   18 fcn_variable: expression •
 
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    OP_EQUAL   shift, and go to state 26
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
-    DEL_DOTS   shift, and go to state 28
-
-    DEL_RPAR  [reduce using rule 11 (function_arguments)]
-
-    var_type    go to state 29
-    expression  go to state 30
-
-    shift/reduce conflict on token DEL_RPAR:
-       11 function_arguments: variable •
-       29 expression: • DEL_RPAR
-      First example: KW_def expression DEL_LPAR variable • DEL_RPAR DEL_RPAR DEL_DOTS function_body KW_enddef $end
-      Shift derivation
-        $accept
-        ↳ 0: program_start                                                                                                         $end
-             ↳ 2: function
-                  ↳ 10: KW_def expression DEL_LPAR function_arguments                    DEL_RPAR DEL_DOTS function_body KW_enddef
-                                                   ↳ 11: variable
-                                                         ↳ 17: variable expression
-                                                                        ↳ 29: • DEL_RPAR
-      Second example: KW_def expression DEL_LPAR variable • DEL_RPAR DEL_DOTS function_body KW_enddef DEL_QUEST $end
-      Reduce derivation
-        $accept
-        ↳ 0: program_start                                                                                                     $end
-             ↳ 2: program_body
-                  ↳ 7: function                                                                                      DEL_QUEST
-                       ↳ 10: KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef
-                                                        ↳ 11: variable •
-
+    $default  reduce using rule 18 (fcn_variable)
 
 
 State 40
 
     9 function: KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS • function_body KW_enddef
-   12 function_body: • expression
-   13              | • function_body expression
-   14              | • function_body expression DEL_QUEST
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   13 function_body: • expression
+   14              | • function_body DEL_LPAR
+   15              | • function_body DEL_RPAR
+   16              | • function_body DEL_QUEST
+   17              | • function_body expression
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    T_ID       shift, and go to state 1
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
 
-    function_body  go to state 42
-    expression     go to state 43
+    function_body  go to state 46
+    expression     go to state 47
 
 
 State 41
 
    10 function: KW_def expression DEL_LPAR function_arguments DEL_RPAR • DEL_DOTS function_body KW_enddef
 
-    DEL_DOTS  shift, and go to state 44
+    DEL_DOTS  shift, and go to state 48
 
 
 State 42
 
-    9 function: KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body • KW_enddef
-   13 function_body: function_body • expression
-   14              | function_body • expression DEL_QUEST
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   12 function_arguments: function_arguments DEL_COMMA • fcn_variable
+   18 fcn_variable: • expression
+   19             | • fcn_variable expression
+   20             | • fcn_variable OP_EQUAL
+   21             | • fcn_variable var_type
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
-    T_ID       shift, and go to state 1
-    KW_enddef  shift, and go to state 45
-    KW_main    shift, and go to state 4
-    T_INT      shift, and go to state 5
-    T_STRING   shift, and go to state 6
-    OP_PLUS    shift, and go to state 7
-    OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
 
-    expression  go to state 46
+    fcn_variable  go to state 49
+    expression    go to state 39
 
 
 State 43
 
-   12 function_body: expression •
+   20 fcn_variable: fcn_variable OP_EQUAL •
 
-    $default  reduce using rule 12 (function_body)
+    $default  reduce using rule 20 (fcn_variable)
 
 
 State 44
 
-   10 function: KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS • function_body KW_enddef
-   12 function_body: • expression
-   13              | • function_body expression
-   14              | • function_body expression DEL_QUEST
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   21 fcn_variable: fcn_variable var_type •
+
+    $default  reduce using rule 21 (fcn_variable)
+
+
+State 45
+
+   19 fcn_variable: fcn_variable expression •
+
+    $default  reduce using rule 19 (fcn_variable)
+
+
+State 46
+
+    9 function: KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body • KW_enddef
+   14 function_body: function_body • DEL_LPAR
+   15              | function_body • DEL_RPAR
+   16              | function_body • DEL_QUEST
+   17              | function_body • expression
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
     T_ID       shift, and go to state 1
+    KW_enddef  shift, and go to state 50
     KW_main    shift, and go to state 4
     T_INT      shift, and go to state 5
     T_STRING   shift, and go to state 6
     OP_PLUS    shift, and go to state 7
     OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    DEL_QUEST  shift, and go to state 51
+    DEL_LPAR   shift, and go to state 52
+    DEL_RPAR   shift, and go to state 53
 
-    function_body  go to state 47
-    expression     go to state 43
+    expression  go to state 54
 
 
-State 45
+State 47
+
+   13 function_body: expression •
+
+    $default  reduce using rule 13 (function_body)
+
+
+State 48
+
+   10 function: KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS • function_body KW_enddef
+   13 function_body: • expression
+   14              | • function_body DEL_LPAR
+   15              | • function_body DEL_RPAR
+   16              | • function_body DEL_QUEST
+   17              | • function_body expression
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
+
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+
+    function_body  go to state 55
+    expression     go to state 47
+
+
+State 49
+
+   12 function_arguments: function_arguments DEL_COMMA fcn_variable •  [DEL_RPAR, DEL_COMMA]
+   19 fcn_variable: fcn_variable • expression
+   20             | fcn_variable • OP_EQUAL
+   21             | fcn_variable • var_type
+   28 var_type: • DEL_DOTS KW_str
+   29         | • DEL_DOTS KW_integer
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
+
+    T_ID      shift, and go to state 1
+    KW_main   shift, and go to state 4
+    T_INT     shift, and go to state 5
+    T_STRING  shift, and go to state 6
+    OP_PLUS   shift, and go to state 7
+    OP_MINUS  shift, and go to state 8
+    OP_EQUAL  shift, and go to state 43
+    DEL_DOTS  shift, and go to state 26
+
+    $default  reduce using rule 12 (function_arguments)
+
+    var_type    go to state 44
+    expression  go to state 45
+
+
+State 50
 
     9 function: KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef •
 
     $default  reduce using rule 9 (function)
 
 
-State 46
+State 51
 
-   13 function_body: function_body expression •  [T_ID, KW_enddef, KW_main, T_INT, T_STRING, OP_PLUS, OP_MINUS, DEL_LPAR, DEL_RPAR, DEL_COMMA]
-   14              | function_body expression • DEL_QUEST
+   16 function_body: function_body DEL_QUEST •
 
-    DEL_QUEST  shift, and go to state 48
-
-    $default  reduce using rule 13 (function_body)
+    $default  reduce using rule 16 (function_body)
 
 
-State 47
+State 52
+
+   14 function_body: function_body DEL_LPAR •
+
+    $default  reduce using rule 14 (function_body)
+
+
+State 53
+
+   15 function_body: function_body DEL_RPAR •
+
+    $default  reduce using rule 15 (function_body)
+
+
+State 54
+
+   17 function_body: function_body expression •
+
+    $default  reduce using rule 17 (function_body)
+
+
+State 55
 
    10 function: KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body • KW_enddef
-   13 function_body: function_body • expression
-   14              | function_body • expression DEL_QUEST
-   22 expression: • T_ID
-   23           | • T_INT
-   24           | • T_STRING
-   25           | • OP_MINUS
-   26           | • OP_PLUS
-   27           | • DEL_COMMA
-   28           | • DEL_LPAR
-   29           | • DEL_RPAR
-   30           | • KW_main
+   14 function_body: function_body • DEL_LPAR
+   15              | function_body • DEL_RPAR
+   16              | function_body • DEL_QUEST
+   17              | function_body • expression
+   30 expression: • T_ID
+   31           | • T_INT
+   32           | • T_STRING
+   33           | • OP_MINUS
+   34           | • OP_PLUS
+   35           | • KW_main
 
     T_ID       shift, and go to state 1
-    KW_enddef  shift, and go to state 49
+    KW_enddef  shift, and go to state 56
     KW_main    shift, and go to state 4
     T_INT      shift, and go to state 5
     T_STRING   shift, and go to state 6
     OP_PLUS    shift, and go to state 7
     OP_MINUS   shift, and go to state 8
-    DEL_LPAR   shift, and go to state 9
-    DEL_RPAR   shift, and go to state 10
-    DEL_COMMA  shift, and go to state 11
+    DEL_QUEST  shift, and go to state 51
+    DEL_LPAR   shift, and go to state 52
+    DEL_RPAR   shift, and go to state 53
 
-    expression  go to state 46
-
-
-State 48
-
-   14 function_body: function_body expression DEL_QUEST •
-
-    $default  reduce using rule 14 (function_body)
+    expression  go to state 54
 
 
-State 49
+State 56
 
    10 function: KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef •
 
