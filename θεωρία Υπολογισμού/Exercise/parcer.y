@@ -157,22 +157,21 @@ function_body:
 
 fcn_line:
 	expression																		// Expression in the line
-  | fcn_line expression 				 	{$$ = template("%s%s", $1, $2);}		// Function body followed by expression	
-
-  | KW_return expression					{$$ = template("return %s", $2);}		// return followed by expression
-  | fcn_line KW_return expression			{$$ = template("%sreturn %s", $1, $3);} // Function body followed by return followed by expression
+  | assignment
+  
+  | KW_return full_expression			    {$$ = template("return %s", $2);}		// return followed by expression
+  | fcn_line full_expression 				{$$ = template("%s%s", $1, $2);}		// Function body followed by expression	
 
   | fcn_declaration							{$$ = template("%s", $1);}			
   | fcn_line fcn_declaration				{$$ = template("%s%s", $1, $2);}
   
-  | fcn_line DEL_LPAR DEL_RPAR 			  	{printf("111111111");$$ = template("%s()", $1);}		    // Function body followed by expression followed by () in the line
-  | fcn_line DEL_LPAR expression DEL_RPAR 	{printf("212222222");$$ = template("%s(%s)", $1, $3);}		// Function body followed by expression followed by (expression) in the line
+  | fcn_line DEL_LPAR DEL_RPAR 			  	{$$ = template("%s()", $1);}		    // Function body followed by expression followed by () in the line
+  | fcn_line DEL_LPAR expression DEL_RPAR 	{$$ = template("%s(%s)", $1, $3);}		// Function body followed by expression followed by (expression) in the line
   
-  | expression OP_EQUAL full_expression		{$$ = template("%s = %s", $1, $3);}
 ;
 
 fcn_declaration:
-	expression var_type {$$ = template("%s%s", $2, $1);}							// Expression part of declaration
+	expression var_type 	{$$ = template("%s%s", $2, $1);}							// Expression part of declaration
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,14 +180,17 @@ constant:
 ;
 
 assignment:
-	expression OP_EQUAL expression var_type {$$ = template("%s%s = %s", $4, $1, $3);}					// Positive assignment
-  | expression OP_EQUAL OP_MINUS expression var_type {$$ = template("%s%s = -%s", $5, $1, $4);}			// Negative assignment
+	expression OP_EQUAL expression var_type 			{$$ = template("%s%s = %s", $4, $1, $3);}					// Positive assignment
+  | expression OP_EQUAL OP_MINUS expression var_type 	{$$ = template("%s%s = -%s", $5, $1, $4);}			// Negative assignment
+  | expression OP_EQUAL full_expression					{$$ = template("%s = %s", $1, $3);}     // 
+
 ;
 
 declaration:
 	expression																							// Expression part of declaration
-  | declaration DEL_COMMA expression {$$ = template("%s, %s", $1, $3);}									// Declaration of multiple expressions
-  | declaration var_type {$$ = template("%s%s", $2, $1);}												// Declaration variable type
+  | declaration DEL_COMMA  	{$$ = template("%s, ", $1);}									// Declaration of multiple expressions
+  | declaration expression 	{$$ = template("%s%s", $1, $2);}									// Declaration of multiple expressions
+  | declaration var_type 	{$$ = template("%s%s", $2, $1);}												// Declaration variable type
 ;
 
 var_type:
@@ -198,8 +200,6 @@ var_type:
 ;
 
 
-full_expression:
-	DEL_LPAR expression operators expression DEL_RPAR {$$ = template("(%s%s%s)", $2, $3, $4); printf("44444444");}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 expression:
     T_ID			     		
@@ -207,11 +207,20 @@ expression:
   | T_STRING			 
 ;
 
+full_expression:
+    expression				
+  | expression operators	{$$ = template("%s%s", $1, $2);}		
+  | DEL_LPAR expression operators	{$$ = template("(%s%s", $2, $3);}		
+  | expression DEL_RPAR				{$$ = template("%s)", $1);}
+  | expression DEL_RPAR	operators	{$$ = template("%s)%s", $1, $3);}
+; 
+
 operators:
 	OP_MINUS {$$ = template(" - ");}
   |	OP_PLUS  {$$ = template(" + ");}
   |	OP_MUL   {$$ = template(" * ");}
-
+  | DEL_COMMA {$$ = template(", ");} 
+ 
 %%
 int main(){
 	if (yyparse() == 0)

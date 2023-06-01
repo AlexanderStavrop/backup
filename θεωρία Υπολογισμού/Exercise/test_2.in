@@ -8,6 +8,13 @@ enddef;
 
 def add(n: int, k: int)-> integer:
 	j: integer;
+	j = (N-n) + cube(k);
 	writeInteger(j);
 	return j;
+enddef;
+
+def main():
+	a = readInteger();
+	b = readInteger();
+	add(a, b); -- Here you can see some dummy comments!
 enddef;
