@@ -90,14 +90,22 @@
 %type <str> program_body 
 
 %type <str> constant
-%type <str> variable
+%type <str> assignment
 %type <str> var_type
+%type <str> declaration
+%type <str> update_var
+
 
 %type <str> function
 %type <str> function_body
-%type <str> function_arguments
-%type <str> fcn_variable
+%type <str> fcn_arguments
+%type <str> fcn_ret_type
+%type <str> fcn_line
+%type <str> fcn_declaration
+
 %type <str> expression
+%type <str> full_expression
+%type <str> operators
 
 
 %left OP_MINUS OP_PLUS
@@ -115,72 +123,94 @@ program_start:
 	}
 ;
 
-
 program_body:
-    constant DEL_QUEST              {$$ = template("%s;\n\n", $1);}
-  | program_body constant DEL_QUEST {$$ = template("%s%s;\n\n", $1, $2);}
+    constant DEL_QUEST              	{$$ = template("%s;\n\n", $1);}
+  | program_body constant DEL_QUEST 	{$$ = template("%s%s;\n\n", $1, $2);}
 
-  | variable DEL_QUEST              {$$ = template("%s;\n\n", $1);}
-  | program_body variable DEL_QUEST {$$ = template("%s%s;\n\n", $1, $2);}
+  | assignment DEL_QUEST              	{$$ = template("%s;\n\n", $1);}
+  | program_body assignment DEL_QUEST 	{$$ = template("%s%s;\n\n", $1, $2);}
 
-  | function DEL_QUEST              {$$ = template("%s\n\n", $1);}
-  | program_body function DEL_QUEST {$$ = template("%s%s\n\n", $1, $2);}
+  | declaration DEL_QUEST              	{$$ = template("%s;\n\n", $1);}
+  | program_body declaration DEL_QUEST 	{$$ = template("%s%s;\n\n", $1, $2);}
+
+  | function DEL_QUEST              	{$$ = template("%s\n\n", $1);}
+  | program_body function DEL_QUEST 	{$$ = template("%s%s\n\n", $1, $2);}
 ;
 
-/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function:
-   KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef {$$ = template("void %s(){\n%s}", $2, $6);}
- | KW_def expression DEL_LPAR function_arguments DEL_RPAR DEL_DOTS function_body KW_enddef {$$ = template("void %s(%s){\n%s}", $2, $4, $7);}
-;
+   KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef {$$ = template("void %s(){\n%s}", $2, $6);}						// void Non main function without arguments
+ | KW_def KW_main DEL_LPAR DEL_RPAR DEL_DOTS function_body KW_enddef {$$ = template("void main(){\n%s}", $6);}							// void Main function without arguments
+ | KW_def expression DEL_LPAR fcn_arguments DEL_RPAR DEL_DOTS function_body KW_enddef {$$ = template("void %s(%s){\n%s}", $2, $4, $7);}	// void Non main function with arguments
+ | KW_def expression DEL_LPAR fcn_arguments DEL_RPAR fcn_ret_type function_body KW_enddef {$$ = template("%s%s(%s){\n%s}", $6, $2, $4, $7);}	// void Non main function with arguments
 
-function_arguments:
-    fcn_variable
-  | function_arguments DEL_COMMA fcn_variable {$$ = template("%s, %s", $1, $3);}
-;
+fcn_arguments:
+	expression var_type {$$ = template("%s%s", $2, $1);}
+  | fcn_arguments DEL_COMMA expression var_type {$$ = template("%s, %s%s", $1, $4, $3);}
+
+fcn_ret_type:
+	OP_MINUS OP_GREATER KW_integer DEL_DOTS	{$$ = template("int "); }
+
 function_body:
-    expression
-  | function_body DEL_LPAR              {$$ = template("%s(", $1);}  
-  | function_body DEL_RPAR              {$$ = template("%s)", $1);}
-  | function_body DEL_QUEST             {$$ = template("    %s;\n", $1);}
-  | function_body expression            {$$ = template("%s%s", $1, $2);}
+	fcn_line DEL_QUEST					{$$ = template("\t%s;\n", $1);}
+  | function_body fcn_line DEL_QUEST    {$$ = template("%s\t%s;\n", $1, $2);}
+
+fcn_line:
+	expression																		// Expression in the line
+  | fcn_line expression 				 	{$$ = template("%s%s", $1, $2);}		// Function body followed by expression	
+
+  | KW_return expression					{$$ = template("return %s", $2);}		// return followed by expression
+  | fcn_line KW_return expression			{$$ = template("%sreturn %s", $1, $3);} // Function body followed by return followed by expression
+
+  | fcn_declaration							{$$ = template("%s", $1);}			
+  | fcn_line fcn_declaration				{$$ = template("%s%s", $1, $2);}
+  
+  | fcn_line DEL_LPAR DEL_RPAR 			  	{printf("111111111");$$ = template("%s()", $1);}		    // Function body followed by expression followed by () in the line
+  | fcn_line DEL_LPAR expression DEL_RPAR 	{printf("212222222");$$ = template("%s(%s)", $1, $3);}		// Function body followed by expression followed by (expression) in the line
+  
+  | expression OP_EQUAL full_expression		{$$ = template("%s = %s", $1, $3);}
 ;
 
-fcn_variable:
-  expression
-  | fcn_variable expression {$$ = template("%s%s", $1, $2);}
-  | fcn_variable OP_EQUAL   {$$ = template("%s = ", $1);}
-  | fcn_variable var_type   {$$ = template("%s%s", $2, $1);}
+fcn_declaration:
+	expression var_type {$$ = template("%s%s", $2, $1);}							// Expression part of declaration
 ;
-
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 constant:
-    KW_const variable   {$$ = template("const %s", $2);} 
+    KW_const assignment	{$$ = template("const %s", $2);} 												// Constant declaration
 ;
 
-variable:
-    expression
-  | variable expression {$$ = template("%s%s", $1, $2);}
-  | variable DEL_COMMA expression {$$ = template("%s, %s", $1, $3);}
-  | variable OP_EQUAL   {$$ = template("%s = ", $1);}
-  | variable var_type   {$$ = template("%s%s", $2, $1);}
+assignment:
+	expression OP_EQUAL expression var_type {$$ = template("%s%s = %s", $4, $1, $3);}					// Positive assignment
+  | expression OP_EQUAL OP_MINUS expression var_type {$$ = template("%s%s = -%s", $5, $1, $4);}			// Negative assignment
+;
+
+declaration:
+	expression																							// Expression part of declaration
+  | declaration DEL_COMMA expression {$$ = template("%s, %s", $1, $3);}									// Declaration of multiple expressions
+  | declaration var_type {$$ = template("%s%s", $2, $1);}												// Declaration variable type
 ;
 
 var_type:
     DEL_DOTS KW_str     {$$ = template("char* ");}
   | DEL_DOTS KW_integer {$$ = template("int "); }
+  | DEL_DOTS T_ID 		{$$ = template("%s ", $2); }	
 ;
-/////////////////////////////////////////////////////////////////////////////////
 
+
+full_expression:
+	DEL_LPAR expression operators expression DEL_RPAR {$$ = template("(%s%s%s)", $2, $3, $4); printf("44444444");}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 expression:
-    T_ID
+    T_ID			     		
   | T_INT
-  | T_STRING
-  | OP_MINUS    {$$ = template(" %s", $1);}
-  | OP_PLUS     {$$ = template(" + ");}
-      | KW_main     {$$ = template("main");}
+  | T_STRING			 
 ;
 
+operators:
+	OP_MINUS {$$ = template(" - ");}
+  |	OP_PLUS  {$$ = template(" + ");}
+  |	OP_MUL   {$$ = template(" * ");}
 
 %%
 int main(){
