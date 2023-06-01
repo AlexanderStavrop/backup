@@ -20,7 +20,10 @@ EXP     ["e""E"][\+\-]?[1-9]
 FLOAT   {DECIMAL}{EXP}?
     
  /* Strings */
-STRING 		\"[^\\'\n\"]*\"
+CHARACTER   [., a-zA-Z0-9\-+\*\/:_$!#@&~^()]|[\\n]|[\\t]|[\\r]|[\\\\]
+STRING 		\"{CHARACTER}*\"
+    
+
 
 %%   
     /* Rules Section */
@@ -54,7 +57,7 @@ STRING 		\"[^\\'\n\"]*\"
 
 
 "+"                 { printf("plus\n"); return OP_PLUS;}
-"-"                 { printf("minus\n"); return OP_MINUS; }
+"-"                 { printf("minus\n"); yylval.str = strdup(yytext); return OP_MINUS; }
 "*"                 { printf("multiply\n"); return OP_MUL; }
 "/"                 { printf("divide\n"); return OP_DIV; }
 "%"                 { printf("modulus\n"); return OP_MOD; }
@@ -65,7 +68,7 @@ STRING 		\"[^\\'\n\"]*\"
 "<="                { printf("less than or equal\n"); return OP_LEQ; }
 ">"                 { printf("greater than\n"); return OP_GREATER; }
 ">="                { printf("greater than or equal\n"); return OP_GEQ; }
-"="                 { printf("assignment\n"); return OP_EQUAL; }
+"="                 { printf("assignment\n"); yylval.str = strdup(yytext); return OP_EQUAL; }
 "+="                { printf("increment\n"); return OP_INCREM; }
 "-="                { printf("decrement\n"); return OP_DECREM; }
 "*="                { printf("multiply and assign\n"); return OP_MULCREM; }
@@ -85,7 +88,8 @@ STRING 		\"[^\\'\n\"]*\"
 {INT}               { printf("int\n"); yylval.str = strdup(yytext); return T_INT;}
 {FLOAT}           	{ printf("floating-point number\n"); yylval.str = strdup(yytext); return T_FLOAT; }
 {STRING}            { printf("string\n"); yylval.str = strdup(yytext); return T_STRING;}
-[ \r\t]+            printf("whitespace\n");/* eat whitespace */
-\n					{++line_num; printf("hereeeeeee\n");}
-<<EOF>>             {printf("File ended\n"); return EOF;}
+[ \r\t]+            { printf("whitespace\n");/* eat whitespace */} 
+"--"[^\n]*          { printf("Found comment\n");} 
+\n					{++line_num; }
+<<EOF>>             {printf("File ended\n***************************************\n"); return EOF;}
 .                   printf("\033[1;31mLine %2d: Lexical error in: %s\n\033[0m", line_num, yytext);

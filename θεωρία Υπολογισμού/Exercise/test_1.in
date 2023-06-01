@@ -1,2 +1,5 @@
-1 + 1 - 2;
-1 - 1;
+-- My first Kappa program. File: myprog.ka
+const message = "Hello world!\n" :str;
+def main(i :integer):
+    writeStr(message);
+enddef;
