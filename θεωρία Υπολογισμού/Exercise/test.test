@@ -1,0 +1,23 @@
+-- My first Kappa program. File: myprog.ka
+const message = "Hello world!\n" :str;
+a, b: integer;
+writeStr(message);
+j = (N-n) + cube(k);	
+add(a, b); -- Here you can see some dummy comments!
+
+def main():
+	a, b: integer;
+	writeStr(message);
+	add(a, b); -- Here you can see some dummy comments!
+	j = (N-n) + cube(k);
+	return i*i*i;
+enddef;
+
+
+def cube(i: integer)-> integer:
+	a, b: integer;
+	writeStr(message);
+	add(a, b); -- Here you can see some dummy comments!
+	j = (N-n) + cube(k);
+	return i*i*i;
+enddef;

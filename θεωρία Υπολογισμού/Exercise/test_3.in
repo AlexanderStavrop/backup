@@ -1,1 +1,10 @@
-j = (N-n) + cube(k);
+-- File: prime.ka
+limit, num, counter: integer;
+	result, isPrime: boolean;
+
+def prime(n: integer)-> boolean:
+	i: integer;
+	result, isPrime: boolean;
+	if (n < 0):
+
+enddef;

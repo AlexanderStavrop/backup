@@ -56,13 +56,13 @@ STRING 		\"{CHARACTER}*\"
 "of"                { printf("of\n"); return KW_of; }
 
 
-"+"                 { printf("plus\n"); return OP_PLUS;}
-"-"                 { printf("minus\n"); yylval.str = strdup(yytext); return OP_MINUS; }
-"*"                 { printf("multiply\n"); return OP_MUL; }
-"/"                 { printf("divide\n"); return OP_DIV; }
-"%"                 { printf("modulus\n"); return OP_MOD; }
-"**"                { printf("exponentiation\n"); return OP_EXP; }
-"=="                { printf("equal\n"); return OP_EQ; }
+"+"                 { printf("+\n"); return OP_PLUS;}
+"-"                 { printf("-\n"); yylval.str = strdup(yytext); return OP_MINUS; }
+"*"                 { printf("*\n"); return OP_MUL; }
+"/"                 { printf("/\n"); return OP_DIV; }
+"%"                 { printf("%\n"); return OP_MOD; }
+"**"                { printf("**\n"); return OP_EXP; }
+"=="                { printf("=\n"); return OP_EQ; }
 "!="                { printf("not equal\n"); return OP_NOTEQ; }
 "<"                 { printf("less than\n"); return OP_LESS; }
 "<="                { printf("less than or equal\n"); return OP_LEQ; }
@@ -74,7 +74,7 @@ STRING 		\"{CHARACTER}*\"
 "*="                { printf("multiply and assign\n"); return OP_MULCREM; }
 "/="                { printf("divide and assign\n"); return OP_DIVCREM; }
 "%="                { printf("modulus and assign\n"); return OP_MODCREM; }
-";"                 { printf("semicolon\n"); return DEL_QUEST; }
+";"                 { printf(";\n"); return DEL_QUEST; }
 "("                 { printf("left parenthesis\n"); return DEL_LPAR; }
 ")"                 { printf("right parenthesis\n"); return DEL_RPAR; }
 ","                 { printf("comma\n"); return DEL_COMMA; }
@@ -84,11 +84,11 @@ STRING 		\"{CHARACTER}*\"
 "."                 { printf("dot\n"); return DEL_DOT;}
 
 
-{ID}              	{ printf("identifier\n"); yylval.str = strdup(yytext);  return T_ID; }
-{INT}               { printf("int\n"); yylval.str = strdup(yytext); return T_INT;}
-{FLOAT}           	{ printf("floating-point number\n"); yylval.str = strdup(yytext); return T_FLOAT; }
-{STRING}            { printf("string\n"); yylval.str = strdup(yytext); return T_STRING;}
-[ \r\t]+            { printf("whitespace\n");/* eat whitespace */} 
+{ID}              	{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_ID; }
+{INT}               { printf("%s\n",yytext); yylval.str = strdup(yytext); return T_INT;}
+{FLOAT}           	{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_FLOAT; }
+{STRING}            { printf("%s\n",yytext); yylval.str = strdup(yytext); return T_STRING;}
+[ \r\t]+            { printf("\n");/* eat whitespace */} 
 "--"[^\n]*          { printf("Found comment\n");} 
 \n					{++line_num; }
 <<EOF>>             {printf("File ended\n***************************************\n"); return EOF;}

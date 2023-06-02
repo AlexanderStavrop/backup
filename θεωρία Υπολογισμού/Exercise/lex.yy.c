@@ -975,37 +975,37 @@ YY_RULE_SETUP
 case 28:
 YY_RULE_SETUP
 #line 60 "lexer.l"
-{ printf("plus\n"); return OP_PLUS;}
+{ printf("+\n"); return OP_PLUS;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 61 "lexer.l"
-{ printf("minus\n"); yylval.str = strdup(yytext); return OP_MINUS; }
+{ printf("-\n"); yylval.str = strdup(yytext); return OP_MINUS; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 62 "lexer.l"
-{ printf("multiply\n"); return OP_MUL; }
+{ printf("*\n"); return OP_MUL; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 63 "lexer.l"
-{ printf("divide\n"); return OP_DIV; }
+{ printf("/\n"); return OP_DIV; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 64 "lexer.l"
-{ printf("modulus\n"); return OP_MOD; }
+{ printf("%\n"); return OP_MOD; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 #line 65 "lexer.l"
-{ printf("exponentiation\n"); return OP_EXP; }
+{ printf("**\n"); return OP_EXP; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 #line 66 "lexer.l"
-{ printf("equal\n"); return OP_EQ; }
+{ printf("=\n"); return OP_EQ; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
@@ -1065,7 +1065,7 @@ YY_RULE_SETUP
 case 46:
 YY_RULE_SETUP
 #line 78 "lexer.l"
-{ printf("semicolon\n"); return DEL_QUEST; }
+{ printf(";\n"); return DEL_QUEST; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
@@ -1105,27 +1105,27 @@ YY_RULE_SETUP
 case 54:
 YY_RULE_SETUP
 #line 88 "lexer.l"
-{ printf("identifier\n"); yylval.str = strdup(yytext);  return T_ID; }
+{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_ID; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
 #line 89 "lexer.l"
-{ printf("int\n"); yylval.str = strdup(yytext); return T_INT;}
+{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_INT;}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
 #line 90 "lexer.l"
-{ printf("floating-point number\n"); yylval.str = strdup(yytext); return T_FLOAT; }
+{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_FLOAT; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
 #line 91 "lexer.l"
-{ printf("string\n"); yylval.str = strdup(yytext); return T_STRING;}
+{ printf("%s\n",yytext); yylval.str = strdup(yytext); return T_STRING;}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
 #line 92 "lexer.l"
-{ printf("whitespace\n");/* eat whitespace */} 
+{ printf("\n");/* eat whitespace */} 
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
