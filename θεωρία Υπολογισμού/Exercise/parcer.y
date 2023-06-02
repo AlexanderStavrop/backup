@@ -4,6 +4,7 @@
 	
  	extern int yylex(void);
     extern int line_num;
+    int counter = 0;
 %}
  
 %union{
@@ -92,8 +93,6 @@
 %type <str> var_type
 
 
-
-
 %type <str> expression
 %type <str> full_expression
 %type <str> constant
@@ -108,7 +107,9 @@
 %type <str> fcn_arguments
 %type <str> kati
 %type <str> if_statement
-
+%type <str> if_body
+%type <str> while_statement
+%type <str> while_body
 
 
 %left OP_MINUS OP_PLUS
@@ -156,12 +157,12 @@ kati:
   | fcn_call
   | operators				
   | kati expression			{$$ = template("%s%s", $1, $2);}
-  | kati operators fcn_call {$$ = template("%s%s%s", $1, $2, $3);}
+  | kati operators fcn_call 	{$$ = template("%s%s%s", $1, $2, $3);}
   
 declaration:
 	expression var_type				{$$ = template("%s%s", $2, $1);}
   | expression DEL_COMMA expression	{$$ = template("%s, %s", $1, $3);}
-  | declaration DEL_COMMA expression     			{$$ = template("%s, %s", $1, $3);}
+  | declaration DEL_COMMA expression     			{$$ = template("%s, %s", $1, $3 );}
   | declaration var_type   			{$$ = template("%s%s", $2, $1);}
 ; 
 var_type:
@@ -182,16 +183,18 @@ fcn_call:
   | expression DEL_LPAR operators one_liner DEL_RPAR	{$$ = template("%s(%s%s)", $1, $3, $4);}
 ;
 one_liner:
-	expression operators 					{$$ = template("%s%s", $1, $2);}
+  expression expression						{$$ = template("%s%s", $1, $2);}
+  | expression operators 					{$$ = template("%s%s", $1, $2);}
   | expression DEL_COMMA					{$$ = template("%s, ", $1);}
   | one_liner DEL_COMMA expression			{$$ = template("%s, %s", $1, $3);}
   | one_liner expression 					{$$ = template("%s%s", $1, $2);}
   | one_liner expression operators 			{$$ = template("%s%s%s", $1, $2, $3);}
+  | one_liner DEL_LPAR one_liner DEL_RPAR   {$$ = template("%s(%s)", $1, $3);}
 ;
 make_fcn:
-	KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS fcn_body KW_enddef {$$ = template("\nvoid %s()\n{\n%s}", $2, $6);}		// void function without arguments
-  |	KW_def expression DEL_LPAR DEL_RPAR fcn_ret_type fcn_body KW_enddef {$$ = template("\n%s%s()\n{\n%s}", $5, $2, $6);}		// Non void function without arguments
-  |	KW_def expression DEL_LPAR fcn_arguments DEL_RPAR fcn_ret_type fcn_body KW_enddef {$$ = template("\n%s%s(%s)\n{\n%s}", $6, $2, $4, $7);}		// Non void function without arguments
+	KW_def expression DEL_LPAR DEL_RPAR DEL_DOTS fcn_body KW_enddef 					{$$ = template("\nvoid %s()\n{\n%s}", $2, $6);}		// void function without arguments
+  |	KW_def expression DEL_LPAR DEL_RPAR fcn_ret_type fcn_body KW_enddef 				{$$ = template("\n%s%s()\n{\n%s}", $5, $2, $6);}		// Non void function without arguments
+  |	KW_def expression DEL_LPAR fcn_arguments DEL_RPAR fcn_ret_type fcn_body KW_enddef 	{$$ = template("\n%s%s(%s)\n{\n%s}", $6, $2, $4, $7);}		// Non void function without arguments
 ;
 fcn_arguments:
 	declaration
@@ -205,18 +208,50 @@ fcn_body:
     assignment DEL_QUEST   					{$$ = template("%s;\n", $1);}
   | declaration DEL_QUEST 					{$$ = template("%s;\n", $1);}
   | fcn_call DEL_QUEST						{$$ = template("%s;\n", $1);}
-  | if_statement DEL_QUEST					{$$ = template("%s;\n", $1);}
   | KW_return one_liner DEL_QUEST 			{$$ = template("return %s;\n", $2);}
   | fcn_body assignment DEL_QUEST   		{$$ = template("%s%s;\n", $1, $2);}
   | fcn_body fcn_call DEL_QUEST				{$$ = template("%s%s;\n", $1, $2);}
   | fcn_body declaration DEL_QUEST			{$$ = template("%s%s;\n", $1, $2);}
-  | fcn_body if_statement DEL_QUEST			{$$ = template("%s%s;\n", $1, $2);}
+  
+  | fcn_body if_statement DEL_QUEST			{$$ = template("%s%s", $1, $2);}
+  | fcn_body while_statement DEL_QUEST		{$$ = template("%s%s", $1, $2);}
+ 
+  
   | fcn_body KW_return expression DEL_QUEST {$$ = template("%sreturn %s;\n", $1, $3);}
   | fcn_body KW_return one_liner DEL_QUEST 	{$$ = template("%sreturn %s;\n", $1, $3);}
 ;
 
 if_statement:
-	KW_if DEL_LPAR one_liner DEL_RPAR DEL_DOTS {$$ = template("if ( %s )", $3); printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");}
+	KW_if DEL_LPAR one_liner DEL_RPAR DEL_DOTS if_body KW_endif {$$ = template("if ( %s )\n{\n%s\n}", $3, $6);}
+  | KW_if DEL_LPAR one_liner DEL_RPAR DEL_DOTS if_body KW_else DEL_DOTS if_body KW_endif {$$ = template("if ( %s )\n{\n%s\n}else{\n%s", $3, $6, $9); }
+;
+if_body:
+  	if_statement	
+  |	assignment DEL_QUEST   							{$$ = template("%s;\n", $1);}
+  | declaration DEL_QUEST 							{$$ = template("%s;\n", $1);}
+  | fcn_call DEL_QUEST								{$$ = template("%s;\n", $1);}
+  | KW_return one_liner DEL_QUEST 					{$$ = template("return %s;\n", $2);}
+  | while_statement DEL_QUEST						{$$ = template("%s", $1);}
+  |	if_body assignment DEL_QUEST   					{$$ = template("%s%s;\n", $1, $2);}
+  | if_body declaration DEL_QUEST 					{$$ = template("%s%s;\n", $1, $2);}
+  | if_body fcn_call DEL_QUEST						{$$ = template("%s%s;\n", $1, $2);}
+  | if_body while_statement DEL_QUEST				{$$ = template("%s%s", $1, $2);}
+  | if_body KW_return one_liner DEL_QUEST 			{$$ = template("%sreturn %s;\n", $1, $3);}
+;
+while_statement:
+	KW_while DEL_LPAR one_liner DEL_RPAR DEL_DOTS KW_endwhile {$$ = template("while(%s)\n{\n\n}", $3);}
+;
+while_body:
+  	assignment DEL_QUEST   						{$$ = template("%s;\n", $1);}
+  | declaration DEL_QUEST 						{$$ = template("%s;\n", $1);}
+  | fcn_call DEL_QUEST							{$$ = template("%s;\n", $1);}
+  | KW_return one_liner DEL_QUEST 				{$$ = template("return %s;\n", $2);}
+  | while_statement DEL_QUEST					{$$ = template("%s", $1);}
+  |	while_body assignment DEL_QUEST   			{$$ = template("%s%s;\n", $1, $2);}
+  | while_body declaration DEL_QUEST 			{$$ = template("%s%s;\n", $1, $2);}
+  | while_body fcn_call DEL_QUEST				{$$ = template("%s%s;\n", $1, $2);}
+  | while_body while_statement DEL_QUEST		{$$ = template("%s%s", $1, $2);}
+  | while_body KW_return one_liner DEL_QUEST 	{$$ = template("%sreturn %s;\n", $1, $3);}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 expression:
@@ -225,6 +260,9 @@ expression:
   | T_STRING
   | KW_return  {$$ = template("return ");}
   | KW_main    {$$ = template("main");}
+  | KW_True    {$$ = template("True");}
+  | KW_and     {$$ = template(" and ");}
+  
 ;
 
 operators:
@@ -233,6 +271,9 @@ operators:
   |	OP_MUL   	{$$ = template("*");}
   | OP_EQUAL 	{$$ = template(" = ");}
   | OP_LESS		{$$ = template(" < ");}
+  | OP_EQ		{$$ = template(" == ");}
+  | OP_MOD		{$$ = template(" % ");}
+  | OP_NOTEQ    {$$ = template(" != ");}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %%
 int main(){

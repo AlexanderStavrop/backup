@@ -6,5 +6,11 @@ def prime(n: integer)-> boolean:
 	i: integer;
 	result, isPrime: boolean;
 	if (n < 0):
-
+		result = prime(-n);
+	else:
+		i = 3;
+		isPrime = True;
+		while (isPrime and (1 - 1) ):
+		endwhile;
+	endif;
 enddef;

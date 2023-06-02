@@ -13,7 +13,6 @@ def main():
 	return i*i*i;
 enddef;
 
-
 def cube(i: integer)-> integer:
 	a, b: integer;
 	writeStr(message);
