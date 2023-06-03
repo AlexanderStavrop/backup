@@ -1,9 +1,15 @@
 -- My first Kappa program. File: myprog.ka
 const message = "Hello world!\n" :str;
+limit, num, counter: integer;
 a, b: integer;
-writeStr(message);
-j = (N-n) + cube(k);	
+isPrime = n + i + 0;
+h = a;
+j = (N-n) + (N-n) + (N-n);
+j = cube(k) + (N-n) + writeStr(message, message);	
+writeStr(message, message);	
 add(a, b); -- Here you can see some dummy comments!
+writeStr(n + 5 - a);
+j = (N-n) + cube(k);
 
 def main():
 	a, b: integer;
@@ -13,7 +19,7 @@ def main():
 	return i*i*i;
 enddef;
 
-def cube(i: integer)-> integer:
+def cube(i: integer, j: integer)-> integer:
 	a, b: integer;
 	writeStr(message);
 	add(a, b); -- Here you can see some dummy comments!
