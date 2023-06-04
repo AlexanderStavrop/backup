@@ -153,7 +153,7 @@ var_type:
   | DEL_DOTS KW_integer {$$ = template("int "); }
   | DEL_DOTS T_ID 		{$$ = template("%s ", $2);}
   | DEL_DOTS KW_boolean {$$ = template("int ");}
-  | DEL_DOTS KW_scalar	{$$ = template("double");}
+  | DEL_DOTS KW_scalar	{$$ = template("double ");}
 ;
 
 
@@ -238,8 +238,8 @@ while_body:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 for_statement:
 	KW_for for_arguments DEL_DOTS for_body KW_endfor 													{$$ = template("for (%s){\n%s}", $2, $4);}
-  |	attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID DEL_DOTS attribute DEL_RBRAC var_type 	{$$ = template("%s %s = ( %s)malloc(%s*sizeof( %s));\nfor(int %s = 0; %s < %s; %s++){\n%s[%s] = %s;\n}", $11, $1, $11, $9, $11, $7, $7, $9, $7, $1, $7, $5);}
-  |	attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID var_type KW_in attribute KW_of attribute DEL_RBRAC var_type {$$ = template("%s* %s = ( %s)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s++){\n%s[%s] = %s[%s_i];\n%s[%s_i] = %s\n}", $14, $1, $14, $12, $14, $10, $10, $12, $10, $14, $7, $10, $10, $1, $10, $5);}
+  |	attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID DEL_DOTS attribute DEL_RBRAC var_type 	{$$ = template("%s* %s = ( %s*)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s_i++){\n%s[%s_i] = %s;\n}", $11, $1, $11, $9, $11, $7, $7, $9, $7, $1, $7, $5);}
+  |	attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID var_type KW_in attribute KW_of attribute DEL_RBRAC var_type {$$ = template("%s* %s = ( %s*)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s_i++){\n%s%s = %s[%s_i];\n%s[%s_i] = %s;\n}", $14, $1, $14, $12, $14, $10, $10, $12, $10, $14, $7, $10, $10, $1, $10, $5);}
 ;
 for_arguments:
 	T_ID KW_in DEL_LBRAC T_INT DEL_DOTS right_part DEL_DOTS T_INT DEL_RBRAC {$$ = template("int %s = %s; %s < %s; %s += %s", $1, $4, $1, $6, $1, $8);}
@@ -284,9 +284,9 @@ attribute:
   | T_STRING
   | T_FLOAT
   | KW_main    	{$$ = template("main");}
-  | KW_True    	{$$ = template("True");}
-  | KW_False	{$$ = template("False");}
-  | KW_and     	{$$ = template(" and ");}
+  | KW_True    	{$$ = template("1");}
+  | KW_False	{$$ = template("0");}
+  | KW_and     	{$$ = template(" && ");}
 ;
 operator:
 	OP_MINUS 	{$$ = template(" - ");}
@@ -306,7 +306,7 @@ operator:
 %%
 int main(){
 	if (yyparse() == 0)
-		printf("Accepted\n");
+		printf("\n");
 	else
-		printf("Rejected\n");
+		printf("\n");
 }

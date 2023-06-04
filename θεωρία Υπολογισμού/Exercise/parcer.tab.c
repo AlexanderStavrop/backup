@@ -1592,7 +1592,7 @@ yyreduce:
 
   case 20: /* var_type: DEL_DOTS KW_scalar  */
 #line 156 "parcer.y"
-                        {(yyval.str) = template("double");}
+                        {(yyval.str) = template("double ");}
 #line 1597 "parcer.tab.c"
     break;
 
@@ -1904,13 +1904,13 @@ yyreduce:
 
   case 72: /* for_statement: attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID DEL_DOTS attribute DEL_RBRAC var_type  */
 #line 241 "parcer.y"
-                                                                                                                {(yyval.str) = template("%s %s = ( %s)malloc(%s*sizeof( %s));\nfor(int %s = 0; %s < %s; %s++){\n%s[%s] = %s;\n}", (yyvsp[0].str), (yyvsp[-10].str), (yyvsp[0].str), (yyvsp[-2].str), (yyvsp[0].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-2].str), (yyvsp[-4].str), (yyvsp[-10].str), (yyvsp[-4].str), (yyvsp[-6].str));}
+                                                                                                                {(yyval.str) = template("%s* %s = ( %s*)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s_i++){\n%s[%s_i] = %s;\n}", (yyvsp[0].str), (yyvsp[-10].str), (yyvsp[0].str), (yyvsp[-2].str), (yyvsp[0].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-2].str), (yyvsp[-4].str), (yyvsp[-10].str), (yyvsp[-4].str), (yyvsp[-6].str));}
 #line 1909 "parcer.tab.c"
     break;
 
   case 73: /* for_statement: attribute DEL_DOTS OP_EQUAL DEL_LBRAC right_part KW_for T_ID var_type KW_in attribute KW_of attribute DEL_RBRAC var_type  */
 #line 242 "parcer.y"
-                                                                                                                                 {(yyval.str) = template("%s* %s = ( %s)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s++){\n%s[%s] = %s[%s_i];\n%s[%s_i] = %s\n}", (yyvsp[0].str), (yyvsp[-13].str), (yyvsp[0].str), (yyvsp[-2].str), (yyvsp[0].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-2].str), (yyvsp[-4].str), (yyvsp[0].str), (yyvsp[-7].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-13].str), (yyvsp[-4].str), (yyvsp[-9].str));}
+                                                                                                                                 {(yyval.str) = template("%s* %s = ( %s*)malloc(%s*sizeof( %s));\nfor(int %s_i = 0; %s_i < %s; %s_i++){\n%s%s = %s[%s_i];\n%s[%s_i] = %s;\n}", (yyvsp[0].str), (yyvsp[-13].str), (yyvsp[0].str), (yyvsp[-2].str), (yyvsp[0].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-2].str), (yyvsp[-4].str), (yyvsp[0].str), (yyvsp[-7].str), (yyvsp[-4].str), (yyvsp[-4].str), (yyvsp[-13].str), (yyvsp[-4].str), (yyvsp[-9].str));}
 #line 1915 "parcer.tab.c"
     break;
 
@@ -2084,19 +2084,19 @@ yyreduce:
 
   case 108: /* attribute: KW_True  */
 #line 287 "parcer.y"
-                {(yyval.str) = template("True");}
+                {(yyval.str) = template("1");}
 #line 2089 "parcer.tab.c"
     break;
 
   case 109: /* attribute: KW_False  */
 #line 288 "parcer.y"
-                {(yyval.str) = template("False");}
+                {(yyval.str) = template("0");}
 #line 2095 "parcer.tab.c"
     break;
 
   case 110: /* attribute: KW_and  */
 #line 289 "parcer.y"
-                {(yyval.str) = template(" and ");}
+                {(yyval.str) = template(" && ");}
 #line 2101 "parcer.tab.c"
     break;
 
@@ -2364,7 +2364,7 @@ yyreturnlab:
 
 int main(){
 	if (yyparse() == 0)
-		printf("Accepted\n");
+		printf("\n");
 	else
-		printf("Rejected\n");
+		printf("\n");
 }

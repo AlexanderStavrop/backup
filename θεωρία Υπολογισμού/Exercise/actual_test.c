@@ -1,39 +1,92 @@
-Found comment
-const
-
-message
-
-assignment
-
-"Hello world!\n"
-
-colon
-str
-;
-def
-
-main
-left parenthesis
-right parenthesis
-colon
-
-writeStr
-left parenthesis
-message
-right parenthesis
-;
-enddef
-;
-File ended
-***************************************
 #include "kappalib.h"
 
 
-const char* message = "Hello world!\n";
+int next_random;
+
+int next()
+{
+next_random = (next_random*1103515245 + 12345) % 2147483648;
+if (next_random < 0){
+next_random =  - next_random;
+}
+return next_random;
+}
+
+void swap(double *a, int i, int j)
+{
+double temp;
+temp = a[i];
+a[i] = a[j];
+a[j] = temp;
+}
+
+void quickFSort(double *a, int low, int high)
+{
+int pivot, i, j;
+if (low < high){
+pivot = low;
+i = low;
+j = high;
+while (i < j){
+while (a[i] <= a[pivot] && i < high){
+i = i + 1;
+}
+while (a[j] > a[pivot]){
+j = j - 1;
+}
+if (i < j){
+swap(a, i, j);
+}
+}
+swap(a, pivot, j);
+quickFSort(a, low, j - 1);
+quickFSort(a, j + 1, high);
+}
+}
+
+void printArray(int *a, int size)
+{
+for (int i = 0; i < size; i += 1){
+writeInteger(a[i]);
+if (i == size - 1){
+ continue;
+}
+writeStr(", ");
+}
+writeStr("\n");
+}
+
+void printFArray(double *a, int size)
+{
+for (int i = 0; i < size; i += 1){
+writeScalar(a[i]);
+if (i == size - 1){
+ continue;
+}
+writeStr(", ");
+}
+writeStr("\n");
+}
 
 void main()
 {
-writeStr(message);
+const int aSize = 100;
+writeStr("Give a seed for the random number generator: ");
+readInteger(next_random);
+int * a = ( int *)malloc(100*sizeof( int ));
+for(int i_i = 0; i_i < 100; i_i++){
+a[i_i] = next() % 1000;
+}
+double * f = ( double *)malloc(100*sizeof( double ));
+for(int a_i = 0; a_i < 100; a_i++){
+double x = a[a_i];
+f[a_i] = x / 2.0;
+}
+writeStr("Random array generated: ");
+printFArray(f, aSize);
+quickFSort(f, 0, aSize - 1);
+writeStr("Sorted array: ");
+printFArray(f, aSize);
 }
 
-Accepted
+
