@@ -309,6 +309,7 @@ comp_expression:
   | comp_assignment
   | comp_fcn_call
   | KW_continue 		{$$ = template(" continue");}
+  | KW_break			{$$ = template(" break");}
   | DEL_HASHTAG T_ID 	{$$ = template("self->%s",$2);}
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -477,18 +478,27 @@ attribute:
   | KW_True    	{$$ = template("1");}
   | KW_False	{$$ = template("0");}
   | KW_and     	{$$ = template(" && ");}
+  | KW_or 		{$$ = template(" || ");}
 ;
 operator:
 	OP_MINUS 	{$$ = template(" - ");}
   |	OP_PLUS  	{$$ = template(" + ");}
   |	OP_MUL   	{$$ = template("*");}
   |	OP_DIV   	{$$ = template(" %s ", "/");}
-  | OP_GREATER	{$$ = template(" > ");}
-  | OP_EQUAL 	{$$ = template(" = ");}
+  | OP_MOD		{$$ = template(" %s ", "%");}
+  | OP_EXP		{$$ = template(" ** ");}
   | OP_LESS		{$$ = template(" < ");}
   | OP_LEQ		{$$ = template(" <= ");}
+  | OP_GREATER	{$$ = template(" > ");}
+
+  | OP_GEQ		{$$ = template(" >= ");}
+
+  | OP_INCREM   {$$ = template(" += ");}
+  | OP_DECREM   {$$ = template(" -= ");} 
+  | OP_MULCREM	{$$ = template(" *= ");}
+  | OP_DIVCREM	{$$ = template(" /= ");}
+  | OP_MODCREM  {$$ = template(" %= ");}
   | OP_EQ		{$$ = template(" == ");}
-  | OP_MOD		{$$ = template(" %s ", "%"); }
   | OP_NOTEQ    {$$ = template(" != ");}
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
