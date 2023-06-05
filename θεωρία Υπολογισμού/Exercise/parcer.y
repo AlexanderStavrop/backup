@@ -191,13 +191,13 @@ var_type:
 
 
 declaration:
-	attribute var_type								{$$ = template("%s%s", $2, $1);}
-//  | attribute DEL_DOTS T_ID 						{$$ = template("%s %s = ctor_%s", $3, $1, $3);} //If remove 6 not work 7 work more
-  | attribute DEL_COMMA								{$$ = template("%s, ", $1);}
+	attribute var_type							{$$ = template("%s%s", $2, $1);}
+//  | attribute DEL_DOTS T_ID 					{$$ = template("%s %s = ctor_%s", $3, $1, $3);} //If remove 6 not work 7 work more
+  | attribute DEL_COMMA							{$$ = template("%s, ", $1);}
   | T_ID DEL_LBRAC attribute DEL_RBRAC var_type	{$$ = template("%s%s[%s]", $5, $1, $3);}
-  | declaration attribute var_type					{$$ = template("%s%s%s", $3, $1, $2);}
-  | declaration DEL_COMMA 							{$$ = template("%s, ",  $1);}
-  | declaration attribute DEL_COMMA					{$$ = template("%s%s, ", $1, $2);}
+  | declaration attribute var_type				{$$ = template("%s%s%s", $3, $1, $2);}
+  | declaration DEL_COMMA 						{$$ = template("%s, ",  $1);}
+  | declaration attribute DEL_COMMA				{$$ = template("%s%s, ", $1, $2);}
 ;
 
 
@@ -345,7 +345,7 @@ comp_assignment:
 ;
 
 comp_fcn_call:
-	T_ID DEL_LPAR DEL_RPAR									{$$ = template("%s()", $1);}
+	T_ID DEL_LPAR DEL_RPAR									{$$ = template("%s(&%s)", $1, $1);}
   | DEL_HASHTAG	T_ID DEL_LPAR DEL_RPAR						{$$ = template("%s()", $2);}	
   | T_ID DEL_LPAR comp_fcn_arguments DEL_RPAR				{$$ = template("%s(%s)", $1, $3);}
   | DEL_LPAR comp_right_part DEL_RPAR						{$$ = template("(%s)", $2);}

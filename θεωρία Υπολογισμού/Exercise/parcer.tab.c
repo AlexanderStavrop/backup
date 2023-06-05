@@ -2637,7 +2637,7 @@ yyreduce:
 
   case 124: /* comp_fcn_call: T_ID DEL_LPAR DEL_RPAR  */
 #line 348 "parcer.y"
-                                                                                                {(yyval.str) = template("%s()", (yyvsp[-2].str));}
+                                                                                                {(yyval.str) = template("%s(&%s)", (yyvsp[-2].str), (yyvsp[-2].str));}
 #line 2642 "parcer.tab.c"
     break;
 

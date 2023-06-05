@@ -46,7 +46,7 @@ self->address = addr;
 
 void printPersonInfo (SELF){
 write("%s %s, email: %s phone: %d\n", self->firstName, self->lastName, self->email, self->phone);
-self->address.printAddress();
+self->address.printAddress(&printAddress);
 }
 
 const Person ctor_Person = { .setPerson=setPerson, .printPersonInfo=printPersonInfo};
@@ -74,7 +74,7 @@ self->price = price;
 void printBook (SELF){
 write("Title: %s\n", self->title);
 writeStr("Author:");
-self->author.printPersonInfo();
+self->author.printPersonInfo(&printPersonInfo);
 write("Price:%f\n", self->price);
 write("Number of available copies: %d\n", self->numOfCopies);
 }
@@ -117,8 +117,30 @@ char* name;
 int numOfBooks;
  Order listOfOrders[100];
 int numOfOrders;
+void (*putOrder) (SELF,  Order o);
+void (*addBook) (SELF,  Book b);
+
+void (*printBookStoreBooks) (SELF);
+
 double  (*calculateTotalOrdersIncome) (SELF);
+
 }Bookstore;
+
+void putOrder (SELF,  Order o){
+self->listOfOrders[self->numOfOrders] = o;
+self->numOfOrders += 1;
+}
+
+void addBook (SELF,  Book b){
+self->listOfBooks[self->numOfBooks] = b;
+self->numOfBooks += 1;
+}
+
+void printBookStoreBooks (SELF){
+for (int i = 0; i < self->numOfBooks; i += 1){
+self->listOfBooks[i].printBook();
+}
+}
 
 double  calculateTotalOrdersIncome (SELF){
 double total;
@@ -131,7 +153,7 @@ total = total;
 return total;
 }
 
-const Bookstore ctor_Bookstore = { .calculateTotalOrdersIncome=calculateTotalOrdersIncome};
+const Bookstore ctor_Bookstore = { .putOrder=putOrder, .addBook=addBook, .printBookStoreBooks=printBookStoreBooks, .calculateTotalOrdersIncome=calculateTotalOrdersIncome};
 #undef SELF
 
 
@@ -177,11 +199,11 @@ return bs;
 void main()
 {
 orderId = 0;
-Address  a=ctor_Address,  a1=ctor_Address;
+ Address a, a1;
 a = createAddress("Stadiou", 10, "Stadiou");
-Person  author=ctor_Person;
+ Person author;
 author = createPerson("Christos", "Papadimitriou", "cpap@gmail.com", 12345, a);
-Book  b=ctor_Book;
+ Book b;
 b = createBook("Computation Theory", author, 34.3, 100);
  Bookstore bs;
 bs = createBookstore("Papasotiriou");
