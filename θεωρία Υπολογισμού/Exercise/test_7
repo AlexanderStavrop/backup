@@ -85,31 +85,15 @@ comp Bookstore:
   #listOfOrders[100]: Order;
   #numOfOrders: integer;
 
-  def putOrder(o: Order):    
-    #listOfOrders[#numOfOrders] = o;
-    #numOfOrders += 1;
-  enddef;
- 
-  def addBook(b: Book):    
-    #listOfBooks[#numOfBooks] = b;
-    #numOfBooks += 1;
-  enddef;
-
-  def printBookStoreBooks():
-    for i in [0 : #numOfBooks]:
-      #listOfBooks[i].printBook();
-    endfor;
-  enddef;
-
   def calculateTotalOrdersIncome()-> scalar:     
     total: scalar;
     total = 0;
 
     for i in [0 : #numOfOrders]:
       if (#listOfOrders[i].#delivered):
-        total = total + #listOfOrders[i].#quantity * #listOfOrders[i].#book.#price;      
+        total = total;-- + #listOfOrders[i].#quantity * #listOfOrders[i].#book.#price;
       endif;
-    endfor;
+   endfor;
 
     return total;
   enddef; 
