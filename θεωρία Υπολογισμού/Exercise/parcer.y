@@ -8,6 +8,14 @@
  
 %union{
 	char* str;
+	struct {
+		char* func_ret_type;
+		char* func_name;
+		char* func_args;
+        char* func_body;
+        char* func_const;
+        char* func_all;
+    } comp_func;
 }
 
 // Identifiers
@@ -38,7 +46,7 @@
 %token KW_enddef
 %token KW_main
 %token KW_return
-%token KW_com
+%token KW_comp
 %token KW_endcomp
 %token KW_of
 
@@ -80,6 +88,7 @@
 %token DEL_RBRAC
 %token DEL_DOTS
 %token DEL_DOT
+%token DEL_HASHTAG
 
 // Comments
 %token COMM_STR
@@ -109,6 +118,17 @@
 %type <str> for_statement
 %type <str> for_arguments
 %type <str> for_body
+%type <str> comp_statement
+%type <str> comp_expression
+%type <str> comp_declaration
+%type <str> comp_declaration_init
+%type <str> comp_declarations
+%type <str> comp_assignment
+%type <str> comp_fcn_call
+%type <comp_func> comp_function
+%type <comp_func> comp_functions
+%type <str> comp_function_body
+%type <str> comp_fcn_arguments
 
 %left OP_MINUS OP_PLUS
 %left '*' '/'
@@ -125,10 +145,12 @@ program_start:
   }
 ;
 program_body:
-	expression DEL_QUEST				{$$ = template("%s;\n", $1);}
-  | program_body expression DEL_QUEST	{$$ = template("%s%s;\n", $1, $2);}
-  | make_fcn DEL_QUEST					{$$ = template("%s\n", $1); }
-  | program_body make_fcn DEL_QUEST 	{$$ = template("%s%s\n", $1, $2);}
+	expression DEL_QUEST					{$$ = template("%s;\n", $1);}
+  | program_body expression DEL_QUEST		{$$ = template("%s%s;\n", $1, $2);}
+  | make_fcn DEL_QUEST						{$$ = template("%s\n", $1); }
+  | program_body make_fcn DEL_QUEST 		{$$ = template("%s%s\n", $1, $2);}
+  | comp_statement DEL_QUEST				{$$ = template("%s\n", $1);}
+  | program_body comp_statement DEL_QUEST	{$$ = template("%s%s\n", $1);}
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,7 +168,7 @@ constant:
 ;
 assignment:
  	attribute OP_EQUAL right_part							{$$ = template("%s = %s", $1, $3);}
-  | T_ID DEL_LBRAC attribute DEL_RBRAC OP_EQUAL right_part	{$$ = template("%s[%s] = %s", $1, $3, $6);}			// PROBABLY AN ERROR
+  | T_ID DEL_LBRAC attribute DEL_RBRAC OP_EQUAL right_part	{$$ = template("%s[%s] = %s", $1, $3, $6);}
 ;
 var_type:
     DEL_DOTS KW_str     {$$ = template("char* ");}
@@ -173,7 +195,8 @@ fcn_call:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 make_fcn:
-	KW_def attribute DEL_LPAR DEL_RPAR DEL_DOTS fcn_body KW_enddef 						{$$ = template("\nvoid %s()\n{\n%s}", $2, $6);}		// void function without arguments
+	KW_def attribute DEL_LPAR DEL_RPAR DEL_DOTS KW_enddef 								{$$ = template("\nvoid %s()\n{\n}", $2);}		// void function without arguments
+  | KW_def attribute DEL_LPAR DEL_RPAR DEL_DOTS fcn_body KW_enddef 						{$$ = template("\nvoid %s()\n{\n%s}", $2, $6);}		// void function without arguments
   |	KW_def attribute DEL_LPAR fcn_arguments DEL_RPAR DEL_DOTS fcn_body KW_enddef 		{$$ = template("\nvoid %s(%s)\n{\n%s}",$2, $4, $7);}		// Non void function without arguments
   |	KW_def attribute DEL_LPAR DEL_RPAR fcn_ret_type fcn_body KW_enddef 					{$$ = template("\n%s%s()\n{\n%s}", $5, $2, $6);}		// Non void function without arguments
   |	KW_def attribute DEL_LPAR fcn_arguments DEL_RPAR fcn_ret_type fcn_body KW_enddef 	{$$ = template("\n%s%s(%s)\n{\n%s}", $6, $2, $4, $7);}		// Non void function without arguments
@@ -259,6 +282,81 @@ for_body:
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+comp_statement:
+	KW_comp T_ID DEL_DOTS comp_declarations comp_functions KW_endcomp {$$ = template("#define SELF struct %s self\ntypedef struct %s {\n%s%s} %s;\n\n%s\nconst %s ctor_%s = {%s};\n", $2, $2, $4, $5.func_name, $2, $5.func_all, $2, $2, $5.func_const);}
+;
+comp_expression:
+	comp_declarations comp_functions 	{$$ = template("typedef struct ONOMA {\n%s%s}\n\n%s\nconst", $1, $2.func_name, $2.func_all);}
+;
+
+comp_declarations:
+	comp_declaration_init DEL_QUEST						{$$ = template("%s;\n", $1);}
+  | comp_declarations comp_declaration_init DEL_QUEST	{$$ = template("%s%s;\n", $1, $2);}
+;
+comp_declaration_init:
+	DEL_HASHTAG T_ID var_type										{$$ = template("%s%s", $3, $2);}
+  | DEL_HASHTAG T_ID DEL_COMMA										{$$ = template("%s, ", $2);}
+  | DEL_HASHTAG T_ID DEL_LBRAC attribute DEL_RBRAC var_type			{$$ = template("%s%s[%s]", $6, $2, $4);}
+  | comp_declaration DEL_HASHTAG T_ID var_type						{$$ = template("%s%s%s",$4, $1 ,$3);}
+  | comp_declaration DEL_HASHTAG T_ID DEL_COMMA						{$$ = template("%s%s, ", $1, $3);}
+  | comp_declaration DEL_HASHTAG T_ID DEL_LBRAC DEL_RBRAC var_type	{$$ = template("%s%s, ", $1, $3);}
+;
+
+comp_declaration:
+	DEL_HASHTAG T_ID var_type										{$$ = template("%s%s", $3, $2);}
+  | DEL_HASHTAG T_ID DEL_COMMA										{$$ = template("%s, ", $2);}
+  | DEL_HASHTAG T_ID DEL_LBRAC attribute DEL_RBRAC var_type			{$$ = template("%s%s[%s]", $6, $2, $4);}
+  | comp_declaration DEL_HASHTAG T_ID var_type						{$$ = template("%s%s%s",$4, $1 ,$3);}
+  | comp_declaration DEL_HASHTAG T_ID DEL_COMMA						{$$ = template("%s%s, ", $1, $3);}
+  | comp_declaration DEL_HASHTAG T_ID DEL_LBRAC DEL_RBRAC var_type	{$$ = template("%s%s, ", $1, $3);}
+;
+
+comp_functions:
+	comp_function DEL_QUEST					{$$.func_name = template("%s(*%s) (%s);", $1.func_ret_type, $1.func_name, $1.func_args); $$.func_const = template(" .%s=%s",$1.func_name, $1.func_name); $$.func_all = template("%s\n", $1.func_all);}
+  | comp_functions comp_function DEL_QUEST	{$$.func_name = template("%s\n%s(*%s) (%s);\n",$1.func_name, $2.func_ret_type, $2.func_name, $2.func_args); $$.func_const = template("%s, .%s=%s",$1.func_const, $2.func_name, $2.func_name); $$.func_all = template("%s\n%s\n", $1.func_all, $2.func_all);}
+;
+
+comp_function:
+  	KW_def T_ID DEL_LPAR DEL_RPAR DEL_DOTS KW_enddef										{$$.func_ret_type = template("void "); $$.func_name = $2; $$.func_args = template("SELF"); $$.func_all = template("void %s (SELF){\n}", $2);}
+  |	KW_def T_ID DEL_LPAR fcn_arguments DEL_RPAR DEL_DOTS KW_enddef							{$$.func_ret_type = template("void "); $$.func_name = $2; $$.func_args = template("SELF, %s", $4); $$.func_all = template("void %s (SELF){\n}", $2);}
+  |	KW_def T_ID DEL_LPAR DEL_RPAR DEL_DOTS comp_function_body KW_enddef						{$$.func_ret_type = template("void "); $$.func_name = $2; $$.func_args = template("SELF"); $$.func_all = template("void %s (SELF){\n%s}", $2, $6);}
+  | KW_def T_ID DEL_LPAR DEL_RPAR fcn_ret_type comp_function_body KW_enddef					{$$.func_ret_type = template("%s ", $5); $$.func_name = $2; $$.func_args = template("SELF"); $$.func_all = template("%s %s (SELF){\n%s}", $5, $2, $6);}
+  | KW_def T_ID DEL_LPAR fcn_arguments DEL_RPAR DEL_DOTS comp_function_body KW_enddef		{$$.func_ret_type = template("void "); $$.func_name = $2; $$.func_args = template("SELF, %s", $4); $$.func_all = template("void %s (SELF, %s){\n%s}", $2, $4, $7);}
+  | KW_def T_ID DEL_LPAR fcn_arguments DEL_RPAR fcn_ret_type comp_function_body KW_enddef	{$$.func_ret_type = template("void "); $$.func_name = $2; $$.func_args = template("SELF, %s", $4); $$.func_all = template("void %s (SELF, %s){\n%s}", $2, $4, $7);}
+;
+
+comp_fcn_arguments:
+  attribute
+  | comp_fcn_arguments DEL_HASHTAG attribute	{$$ = template("%sSELF->%s", $1, $3);}
+  | comp_fcn_arguments DEL_HASHTAG attribute operator	{$$ = template("%sSELF->%s", $1, $3);}
+  | comp_fcn_arguments DEL_COMMA 				{$$ = template("%s, ",  $1);}
+  | comp_fcn_arguments attribute DEL_COMMA		{$$ = template("%sSELF->%s, ", $1, $2);}
+;
+comp_function_body:
+	comp_assignment DEL_QUEST						{$$ = template("%s;\n", $1);}
+  | comp_function_body comp_assignment DEL_QUEST	{$$ = template("%s%s;\n", $1, $2);}
+  | comp_fcn_call DEL_QUEST							{$$ = template("%s;\n", $1);}
+  | comp_function_body comp_fcn_call DEL_QUEST		{$$ = template("%s%s;\n", $1, $2);}
+  | if_statement DEL_QUEST							{$$ = template("%s\n", $1);}
+  | comp_function_body if_statement DEL_QUEST		{$$ = template("%s%s\n", $1, $2);}
+  | assignment DEL_QUEST
+  | comp_function_body assignment DEL_QUEST
+
+;
+comp_assignment:
+	DEL_HASHTAG T_ID OP_EQUAL attribute						{$$ = template("self->%s = %s", $2, $4);}
+  | comp_assignment DEL_HASHTAG T_ID OP_EQUAL attribute		{$$ = template("%sself->%s = %s", $1, $3, $5);}
+  | DEL_HASHTAG T_ID DEL_DOT comp_fcn_call					{$$ = template("%s.%s", $2, $4);}
+  | comp_assignment DEL_HASHTAG T_ID DEL_DOT comp_fcn_call	{$$ = template("%s%s.%s", $1, $3, $5);}
+;
+comp_fcn_call:
+	T_ID DEL_LPAR DEL_RPAR									{$$ = template("%s()", $1);}
+  | DEL_HASHTAG	T_ID DEL_LPAR DEL_RPAR						{$$ = template("%s()", $2);}	
+  | T_ID DEL_LPAR comp_fcn_arguments DEL_RPAR				{$$ = template("%s(%s)", $1, $3);}
+  | DEL_HASHTAG T_ID DEL_LPAR comp_fcn_arguments DEL_RPAR	{$$ = template("%s(%s)", $2, $4);}
+;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 right_part:
 	attribute
   | operator
@@ -279,7 +377,7 @@ right_part:
   | right_part DEL_LBRAC right_part DEL_RBRAC operator 	{$$ = template("%s[%s]%s", $1, $3, $5);}
 ;
 attribute:
-    T_ID	
+    T_ID
   | T_INT
   | T_STRING
   | T_FLOAT
@@ -287,6 +385,7 @@ attribute:
   | KW_True    	{$$ = template("1");}
   | KW_False	{$$ = template("0");}
   | KW_and     	{$$ = template(" && ");}
+  | DEL_HASHTAG	{$$ = template(" #");}
 ;
 operator:
 	OP_MINUS 	{$$ = template(" - ");}
@@ -300,6 +399,7 @@ operator:
   | OP_EQ		{$$ = template(" == ");}
   | OP_MOD		{$$ = template(" %s ", "%"); }
   | OP_NOTEQ    {$$ = template(" != ");}
+  | OP_INCREM   {$$ = template(" += ");}
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

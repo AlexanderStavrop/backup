@@ -1,0 +1,26 @@
+#include "kappalib.h"
+
+
+#define SELF struct Person self
+typedef struct ONOMA {
+char* firstName, lastName;
+char* email;
+int phone;
+Address address;
+
+void  (setPerson) (SELF, char* fn, char* ln, char* email, int phone, Address addr)
+void  (printPersonInfo) (SELF)
+}
+
+void setPerson (SELF, char* fn, char* ln, char* email, int phone, Address addr){
+self->firstName = fn;
+self->lastName = ln;
+self->email = email;
+self->phone = phone;
+self->address = addr;
+}void printPersonInfo (SELF){
+write("%s %s, email: %s phone: %d\n", SELF->firstName, SELF->lastName, SELF->email, SELF->phone);
+address.printAddress();
+}#undef SELF
+
+

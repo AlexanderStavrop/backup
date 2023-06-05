@@ -79,7 +79,7 @@ extern int yydebug;
     KW_enddef = 280,               /* KW_enddef  */
     KW_main = 281,                 /* KW_main  */
     KW_return = 282,               /* KW_return  */
-    KW_com = 283,                  /* KW_com  */
+    KW_comp = 283,                 /* KW_comp  */
     KW_endcomp = 284,              /* KW_endcomp  */
     KW_of = 285,                   /* KW_of  */
     T_INT = 286,                   /* T_INT  */
@@ -111,8 +111,9 @@ extern int yydebug;
     DEL_RBRAC = 312,               /* DEL_RBRAC  */
     DEL_DOTS = 313,                /* DEL_DOTS  */
     DEL_DOT = 314,                 /* DEL_DOT  */
-    COMM_STR = 315,                /* COMM_STR  */
-    NEW_LINE = 316                 /* NEW_LINE  */
+    DEL_HASHTAG = 315,             /* DEL_HASHTAG  */
+    COMM_STR = 316,                /* COMM_STR  */
+    NEW_LINE = 317                 /* NEW_LINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -124,8 +125,16 @@ union YYSTYPE
 #line 9 "parcer.y"
 
 	char* str;
+	struct {
+		char* func_ret_type;
+		char* func_name;
+		char* func_args;
+        char* func_body;
+        char* func_const;
+        char* func_all;
+    } comp_func;
 
-#line 129 "parcer.tab.h"
+#line 138 "parcer.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

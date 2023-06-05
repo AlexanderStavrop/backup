@@ -1,0 +1,19 @@
+comp Person:
+  #firstName, #lastName: str;
+  #email: str;
+  #phone: integer;
+  #address: Address;
+
+  def setPerson(fn: str, ln: str, email: str, phone: integer, addr: Address):
+    #firstName = fn;
+    #lastName = ln;
+    #email = email;
+    #phone = phone;
+    #address = addr;
+  enddef;
+
+  def printPersonInfo():
+    write("%s %s, email: %s phone: %d\n", #firstName, #lastName, #email, #phone);
+    #address.printAddress();
+  enddef;
+endcomp; 

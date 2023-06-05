@@ -20,66 +20,67 @@ EXP     ["e""E"][\+\-]?[1-9]
 FLOAT   {DECIMAL}{EXP}?
     
  /* Strings */
-CHARACTER   [., a-zA-Z0-9\-+\*\/:_$!#@&~^()]|[\\n]|[\\t]|[\\r]|[\\\\]
+CHARACTER   [., a-zA-Z0-9\-+\*\/:_$!#@&%~^()]|[\\n]|[\\t]|[\\r]|[\\\\]
 STRING 		\"{CHARACTER}*\"
     
 
 
 %%   
-"integer"           { return KW_integer; }
-"scalar"            { return KW_scalar; }
-"str"               { return KW_str; }
-"boolean"           { return KW_boolean; }
-"True"              { return KW_True; }
-"False"             { return KW_False; }
-"const"             { return KW_const; }
-"if"                { return KW_if; }
-"else"              { return KW_else; }
-"endif"             { return KW_endif; }
-"for"               { return KW_for; }
-"in"                { return KW_in; }
-"endfor"            { return KW_endfor; }
-"while"             { return KW_while; }
-"endwhile"          { return KW_endwhile; }
-"break"             { return KW_break; }
-"continue"          { return KW_continue; }
-"not"               { return KW_not; }
-"and"               { return KW_and; }
-"or"                { return KW_or; }
-"def"               { return KW_def; }
-"enddef"            { return KW_enddef; }
-"main"              { return KW_main; }
-"return"            { return KW_return; }
-"com"               { return KW_com; }
-"endcomp"           { return KW_endcomp; }
-"of"                { return KW_of; }
+"integer"           { printf("integer\n"); return KW_integer; }
+"scalar"            { printf("scalar\n"); return KW_scalar; }
+"str"               { printf("str\n"); return KW_str; }
+"boolean"           { printf("boolean\n"); return KW_boolean; }
+"True"              { printf("True\n"); return KW_True; }
+"False"             { printf("False\n"); return KW_False; }
+"const"             { printf("const\n"); return KW_const; }
+"if"                { printf("if\n"); return KW_if; }
+"else"              { printf("else\n"); return KW_else; }
+"endif"             { printf("endif\n"); return KW_endif; }
+"for"               { printf("for\n"); return KW_for; }
+"in"                { printf("in\n"); return KW_in; }
+"endfor"            { printf("endfor\n"); return KW_endfor; }
+"while"             { printf("while\n"); return KW_while; }
+"endwhile"          { printf("endwhile\n"); return KW_endwhile; }
+"break"             { printf("break\n"); return KW_break; }
+"continue"          { printf("continue\n"); return KW_continue; }
+"not"               { printf("not\n"); return KW_not; }
+"and"               { printf("and\n"); return KW_and; }
+"or"                { printf("or\n"); return KW_or; }
+"def"               { printf("def\n"); return KW_def; }
+"enddef"            { printf("enddef\n"); return KW_enddef; }
+"main"              { printf("main\n"); return KW_main; }
+"return"            { printf("return\n"); return KW_return; }
+"comp"               { printf("com\n"); return KW_comp; }
+"endcomp"           { printf("endcomp\n"); return KW_endcomp; }
+"of"                { printf("of\n"); return KW_of; }
 
-"+"                 { return OP_PLUS; }
-"-"                 { return OP_MINUS; }
-"*"                 { return OP_MUL; }
-"/"                 { return OP_DIV; }
-"%"                 { return OP_MOD; }
-"**"                { return OP_EXP; }
-"=="                { return OP_EQ; }
-"!="                { return OP_NOTEQ; }
-"<"                 { return OP_LESS; }
-"<="                { return OP_LEQ; }
-">"                 { return OP_GREATER; }
-">="                { return OP_GEQ; }
-"="                 { return OP_EQUAL; }
-"+="                { return OP_INCREM; }
-"-="                { return OP_DECREM; }
-"*="                { return OP_MULCREM; }
-"/="                { return OP_DIVCREM; }
-"%="                { return OP_MODCREM; }
-";"                 { return DEL_QUEST; }
-"("                 { return DEL_LPAR; }
-")"                 { return DEL_RPAR; }
-","                 { return DEL_COMMA; }
-"["                 { return DEL_LBRAC; }
-"]"                 { return DEL_RBRAC; }
-":"                 { return DEL_DOTS; }
-"."                 { return DEL_DOT; }
+"+"                 { printf("+\n"); return OP_PLUS;}
+"-"                 { printf("-\n"); yylval.str = strdup(yytext); return OP_MINUS; }
+"*"                 { printf("*\n"); return OP_MUL; }
+"/"                 { printf("/\n"); return OP_DIV; }
+"%"                 { printf("%\n"); return OP_MOD; }
+"**"                { printf("**\n"); return OP_EXP; }
+"=="                { printf("=\n"); return OP_EQ; }
+"!="                { printf("not equal\n"); return OP_NOTEQ; }
+"<"                 { printf("less than\n"); return OP_LESS; }
+"<="                { printf("less than or equal\n"); return OP_LEQ; }
+">"                 { printf("greater than\n"); return OP_GREATER; }
+">="                { printf("greater than or equal\n"); return OP_GEQ; }
+"="                 { printf("assignment\n"); yylval.str = strdup(yytext); return OP_EQUAL; }
+"+="                { printf("increment\n"); return OP_INCREM; }
+"-="                { printf("decrement\n"); return OP_DECREM; }
+"*="                { printf("multiply and assign\n"); return OP_MULCREM; }
+"/="                { printf("divide and assign\n"); return OP_DIVCREM; }
+"%="                { printf("modulus and assign\n"); return OP_MODCREM; }
+";"                 { printf(";\n"); return DEL_QUEST; }
+"("                 { printf("left parenthesis\n"); return DEL_LPAR; }
+")"                 { printf("right parenthesis\n"); return DEL_RPAR; }
+","                 { printf("comma\n"); return DEL_COMMA; }
+"["                 { printf("left bracket\n"); return DEL_LBRAC; }
+"]"                 { printf("right bracket\n"); return DEL_RBRAC; }
+":"                 { printf("colon\n"); return DEL_DOTS; }
+"."                 { printf("dot\n"); return DEL_DOT;}
+"#"					{ printf("hashtag\n"); return DEL_HASHTAG;}
 
 {ID}                { yylval.str = strdup(yytext); return T_ID; }
 {INT}               { yylval.str = strdup(yytext); return T_INT; }
