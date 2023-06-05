@@ -112,8 +112,9 @@ extern int yydebug;
     DEL_DOTS = 313,                /* DEL_DOTS  */
     DEL_DOT = 314,                 /* DEL_DOT  */
     DEL_HASHTAG = 315,             /* DEL_HASHTAG  */
-    COMM_STR = 316,                /* COMM_STR  */
-    NEW_LINE = 317                 /* NEW_LINE  */
+    DEL_COMP_FUNC = 316,           /* DEL_COMP_FUNC  */
+    COMM_STR = 317,                /* COMM_STR  */
+    NEW_LINE = 318                 /* NEW_LINE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -134,7 +135,7 @@ union YYSTYPE
         char* func_all;
     } comp_func;
 
-#line 138 "parcer.tab.h"
+#line 139 "parcer.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
