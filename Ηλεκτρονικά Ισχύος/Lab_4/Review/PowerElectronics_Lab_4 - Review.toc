@@ -1,7 +1,8 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Περιγραφή Λειτουργίας Μονοφασικού Μετατροπέα}{1}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Μονοφασικός Αντιστροφέας Γέφυρας Τετραγωνικού Παλμού}{1}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Μονοφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {1}Περιγραφή Λειτουργίας Αντιστροφέων}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Μονοφασικός Αντιστροφέας}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Μονοφασικός Αντιστροφέας Γέφυρας Τετραγωνικού Παλμού}{1}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Μονοφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{1}{subsubsection.1.1.2}%
 \contentsline {section}{\numberline {2}Μονοφασικός Αντιστροφέας Γέφυρας Τετραγωνικού Παλμού }{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Κυματομορφές Κυκλώματος}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Συντελεστής Ισχύος}{2}{subsection.2.2}%
