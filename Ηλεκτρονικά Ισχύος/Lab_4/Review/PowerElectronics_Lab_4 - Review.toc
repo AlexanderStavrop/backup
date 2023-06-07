@@ -9,10 +9,10 @@
 \contentsline {subsection}{\nameref {subsection2}}{2}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Μονοφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Κυματομορφές Κυκλώματος}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Συντελεστής Ισχύος}{3}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Τριφασικός Αντιστροφέας Γέφυρας Εξαπαλμικής Λειτουργίας}{4}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Κυματομορφές Κυκλώματος}{4}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Συντελεστής Ισχύος}{4}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Τριφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{5}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Κυματομορφές}{5}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Συντελεστής Ισχύος}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {3.2}Συντελεστής Ισχύος}{4}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Τριφασικός Αντιστροφέας Γέφυρας Εξαπαλμικής Λειτουργίας}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Κυματομορφές Κυκλώματος}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Συντελεστής Ισχύος}{5}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Τριφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Κυματομορφές}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Συντελεστής Ισχύος}{6}{subsection.5.2}%
