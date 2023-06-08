@@ -86,18 +86,18 @@ for i = 1:length(m_f)
         % Diods according to V_a, V_b, I_out and the pulses
         if (V_out(t) == 0 && I_out(t) > 0)
             % Voltages are zero and currents are positive
-            if (trans_pulses(2) == 1 && trans_pulses(4) == 1)
-                I_Q(2, t) = I_out(t);
-                I_D(4, t) = I_out(t);
-            elseif (trans_pulses(1) == 1 && trans_pulses(3) == 1)
+            if (trans_pulses(1) == 1 && trans_pulses(3) == 1)
                 I_Q(1, t) = I_out(t);
                 I_D(3, t) = I_out(t);
+            elseif (trans_pulses(2) == 1 && trans_pulses(4) == 1)
+                I_Q(2, t) = I_out(t);
+                I_D(4, t) = I_out(t);
             end
         elseif (V_out(t) == 0 && I_out(t) < 0)
             % Voltages are zero and currents are negative
             if (trans_pulses(1) == 1 && trans_pulses(3) == 1)
-                I_Q(1, t) = -I_out(t);
-                I_D(3, t) = -I_out(t);
+                I_Q(3, t) = -I_out(t);
+                I_D(1, t) = -I_out(t);
             elseif (trans_pulses(2) == 1 && trans_pulses(4) == 1)
                 I_Q(4, t) = -I_out(t);
                 I_D(2, t) = -I_out(t);
@@ -157,18 +157,18 @@ for i = 1:length(m_f)
     % print(fname, '-depsc')
 
     % Plotting V_Q
-    % title_str = sprintf("V_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.02, 1, 'last');
-    % subplot(2,2,1)
-    % plot(time(1:x_indx), V_Q(1, 1:x_indx))
-    % subplot(2,2,2)
-    % plot(time(1:x_indx), V_Q(2, 1:x_indx))
-    % subplot(2,2,3)
-    % plot(time(1:x_indx), V_Q(3, 1:x_indx))
-    % subplot(2,2,4)
-    % plot(time(1:x_indx), V_Q(4, 1:x_indx))
-    % title(title_str)
+    title_str = sprintf("V_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    x_indx = find(time <= 0.02, 1, 'last');
+    subplot(2,2,1)
+    plot(time(1:x_indx), V_Q(1, 1:x_indx))
+    subplot(2,2,2)
+    plot(time(1:x_indx), V_Q(2, 1:x_indx))
+    subplot(2,2,3)
+    plot(time(1:x_indx), V_Q(3, 1:x_indx))
+    subplot(2,2,4)
+    plot(time(1:x_indx), V_Q(4, 1:x_indx))
+    title(title_str)
     % fname = sprintf("%sV_Q_%d", path, m_f(i));
     % print(fname, '-depsc')
 
@@ -189,20 +189,20 @@ for i = 1:length(m_f)
     % print(fname, '-depsc')
 
     % Plotting V_D
-    title_str = sprintf("V_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    x_indx = find(time <= 0.02, 1, 'last');
-    subplot(2,2,1)
-    plot(time(1:x_indx), V_D(1, 1:x_indx))
-    subplot(2,2,2)
-    plot(time(1:x_indx), V_D(2, 1:x_indx))
-    subplot(2,2,3)
-    plot(time(1:x_indx), V_D(3, 1:x_indx))
-    subplot(2,2,4)
-    plot(time(1:x_indx), V_D(4, 1:x_indx))
-    title(title_str)
-    fname = sprintf("%sV_D_%d", path, m_f(i));
-    print(fname, '-depsc')
+    % title_str = sprintf("V_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    % x_indx = find(time <= 0.02, 1, 'last');
+    % subplot(2,2,1)
+    % plot(time(1:x_indx), V_D(1, 1:x_indx))
+    % subplot(2,2,2)
+    % plot(time(1:x_indx), V_D(2, 1:x_indx))
+    % subplot(2,2,3)
+    % plot(time(1:x_indx), V_D(3, 1:x_indx))
+    % subplot(2,2,4)
+    % plot(time(1:x_indx), V_D(4, 1:x_indx))
+    % title(title_str)
+    % fname = sprintf("%sV_D_%d", path, m_f(i));
+    % print(fname, '-depsc')
 
     % Plotting I_D
     % title_str = sprintf("I_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
