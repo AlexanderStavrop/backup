@@ -134,14 +134,7 @@ for k=1:2
         elseif(V_o(i) <0  && I_o(i) > 0)
             I_D3(i) = I_o(i);
             I_D4(i) = I_o(i);
-         else
-            V_o(i)
-            I_o(i)
-            disp(" ")
-            disp("  ")
-
         end
-            
 
     end
 
@@ -247,7 +240,7 @@ for k=1:2
 
     Fs = 1/dt;
     L = length(V_o);
-    NFFT = length(V_o);
+    NFFT = length(V_o)
     f_axis = Fs/2*linspace(0,1,NFFT/2+1);
 
     Output_Voltage_Harmonics = fft(V_o,NFFT)/L;

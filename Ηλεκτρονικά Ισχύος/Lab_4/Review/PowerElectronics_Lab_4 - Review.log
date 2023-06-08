@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.6.8)  8 JUN 2023 18:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.6.8)  8 JUN 2023 22:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1502,7 +1502,7 @@ Package hyperref Info: Link coloring ON on input line 117.
 \openout2 = `Titlepage/title.aux'.
 
 (./Titlepage/title.tex
-<Images/university.png, id=74, 67.452pt x 108.1641pt>
+<Images/university.png, id=78, 67.452pt x 108.1641pt>
 File: Images/university.png Graphic file (type png)
 <use Images/university.png>
 Package pdftex.def Info: Images/university.png  used on input line 26.
@@ -1544,7 +1544,7 @@ l.125     \newpage
 \openout2 = `Chapters/chapter0.aux'.
 
  (./Chapters/chapter0.tex
-<Images/circuit1.png, id=111, 481.8pt x 280.04625pt>
+<Images/circuit1.png, id=116, 481.8pt x 280.04625pt>
 File: Images/circuit1.png Graphic file (type png)
 <use Images/circuit1.png>
 Package pdftex.def Info: Images/circuit1.png  used on input line 8.
@@ -1599,7 +1599,7 @@ Package epstopdf Info: Source file: <Images/V_out_I_out_40.eps>
 converted-to.pdf Images/V_out_I_out_40.eps>
 (epstopdf)             \includegraphics on input line 10.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_out_I_out_40-eps-converted-to.pdf, id=133, 559.08875pt x 280.04625pt>
+<Images/V_out_I_out_40-eps-converted-to.pdf, id=138, 559.08875pt x 280.04625pt>
 
 File: Images/V_out_I_out_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_out_I_out_40-eps-converted-to.pdf>
@@ -1617,7 +1617,7 @@ f>
 -converted-to.pdf Images/V_out_I_out_200.eps>
 (epstopdf)             \includegraphics on input line 14.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_out_I_out_200-eps-converted-to.pdf, id=134, 559.08875pt x 280.04625pt
+<Images/V_out_I_out_200-eps-converted-to.pdf, id=139, 559.08875pt x 280.04625pt
 >
 File: Images/V_out_I_out_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_out_I_out_200-eps-converted-to.pdf>
@@ -1639,7 +1639,7 @@ Package epstopdf Info: Source file: <Images/V_out_40.eps>
 ted-to.pdf Images/V_out_40.eps>
 (epstopdf)             \includegraphics on input line 21.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_out_40-eps-converted-to.pdf, id=135, 558.085pt x 280.04625pt>
+<Images/V_out_40-eps-converted-to.pdf, id=140, 558.085pt x 280.04625pt>
 File: Images/V_out_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_out_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_out_40-eps-converted-to.pdf  used on input li
@@ -1655,7 +1655,7 @@ Package epstopdf Info: Source file: <Images/V_out_200.eps>
 rted-to.pdf Images/V_out_200.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_out_200-eps-converted-to.pdf, id=136, 558.085pt x 280.04625pt>
+<Images/V_out_200-eps-converted-to.pdf, id=141, 558.085pt x 280.04625pt>
 File: Images/V_out_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_out_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_out_200-eps-converted-to.pdf  used on input l
@@ -1676,7 +1676,7 @@ Package epstopdf Info: Source file: <Images/I_out_40.eps>
 ted-to.pdf Images/I_out_40.eps>
 (epstopdf)             \includegraphics on input line 35.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_out_40-eps-converted-to.pdf, id=138, 546.04pt x 280.04625pt>
+<Images/I_out_40-eps-converted-to.pdf, id=143, 546.04pt x 280.04625pt>
 File: Images/I_out_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_out_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_out_40-eps-converted-to.pdf  used on input li
@@ -1692,7 +1692,7 @@ Package epstopdf Info: Source file: <Images/I_out_200.eps>
 rted-to.pdf Images/I_out_200.eps>
 (epstopdf)             \includegraphics on input line 39.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_out_200-eps-converted-to.pdf, id=139, 546.04pt x 280.04625pt>
+<Images/I_out_200-eps-converted-to.pdf, id=144, 546.04pt x 280.04625pt>
 File: Images/I_out_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_out_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_out_200-eps-converted-to.pdf  used on input l
@@ -1720,7 +1720,7 @@ Package epstopdf Info: Source file: <Images/V_Q_40.eps>
 d-to.pdf Images/V_Q_40.eps>
 (epstopdf)             \includegraphics on input line 53.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_Q_40-eps-converted-to.pdf, id=199, 556.0775pt x 254.9525pt>
+<Images/V_Q_40-eps-converted-to.pdf, id=204, 556.0775pt x 254.9525pt>
 File: Images/V_Q_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_Q_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_Q_40-eps-converted-to.pdf  used on input line
@@ -1736,7 +1736,7 @@ Package epstopdf Info: Source file: <Images/V_Q_200.eps>
 ed-to.pdf Images/V_Q_200.eps>
 (epstopdf)             \includegraphics on input line 57.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_Q_200-eps-converted-to.pdf, id=200, 556.0775pt x 254.9525pt>
+<Images/V_Q_200-eps-converted-to.pdf, id=205, 556.0775pt x 254.9525pt>
 File: Images/V_Q_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_Q_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_Q_200-eps-converted-to.pdf  used on input lin
@@ -1755,7 +1755,7 @@ Package epstopdf Info: Source file: <Images/I_Q_40.eps>
 d-to.pdf Images/I_Q_40.eps>
 (epstopdf)             \includegraphics on input line 66.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_Q_40-eps-converted-to.pdf, id=201, 543.02875pt x 254.9525pt>
+<Images/I_Q_40-eps-converted-to.pdf, id=206, 543.02875pt x 254.9525pt>
 File: Images/I_Q_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_Q_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_Q_40-eps-converted-to.pdf  used on input line
@@ -1771,7 +1771,7 @@ Package epstopdf Info: Source file: <Images/I_Q_200.eps>
 ed-to.pdf Images/I_Q_200.eps>
 (epstopdf)             \includegraphics on input line 70.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_Q_200-eps-converted-to.pdf, id=202, 543.02875pt x 254.9525pt>
+<Images/I_Q_200-eps-converted-to.pdf, id=207, 543.02875pt x 254.9525pt>
 File: Images/I_Q_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_Q_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_Q_200-eps-converted-to.pdf  used on input lin
@@ -1792,7 +1792,7 @@ Package epstopdf Info: Source file: <Images/V_D_40.eps>
 d-to.pdf Images/V_D_40.eps>
 (epstopdf)             \includegraphics on input line 80.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_D_40-eps-converted-to.pdf, id=203, 553.06625pt x 254.9525pt>
+<Images/V_D_40-eps-converted-to.pdf, id=208, 553.06625pt x 254.9525pt>
 File: Images/V_D_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_D_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_D_40-eps-converted-to.pdf  used on input line
@@ -1808,7 +1808,7 @@ Package epstopdf Info: Source file: <Images/V_D_200.eps>
 ed-to.pdf Images/V_D_200.eps>
 (epstopdf)             \includegraphics on input line 84.
 Package epstopdf Info: Output file is already uptodate.
-<Images/V_D_200-eps-converted-to.pdf, id=204, 553.06625pt x 254.9525pt>
+<Images/V_D_200-eps-converted-to.pdf, id=209, 553.06625pt x 254.9525pt>
 File: Images/V_D_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/V_D_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/V_D_200-eps-converted-to.pdf  used on input lin
@@ -1820,32 +1820,32 @@ Underfull \hbox (badness 5802) in paragraph at lines 78--88
  []
 
 Package epstopdf Info: Source file: <Images/I_D_40.eps>
-(epstopdf)                    date: 2023-06-08 17:17:58
-(epstopdf)                    size: 1166764 bytes
+(epstopdf)                    date: 2023-06-08 19:30:14
+(epstopdf)                    size: 1171598 bytes
 (epstopdf)             Output file: <Images/I_D_40-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-06-08 17:22:48
-(epstopdf)                    size: 189395 bytes
+(epstopdf)                    date: 2023-06-08 19:30:57
+(epstopdf)                    size: 194885 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/I_D_40-eps-converte
 d-to.pdf Images/I_D_40.eps>
 (epstopdf)             \includegraphics on input line 94.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_D_40-eps-converted-to.pdf, id=205, 543.02875pt x 254.9525pt>
+<Images/I_D_40-eps-converted-to.pdf, id=210, 543.02875pt x 254.9525pt>
 File: Images/I_D_40-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_D_40-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_D_40-eps-converted-to.pdf  used on input line
  94.
 (pdftex.def)             Requested size: 249.62373pt x 117.19786pt.
 Package epstopdf Info: Source file: <Images/I_D_200.eps>
-(epstopdf)                    date: 2023-06-08 17:17:58
-(epstopdf)                    size: 1167062 bytes
+(epstopdf)                    date: 2023-06-08 19:30:14
+(epstopdf)                    size: 1171896 bytes
 (epstopdf)             Output file: <Images/I_D_200-eps-converted-to.pdf>
-(epstopdf)                    date: 2023-06-08 17:22:49
-(epstopdf)                    size: 193962 bytes
+(epstopdf)                    date: 2023-06-08 19:30:59
+(epstopdf)                    size: 199926 bytes
 (epstopdf)             Command: <repstopdf --outfile=Images/I_D_200-eps-convert
 ed-to.pdf Images/I_D_200.eps>
 (epstopdf)             \includegraphics on input line 98.
 Package epstopdf Info: Output file is already uptodate.
-<Images/I_D_200-eps-converted-to.pdf, id=206, 543.02875pt x 254.9525pt>
+<Images/I_D_200-eps-converted-to.pdf, id=211, 543.02875pt x 254.9525pt>
 File: Images/I_D_200-eps-converted-to.pdf Graphic file (type pdf)
 <use Images/I_D_200-eps-converted-to.pdf>
 Package pdftex.def Info: Images/I_D_200-eps-converted-to.pdf  used on input lin
@@ -1857,17 +1857,86 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [4 <./Images/V_Q_40-eps-converted-to.pdf> <./Images/V_Q_200-eps-converted-to.pd
 f> <./Images/I_Q_40-eps-converted-to.pdf> <./Images/I_Q_200-eps-converted-to.pd
 f> <./Images/V_D_40-eps-converted-to.pdf> <./Images/V_D_200-eps-converted-to.pd
-f>]) [5 <./Images/I_D_40-eps-converted-to.pdf> <./Images/I_D_200-eps-converted-
-to.pdf>]
+f>]
+Package epstopdf Info: Source file: <Images/P_40.eps>
+(epstopdf)                    date: 2023-06-08 19:45:14
+(epstopdf)                    size: 652625 bytes
+(epstopdf)             Output file: <Images/P_40-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-06-08 19:45:22
+(epstopdf)                    size: 186047 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/P_40-eps-converted-
+to.pdf Images/P_40.eps>
+(epstopdf)             \includegraphics on input line 121.
+Package epstopdf Info: Output file is already uptodate.
+<Images/P_40-eps-converted-to.pdf, id=270, 506.89375pt x 251.94125pt>
+File: Images/P_40-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/P_40-eps-converted-to.pdf>
+Package pdftex.def Info: Images/P_40-eps-converted-to.pdf  used on input line 1
+21.
+(pdftex.def)             Requested size: 249.62373pt x 124.06737pt.
+Package epstopdf Info: Source file: <Images/P_200.eps>
+(epstopdf)                    date: 2023-06-08 19:45:15
+(epstopdf)                    size: 652742 bytes
+(epstopdf)             Output file: <Images/P_200-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-06-08 19:45:22
+(epstopdf)                    size: 187676 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/P_200-eps-converted
+-to.pdf Images/P_200.eps>
+(epstopdf)             \includegraphics on input line 125.
+Package epstopdf Info: Output file is already uptodate.
+<Images/P_200-eps-converted-to.pdf, id=271, 506.89375pt x 251.94125pt>
+File: Images/P_200-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/P_200-eps-converted-to.pdf>
+Package pdftex.def Info: Images/P_200-eps-converted-to.pdf  used on input line 
+125.
+(pdftex.def)             Requested size: 249.62373pt x 124.06737pt.
+ [5 <./Images/I_D_40-eps-converted-to.pdf> <./Images/I_D_200-eps-converted-to.p
+df> <./Images/P_40-eps-converted-to.pdf> <./Images/P_200-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <Images/FV_out_40.eps>
+(epstopdf)                    date: 2023-06-08 22:02:34
+(epstopdf)                    size: 271430 bytes
+(epstopdf)             Output file: <Images/FV_out_40-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-06-08 22:03:04
+(epstopdf)                    size: 76236 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/FV_out_40-eps-conve
+rted-to.pdf Images/FV_out_40.eps>
+(epstopdf)             \includegraphics on input line 166.
+Package epstopdf Info: Output file is already uptodate.
+<Images/FV_out_40-eps-converted-to.pdf, id=316, 499.8675pt x 262.9825pt>
+File: Images/FV_out_40-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/FV_out_40-eps-converted-to.pdf>
+Package pdftex.def Info: Images/FV_out_40-eps-converted-to.pdf  used on input l
+ine 166.
+(pdftex.def)             Requested size: 249.62373pt x 131.32639pt.
+Package epstopdf Info: Source file: <Images/FV_out_200.eps>
+(epstopdf)                    date: 2023-06-08 22:02:35
+(epstopdf)                    size: 184062 bytes
+(epstopdf)             Output file: <Images/FV_out_200-eps-converted-to.pdf>
+(epstopdf)                    date: 2023-06-08 22:03:04
+(epstopdf)                    size: 56440 bytes
+(epstopdf)             Command: <repstopdf --outfile=Images/FV_out_200-eps-conv
+erted-to.pdf Images/FV_out_200.eps>
+(epstopdf)             \includegraphics on input line 170.
+Package epstopdf Info: Output file is already uptodate.
+<Images/FV_out_200-eps-converted-to.pdf, id=317, 499.8675pt x 262.9825pt>
+File: Images/FV_out_200-eps-converted-to.pdf Graphic file (type pdf)
+<use Images/FV_out_200-eps-converted-to.pdf>
+Package pdftex.def Info: Images/FV_out_200-eps-converted-to.pdf  used on input 
+line 170.
+(pdftex.def)             Requested size: 249.62373pt x 131.32639pt.
+) [6
+
+ <./Images/FV_out_40-eps-converted-to.pdf> <./Images/FV_out_200-eps-converted-t
+o.pdf>]
 \openout2 = `Chapters/chapter3.aux'.
 
  (./Chapters/chapter3.tex
-<Images/circuit2.png, id=293, 282.05376pt x 137.51375pt>
+<Images/circuit2.png, id=341, 282.05376pt x 137.51375pt>
 File: Images/circuit2.png Graphic file (type png)
 <use Images/circuit2.png>
 Package pdftex.def Info: Images/circuit2.png  used on input line 8.
 (pdftex.def)             Requested size: 321.7499pt x 156.87851pt.
-) [6
+) [7
 
 
 
@@ -1875,7 +1944,7 @@ Package pdftex.def Info: Images/circuit2.png  used on input line 8.
 \openout2 = `Chapters/chapter4.aux'.
 
 
-(./Chapters/chapter4.tex) [7
+(./Chapters/chapter4.tex) [8
 
 
 
@@ -1887,16 +1956,16 @@ LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `"PowerElectronics_Lab_4 - Review".out' has n
 ot changed.
-(rerunfilecheck)             Checksum: 81CF2A9ED6BBF2E2DEE826204DD5D611;5204.
+(rerunfilecheck)             Checksum: 9DA2C4A9676E79BD1C429E3B4FB7CC51;5438.
  ) 
 Here is how much of TeX's memory you used:
- 32037 strings out of 476025
- 620907 string characters out of 5796533
+ 32202 strings out of 476025
+ 624897 string characters out of 5796533
  1861388 words of memory out of 5000000
- 51816 multiletter control sequences out of 15000+600000
- 523907 words of font info for 66 fonts, out of 8000000 for 9000
+ 51969 multiletter control sequences out of 15000+600000
+ 528248 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,89p,876b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,19n,89p,1127b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi
@@ -1911,11 +1980,11 @@ dist/fonts/type1/public/cbfonts/grmn1200.pfb></usr/share/texmf-dist/fonts/type1
 /public/cbfonts/grxn1095.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/
 grxn1200.pfb></usr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1440.pfb></u
 sr/share/texmf-dist/fonts/type1/public/cbfonts/grxn1728.pfb>
-Output written on "PowerElectronics_Lab_4 - Review.pdf" (9 pages, 2041736 bytes
-).
+Output written on "PowerElectronics_Lab_4 - Review.pdf" (10 pages, 2553700 byte
+s).
 PDF statistics:
- 389 PDF objects out of 1000 (max. 8388607)
- 294 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 438 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 262 words of extra memory for PDF output out of 10000 (max. 10000000)
 
