@@ -40,7 +40,7 @@
 	\end{subfigure}
 \end{figure}
 \noindent
-Όσον αφορά το ρεύμα εξόδου, αυξάνοντας το $m_f$ παρατηρείται μείωση των διακυμάνσεων η οποία συνεπάγεται με μείωση των αρμονικών στο σήμα.\\\\
+Όσον αφορά το ρεύμα εξόδου, αυξάνοντας το $m_f$ παρατηρείται μείωση των διακυμάνσεων η οποία συνεπάγεται με μείωση των αρμονικών στο σήμα.
 Η μείωση αυτή οφείλεται εν μέρη στο γεγονός πως το φορτίο είναι ωμικοεπαγωγικό και όπως είναι γνωστό, η σύνθετη αντίσταση του ισούται με $R + j\omega L$, οπότε αυξάνοντας τον $m_f$, αυξάνοντας πρακτικά την συχνότητα του φέροντος, αυξάνεται και η σύνθετη αντίσταση του μειώνοντας  έτσι την επίδραση των ανώτερων αρμονικών.
 
 \noindent\\
@@ -57,7 +57,8 @@
 		\includegraphics[width=0.95\textwidth]{Images/V_Q_200}
 	\end{subfigure}
 \end{figure}
-
+\noindent
+Όσον αφορά την τάση στα transistor, παρατηρείται πως τα transistor άγουν σε ζεύγη (1-2 και 3-4) σύμφωνα με την υποενότητα \ref{} καθώς και πως αποτελείται από παλμούς διαφορετικού εύρους.  Ακόμα, σε σχέση με τον \textbf{Μετατροπέα Quasi}, οι παλμοί έχουν τό ίδιο πλάτος τις αντίστοιχες χρονικές στιγμές καθώς προκύπτουν ακολουθώντας την ίδια διαδικασία. Τέλος, αυξάνοντας τον $m_f$ παρατηρείται και πάλι πενταπλασιασμός των παλμών.\\
 \begin{figure}[h!]
 	\subsubsection*{Ρεύμα Transistor}
 	\begin{subfigure}{0.49\textwidth}
@@ -68,13 +69,51 @@
 		\centering
 		\includegraphics[width=0.95\textwidth]{Images/I_Q_200}
 	\end{subfigure}
+	\noindent
+	Παρατηρώντας τις κυματομορφές ρεύματος των transistor είναι και πάλι εμφανές πως άγουν σε ζεύγη καθώς και πως για πενταπλασιασμό του $m_f$ πενταπλασιάζονται οι παλμοί.\textbf{Ισως πως οτι ειναι πιο sm}
 \end{figure}
 
+\begin{figure}[h!]
+	\subsubsection*{Τάση Διόδων}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/V_D_40}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/V_D_200}
+	\end{subfigure}
+	\noindent
+	Ομοίως με τον \textbf{Quasi wave}, η τάση των διόδων είναι ίση με 0 καθώς όπως προαναφέρθηκε, άγουν μόνο στις περιπτώσεις όπου η τάση εξόδου είναι ίση με 0?!!?!?!?!?!?!??! 
+\end{figure}
 
-\subsubsection*{Ρεύμα Διόδων}
-\subsubsection*{Τάση Διόδων}
+\begin{figure}[h!]
+	\subsubsection*{Ρεύμα Διόδων}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/I_D_40}
+	\end{subfigure}
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/I_D_200}
+	\end{subfigure}
+\end{figure}
+\noindent
+Σε αντίθεση με την τάση των διόδων, το ρεύμα δεν είναι μηδενικό αλλά παρουσιάζει όμοια μορφή με το ρεύμα των transistor, με βασική διαφορά πως μπορεί να ρέει ρεύμα μόνο μέσω της αντίστοιχης διόδου ή του αντίστοιχου transistor.
 
 \subsubsection*{Ισχύς Εισόδου - Εξόδου}
+Για τον υπολογισμό της ισχύς απαιτείται γνώση του ρεύματος. Όσον αφορά την έξοδο του κυκλώματος, το ρεύμα είναι γνωστό ωστόσο όσον αφορά την είσοδο, το ρεύμα είναι απαραίτητο να βρεθεί. 
 
+\noindent\\
+Εφαρμόζοντας νόμο ρευμάτων του Kirchhoff, προκύπτει η εξής σχέση για το ρεύμα εισόδου $I_{in}$:
+\begin{equation}
+	I_{in} - I_{Q_1} + I_{D_1} - I_{Q_3} + I_{D_3} = 0 \xRightarrow{} I_{in} = I_{Q_1} - I_{D_1} + I_{Q_3} - I_{D_3} 	
+\end{equation}
+
+οπότε εφόσον η ισχύς υπολογίζεται ως το γινόμενο μεταξύ τάσης και ρεύματος, οι ισχύς προκύπτουν ως εξής:
+\begin{align}
+	P_{in} &= V_{in} \cdot I_{in} = V_{dc} \cdot I_{in}\\
+	P_{in} &= V_{out} \cdot I_{out}
+\end{align}
 
 \subsection{Συντελεστής Ισχύος}
