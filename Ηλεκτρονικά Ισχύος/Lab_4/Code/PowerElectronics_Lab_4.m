@@ -94,10 +94,13 @@ for i = 1:length(m_f)
         if (V_out(t) == 0 && I_out(t) > 0)
             % Voltages are zero and currents are positive
             if (trans_pulses(1) == 1 && trans_pulses(3) == 1)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 I_Q(1, t) = I_out(t);                                      % I_Q1
-                    I_Q1(t) = I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                I_Q1(t) = I_out(t);
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                 I_D(3, t) = I_out(t);                                      % I_D3
-                    I_D3(t) = I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                I_D3(t) = I_out(t);
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             elseif (trans_pulses(2) == 1 && trans_pulses(4) == 1)
                 I_Q(2, t) = I_out(t);
                 I_D(4, t) = I_out(t);
@@ -105,14 +108,8 @@ for i = 1:length(m_f)
         elseif (V_out(t) == 0 && I_out(t) < 0)
             % Voltages are zero and currents are negative
             if (trans_pulses(1) == 1 && trans_pulses(3) == 1)
-                I_Q(3, t) = -I_out(t);                                     % I_Q3
-                
-                I_D(1, t) = -I_out(t);                                     % I_D1
-                I_D1(t) = -I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                
-                
-                
-                I_Q3(t) = -I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                I_Q(3, t) = -I_out(t);
+                I_D(1, t) = -I_out(t);
             elseif (trans_pulses(2) == 1 && trans_pulses(4) == 1)
                 I_Q(4, t) = -I_out(t);
                 I_D(2, t) = -I_out(t);
@@ -120,56 +117,30 @@ for i = 1:length(m_f)
         elseif (V_out(t) > 0 && I_out(t) > 0)
             % Voltages and currents are positive
             V_Q(1, t) = V_out(t);
-            I_Q(1, t) = I_out(t);                                          % I_Q1
-                I_Q1(t)   = I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            I_Q(1, t) = I_out(t);
             V_Q(2, t) = V_out(t);
             I_Q(2, t) = I_out(t);
         elseif (V_out(t) < 0 && I_out(t) < 0)
             % Voltages and currents are negative
             V_Q(3, t) = V_out(t);
-            I_Q(3, t) = -I_out(t);                                         % I_Q3
-                I_Q3(t) = -I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            I_Q(3, t) = -I_out(t);
             V_Q(4, t) = V_out(t);
             I_Q(4, t) = -I_out(t);
         elseif (V_out(t) > 0 && I_out(t) < 0)
-            I_D(1, t) = -I_out(i);                                         % I_D1
-                I_D1(t) = -I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            I_D(2, t) = -I_out(i);
+            I_D(1, t) = -I_out(t);
+            I_D(2, t) = -I_out(t);
         elseif (V_out(t) < 0 && I_out(t) > 0)
             % ΓΙΑΤΙ ΔΕΝ ΘΕΤΟΥΜΕ ΤΗΝ ΤΑΣΗ ΜΕ ΚΑΤΙ, ΕΙΝΑΙ 0 ? ΑΦΟΥ ΤΗΝ ΒΑΛΑΜΕ
             % ΝΑ ΕΙΝΑΙ ΘΕΤΙΚΗ
-            I_D(3, t) = I_out(i);                                          % I_D3
-                I_D3(t) = I_out(t);%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            I_D(4, t) = I_out(i);
+            I_D(3, t) = I_out(t);
+            I_D(4, t) = I_out(t);
         end
     end
 
     % Calculating input and output power
-    for o = 1:length(time)
-        if ((I_Q(1,o) - I_Q1(o)) ~= 0)
-            disp("pouli_1")
-        end
-        if (I_Q(3,o) - I_Q3(o) ~= 0)
-            disp("pouli_2")
-        end
-        if (I_D(1,o) - I_D1(o) ~= 0)
-            disp("pouli_3")
-        end
-%         if (I_D(3,o) - I_D3(o) ~= 0)
-%             disp("pouli_4")
-%         end
-    end
-%     input_curr   = I_Q1     + I_Q3     - (I_D1     + I_D3);
-%     input_curr_2 = I_Q(1,:) + I_Q(3,:) - (I_D(1,:) + I_D(3,:));
-%     input_curr - input_curr_2;
+     P(1,:) = (I_Q(1,:) - I_D(1,:) + I_Q(3,:) - I_D(3,:)) * V_dc;
+     P(2,:) = I_out .* V_out;
     
-%     %     plot(time, input_curr)
-%      P(1,:) = (input_curr_2) * V_dc;
-%      P(2,:) = I_out .* V_out;
-    
-
-
-
 
 %     path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
 % 
@@ -270,14 +241,14 @@ for i = 1:length(m_f)
 %     % print(fname, '-depsc')
 % 
 %     % Plotting Input and output power
-%     title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-%     x_indx = find(time <= 0.02, 1, 'last');
-%     subplot(1,2,1)
-%     plot(time(1:x_indx), P(1, 1:x_indx))
-%     subplot(1,2,2)
-%     plot(time(1:x_indx), P(2, 1:x_indx))
-%     title(title_str)
+    title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    x_indx = find(time <= 0.02, 1, 'last');
+    subplot(1,2,1)
+    plot(time(1:x_indx), P(1, 1:x_indx))
+    subplot(1,2,2)
+    plot(time(1:x_indx), P(2, 1:x_indx))
+    title(title_str)
 %     fname = sprintf("%sP_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
