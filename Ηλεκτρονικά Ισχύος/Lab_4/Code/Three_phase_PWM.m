@@ -20,9 +20,9 @@ m_a = 0.9;
 m_f = [30, 180];
 
 % Creating the three sin signals
-V_a_sin = V_dc * sin(omega*time);
-V_b_sin = V_dc * sin(omega*time + deg2rad(120));
-V_c_sin = V_dc * sin(omega*time + deg2rad(240));
+V_a_sin = V_dc * sin(2*pi*f*time);
+V_b_sin = V_dc * sin(2*pi*f*time + deg2rad(120));
+V_c_sin = V_dc * sin(2*pi*f*time + deg2rad(240));
 
 
 % Creating the system variables A B C and D
@@ -86,28 +86,27 @@ for i = 1:length(m_f)
         VC_condition = (V_c_sin(t) > shark_tooth(t));
         V_C(t) = V_dc*VC_condition;
         
-        
-        % Calculating line and phase voltage of phase A
+        % Calculating the line voltages 
         V_A_line(t) = V_A(t) - V_B(t);
+        V_B_line(t) = V_B(t) - V_C(t);
+        V_C_line(t) = V_C(t) - V_A(t);
+
+        % Calculating phase voltages        
         V_A_phase(t) = (V_A_line(t) - V_C_line(t)) / 3;
-        % Solving the system and extracting the current of phase A
+        V_B_phase(t) = (V_B_line(t) - V_A_line(t)) / 3;
+        V_C_phase(t) = (V_C_line(t) - V_B_line(t)) / 3;
+
+        
+        % Solving the system and extracting the current for every phase
+        % Phase A
         X(1,t+1) = A_d*X(1, t) + B_d*V_A_phase(t);
         I_out(1, t) = C_d*X(1, t) + D_d*V_A_phase(t);
-
-        % Calculating line and phase voltage of phase B
-        V_B_line(t) = V_B(t) - V_C(t);
-        V_B_phase(t) = (V_B_line(t) - V_A_line(t)) / 3;
-        % Solving the system and extracting the current of phase B
+        % Phase B
         X(2,t+1) = A_d*X(2, t) + B_d*V_B_phase(t);
         I_out(2, t) = C_d*X(2, t) + D_d*V_B_phase(t);
-
-        % Calculating line and phase voltage of phase C
-        V_C_line(t) = V_C(t) - V_A(t);
-        V_C_phase(t) = (V_C_line(t) - V_B_line(t)) / 3;
-        % Solving the system and extracting the current of phase C
+        % Phase C
         X(3,t+1) = A_d*X(3, t) + B_d*V_C_phase(t);
         I_out(3, t) = C_d*X(3, t) + D_d*V_C_phase(t);
-
 
         % Assigning the voltage and current of each transistor and each diode for phase A
         % For positive current we assign it accordingly, else invert it
@@ -136,11 +135,151 @@ for i = 1:length(m_f)
             I_Q(2, t) = -I_out(3, t) * (V_C_phase(t) < 0);
             I_D(5, t) = -I_out(3, t) * (V_C_phase(t) > 0);
         end
-
-    
-    
-    
-    
-    
     end
+
+    % Plotting
+    path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
+
+%     % Plotting Polar Voltages
+%     title_str = sprintf("Polar Voltages (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), V_A_line(start_indx:end_indx))
+%     title("V_{AB} line-line")
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), V_B_line(start_indx:end_indx))
+%     title("V_{BC} line-line")
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), V_C_line(start_indx:end_indx))
+%     title("V_{CA} line-line")
+%
+%     sgtitle(title_str) 
+%     fname = sprintf("%sPolar_voltages_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+%     % Plotting Phase Voltages and Phase current
+%     title_str = sprintf("Phase Voltages and Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), V_A_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase A)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), V_B_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase B)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), V_C_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase C)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
+%     
+%     sgtitle(title_str) 
+% 
+%     fname = sprintf("%sPhase_V_I_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+%     % Plotting Phase current
+%     title_str = sprintf("Phase Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
+%     title("I_{out} (Phase A)")
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
+%     title("I_{out} (Phase B)")
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
+%     title("I_{out} (Phase C)")
+% 
+%     sgtitle(title_str)  
+%     fname = sprintf("%sPhase_I_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+%     % Plotting Transistor current
+%     title_str = sprintf("Transistor Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(6,1,1)
+%     plot(time(start_indx:end_indx), I_Q(1, start_indx:end_indx))
+%     title("I_{Q1}")
+% 
+%     subplot(6,1,2)
+%     plot(time(start_indx:end_indx), I_Q(2, start_indx:end_indx))
+%     title("I_{Q2}")
+% 
+%     subplot(6,1,3)
+%     plot(time(start_indx:end_indx), I_Q(3, start_indx:end_indx))
+%     title("I_{Q3}")
+% 
+%     subplot(6,1,4)
+%     plot(time(start_indx:end_indx), I_Q(4, start_indx:end_indx))
+%     title("I_{Q4}")
+% 
+%     subplot(6,1,5)
+%     plot(time(start_indx:end_indx), I_Q(5, start_indx:end_indx))
+%     title("I_{Q5}")
+% 
+%     subplot(6,1,6)
+%     plot(time(start_indx:end_indx), I_Q(6, start_indx:end_indx))
+%     title("I_{Q6}")
+% 
+%     sgtitle(title_str) 
+%     fname = sprintf("%sI_Q_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+%     % Plotting Diode current
+%     title_str = sprintf("Diode Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(6,1,1)
+%     plot(time(start_indx:end_indx), I_D(1, start_indx:end_indx))
+%     title("I_{D1}")
+% 
+%     subplot(6,1,2)
+%     plot(time(start_indx:end_indx), I_D(2, start_indx:end_indx))
+%     title("I_{D2}")
+% 
+%     subplot(6,1,3)
+%     plot(time(start_indx:end_indx), I_D(3, start_indx:end_indx))
+%     title("I_{D3}")
+% 
+%     subplot(6,1,4)
+%     plot(time(start_indx:end_indx), I_D(4, start_indx:end_indx))
+%     title("I_{D4}")
+% 
+%     subplot(6,1,5)
+%     plot(time(start_indx:end_indx), I_D(5, start_indx:end_indx))
+%     title("I_{D5}")
+% 
+%     subplot(6,1,6)
+%     plot(time(start_indx:end_indx), I_D(6, start_indx:end_indx))
+%     title("I_{D6}")
+% 
+%     sgtitle(title_str) 
+%     fname = sprintf("%sI_Q_%d", path, m_f(i));
+%     print(fname, '-depsc')
 end
