@@ -162,7 +162,6 @@ for i = 1:length(m_f)
     % Plotting
     path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
 
-
     % Plotting V_out with V_in
     % title_str = sprintf("V_{out} - I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
     % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
@@ -175,7 +174,6 @@ for i = 1:length(m_f)
     % fname = sprintf("%sV_out_I_out_%d", path, m_f(i));
     % print(fname, '-depsc')
 
-
     % Plotting V_out 
     % title_str = sprintf("V_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
     % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
@@ -187,7 +185,6 @@ for i = 1:length(m_f)
     % ylabel('Amlplitude (V)')
     % fname = sprintf("%sV_out_%d", path, m_f(i));
     % print(fname, '-depsc')
-
 
     % Plotting Ι_out 
     % title_str = sprintf("I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
@@ -213,7 +210,6 @@ for i = 1:length(m_f)
     % fname = sprintf("%sI_out_%d", path, m_f(i));
     % print(fname, '-depsc')
 
-
     % Plotting V_Q
     % title_str = sprintf("V_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
     % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
@@ -234,8 +230,8 @@ for i = 1:length(m_f)
     % 
     % sgtitle(title_str) 
     % fname = sprintf("%sV_Q_%d", path, m_f(i));
-    % print(fname, '-depsc')
-
+    % pri
+    nt(fname, '-depsc')
 
     % Plotting I_Q
     % title_str = sprintf("I_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
@@ -253,11 +249,12 @@ for i = 1:length(m_f)
     % subplot(4,1,4)
     % plot(time(1:x_indx), I_Q(4, 1:x_indx))
     % title("Ι_{Q4}")
+    % 
     % sgtitle(title_str) 
     % fname = sprintf("%sI_Q_%d", path, m_f(i));
     % print(fname, '-depsc')
 
-    
+
     % Plotting V_D
     % title_str = sprintf("V_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
     % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);

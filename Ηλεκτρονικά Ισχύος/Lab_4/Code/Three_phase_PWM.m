@@ -41,7 +41,7 @@ B_d = sysd.B;
 C_d = sysd.C;
 D_d = sysd.D;
 
-for i = 1:length(m_f)
+for i = 1   :length(m_f)
     % Creating the triangular signal using the switching frequency
     switch_freq = m_f(i)*f;
     shark_tooth = (V_dc/m_a) * sawtooth(2*pi*switch_freq*time, 0.5);
@@ -137,6 +137,7 @@ for i = 1:length(m_f)
         end
     end
 
+
     % Plotting
     path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
 
@@ -156,9 +157,9 @@ for i = 1:length(m_f)
 %     subplot(3,1,3)
 %     plot(time(start_indx:end_indx), V_C_line(start_indx:end_indx))
 %     title("V_{CA} line-line")
-%
+% 
 %     sgtitle(title_str) 
-%     fname = sprintf("%sPolar_voltages_%d", path, m_f(i));
+%     fname = sprintf("%s4_Polar_voltages_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
@@ -187,7 +188,7 @@ for i = 1:length(m_f)
 %     
 %     sgtitle(title_str) 
 % 
-%     fname = sprintf("%sPhase_V_I_%d", path, m_f(i));
+%     fname = sprintf("%s4_Phase_V_I_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
@@ -209,7 +210,7 @@ for i = 1:length(m_f)
 %     title("I_{out} (Phase C)")
 % 
 %     sgtitle(title_str)  
-%     fname = sprintf("%sPhase_I_%d", path, m_f(i));
+%     fname = sprintf("%s4_Phase_I_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
@@ -245,8 +246,9 @@ for i = 1:length(m_f)
 %     title("I_{Q6}")
 % 
 %     sgtitle(title_str) 
-%     fname = sprintf("%sI_Q_%d", path, m_f(i));
+%     fname = sprintf("%s4_I_Q_%d", path, m_f(i));
 %     print(fname, '-depsc')
+
 
 %     % Plotting Diode current
 %     title_str = sprintf("Diode Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
@@ -280,6 +282,65 @@ for i = 1:length(m_f)
 %     title("I_{D6}")
 % 
 %     sgtitle(title_str) 
-%     fname = sprintf("%sI_Q_%d", path, m_f(i));
+%     fname = sprintf("%s4_I_D_%d", path, m_f(i));
 %     print(fname, '-depsc')
+
+
+%     % Calculating and printing the input current
+%     I_in = I_Q(1, :) +  I_Q(3, :) + I_Q(5, :) - I_D(1, :) -  I_D(3, :) - I_D(5, :);
+%     
+%     % Plotting Input current
+%     title_str = sprintf("Input Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     plot(time(start_indx:end_indx), I_in(start_indx:end_indx));
+%     title(title_str)
+%         
+%     fname = sprintf("%s4_I_in_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+%     % Calculating and plotting the input and output power
+%     P_in = V_dc .* I_in;
+%     P_out = V_A.*I_out(1,:) + V_B.*I_out(2,:) + V_C.*I_out(3,:);
+% 
+%     % Plotting Input and Output Power
+%     title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 375]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(1,2,1)
+%     plot(time(start_indx:end_indx), P_in(start_indx:end_indx))
+%     title("P_{in}")
+% 
+%     subplot(1,2,2)
+%     plot(time(start_indx:end_indx), P_out(start_indx:end_indx))
+%     title("P_{out}")
+%         
+%     fname = sprintf("%s4_P_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+    % Setting the fourier transform parameters
+    L = length(time);
+    Fs = 1 / dt;
+    NFFT = length(V_A_line);
+    freqs = Fs/2*linspace(0,1,NFFT/2+1);
+    
+    % Fourier Transform for every line current
+    Y_V_out = fft(V_A_line,NFFT)/L;
+    Y_V_out_half = 2*abs(Y_V_out(1:NFFT/2+1));
+
+
+    % Plotting the Fourier Transform of V_out
+    title_str = sprintf("Fourier transform of V_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    x_indx = find(freqs <= 2.5e5, 1, 'last');
+    plot(freqs(1:end), Y_V_out_half(1:end))
+    title(title_str)
 end
