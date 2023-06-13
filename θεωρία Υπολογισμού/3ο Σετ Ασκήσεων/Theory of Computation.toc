@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Μηχανές Turing}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright $ \underline {$\sqcup $} $w \sqcup $ σε $\vartriangleright $ \underline {$\sqcup $} $w^Rw^R\sqcup $ με $w \in \{a,b\}^*$}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright $ \underline {$\sqcup $} $x \sqcup y \sqcup $ σε $\vartriangleright $ \underline {$\sqcup $} $z \sqcup w \sqcup $ με $x, y, z, w \in \{0,1\}^*, |x|=|y|=|z|=|w|$ και $z = x (NAND) y, W = x (AND) y$}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Αναδρομικές και αναδρομικά απαριθμήσιμες γλώσσες}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Το συμπλήρωμα μιας Turing-απαριθμήσιμης γλώσσας είναι πάντα αναδρομική γλώσσα}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Για κάθε ντετερμινιστικό αυτόματο στοίβας μπορεί να κατασκευασθεί ισοδύναμη μηχανή απόφασης Turing}{2}{subsection.2.2}%

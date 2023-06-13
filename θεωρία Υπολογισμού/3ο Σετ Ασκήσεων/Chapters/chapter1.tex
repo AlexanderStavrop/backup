@@ -1,0 +1,63 @@
+\section{Μηχανές Turing}
+
+\subsection{Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright$ \underline{$\sqcup$} $w  \sqcup$ σε $\vartriangleright$ \underline{$\sqcup$} $w^Rw^R\sqcup$ με $w \in \{a,b\}^*$}
+
+
+
+\begin{center}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,semithick,node distance=2.0cm,auto]
+		\node(q1)                  			{$> R_\sqcup$};
+		\node(q2) [right of = q1] {$L$};
+		\node(q3) [right = 2 of q2] {$0 R_\sqcup x L_0$};
+		\node(q4) [below of = q2] {$R$};
+		\node(q5) [right = 2 of q4] {$\sqcup L_\sqcup R_0 R_\sqcup x$ };
+		\node(q6) [left of = q4] {$L_\sqcup$};
+		
+		\draw[->] (q1) -- (q2);
+		\draw[->] (q2) -- node {$x = a,b$} (q3);
+		\path[->] (q2) edge [out=125, in= 150, loop, distance=1cm, above] node {$x = 0$} (q2);
+		\draw[->] (q3) [out=0,in=90] -| +(1.1,1.0) -| (q2);
+		\draw[->] (q2) -- node {$x = \sqcup$} (q4);
+		\draw[->] (q4) -- node {$x = a,b$} (q5);
+		\textbf{\path[->] (q4) edge [out=125, in= 150, loop, distance=1cm, above] node {$x = 0$} (q4);}
+		\draw[->] (q5) [out=0,in=270] -| +(1.5,-1.0) -| (q4);
+		\draw[->] (q4) [above] -- node {$\sqcup$} (q6);
+	\end{tikzpicture}
+	\vspace{-0.3cm}
+\end{center}
+
+\noindent\\\\
+\subsection{Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright$ \underline{$\sqcup$} $x \sqcup y \sqcup$ σε $\vartriangleright$ \underline{$\sqcup$} $z \sqcup w \sqcup$ με $x, y, z, w \in \{0,1\}^*, |x|=|y|=|z|=|w|$ και $z = x (NAND) y, W = x (AND) y$}
+\begin{center}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,semithick,node distance=2.0cm,auto]
+		\node(q1)                  			{$> R_\sqcup$};
+		\node(q2) [right of = q1] {$L$};
+    	\node(q3) [above right=0.8cm and 0.8cm of q2] {$\sqcup R^2_\sqcup L$};
+    	\node(q4) [right =1.5cm of q3] {$\sqcup L^2_\sqcup 1$};
+    	\node(q5) [below right=0.8cm and 0.8cm of q2] {$\sqcup R^2_\sqcup L$};
+    	\node(q6) [right =1.5cm of q5] {$\sqcup L^2_\sqcup 0$};
+    	
+		\node(q7) [below=4cm of q2] {$R$};
+		\node(q8) [above right=0.8cm and 0.8cm of q7] {$\sqcup R^2_\sqcup 1 L^2_\sqcup 0$};
+		\node(q9) [below right=0.8cm and 0.8cm of q7] {$\sqcup R^2_\sqcup 0 L^2_\sqcup 1$};
+
+		
+%		\node(q5) [right = 2 of q4] {$\sqcup L_\sqcup R_0 R_\sqcup x$ };
+%		\node(q6) [left of = q4] {$L_\sqcup$};
+		\draw[->] (q1) -- (q2);
+		\draw[->] (q2) -- node [below right=0cm and 0cm] {$x = 0$} (q3);
+		\draw[->] (q3) -- node {$x = 0,1$} (q4);
+		\draw[->] (q2) -- node {$x = 1$} (q5);
+		\draw[->] (q5) -- node [below right]  {$x = 0$} (q4);
+		\draw[->] (q5) -- node {$x = 1$} (q6);
+		\draw[->] (q4) [out=0,in=270] -| +(1.5,1.0) -| (q2);
+		\draw[->] (q6) [out=0,in=270] -| +(1.5,3.83) -| (q2);
+
+		\draw[->] (q2) -- node {$x = \sqcup$} (q7);
+		\draw[->] (q7) -- node [below right]  {$x = 0$} (q8);
+		\draw[->] (q8) [out=0,in=270] -| +(1.5,-3.83) -| (q7);
+		\draw[->] (q7) -- node [above right]  {$x = 1$} (q9);
+		\draw[->] (q9) [out=0,in=270] -| +(1.5,-1) -| (q7);	
+	\end{tikzpicture}
+	\vspace{-0.3cm}
+\end{center}
