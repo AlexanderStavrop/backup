@@ -180,6 +180,9 @@ assignment:
   | T_ID DEL_LBRAC attribute DEL_RBRAC OP_EQUAL right_part	{$$ = template("%s[%s] = %s", $1, $3, $6);}
   | T_ID DEL_DOT DEL_HASHTAG T_ID OP_EQUAL right_part		{$$ = template("%s.%s = %s", $1, $4, $6);}
   | attribute OP_INCREM attribute							{$$ = template("%s += %s", $1, $3);}
+  | attribute OP_DECREM attribute							{$$ = template("%s -= %s", $1, $3);}
+  | attribute OP_MULCREM attribute							{$$ = template("%s *= %s", $1, $3);}
+  | attribute OP_DIVCREM attribute							{$$ = template("%s /= %s", $1, $3);}
 ;
 var_type:
     DEL_DOTS KW_str     {$$ = template("char* ");}
@@ -192,7 +195,6 @@ var_type:
 
 declaration:
 	attribute var_type							{$$ = template("%s%s", $2, $1);}
-//  | attribute DEL_DOTS T_ID 					{$$ = template("%s %s = ctor_%s", $3, $1, $3);} //If remove 6 not work 7 work more
   | attribute DEL_COMMA							{$$ = template("%s, ", $1);}
   | T_ID DEL_LBRAC attribute DEL_RBRAC var_type	{$$ = template("%s%s[%s]", $5, $1, $3);}
   | declaration attribute var_type				{$$ = template("%s%s%s", $3, $1, $2);}
@@ -202,9 +204,9 @@ declaration:
 
 
 fcn_call:
- 	attribute DEL_LPAR right_part DEL_RPAR		{$$ = template("%s(%s)", $1, $3);}
-  |	T_ID DEL_DOT T_ID DEL_LPAR DEL_RPAR			{$$ = template("%s.%s(&%s)", $1, $3, $1);}
-  | T_ID DEL_DOT T_ID DEL_LPAR T_ID DEL_RPAR	{$$ = template("%s.%s(&%s,%s)", $1, $3, $1, $5);}
+ 	attribute DEL_LPAR right_part DEL_RPAR					{$$ = template("%s(%s)", $1, $3);}
+  |	T_ID DEL_DOT T_ID DEL_LPAR DEL_RPAR						{$$ = template("%s.%s(&%s)", $1, $3, $1);}
+  | T_ID DEL_DOT T_ID DEL_LPAR T_ID DEL_RPAR				{$$ = template("%s.%s(&%s,%s)", $1, $3, $1, $5);}
   | T_ID DEL_DOT T_ID DEL_LPAR fcn_arguments T_ID DEL_RPAR	{$$ = template("%s.%s(&%s,%s%s)", $1, $3, $1, $5, $6);}
 ;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,6 +257,8 @@ if_body:
   | if_body expression DEL_QUEST 			{$$ = template("%s%s;\n", $1, $2);}
   | if_statement DEL_QUEST					{$$ = template("%s\n", $1);}
   | if_body if_statement DEL_QUEST 			{$$ = template("%s%s\n", $1, $2);}
+  | for_statement DEL_QUEST					{$$ = template("%s\n", $1);}
+  | if_body for_statement DEL_QUEST 		{$$ = template("%s%s\n", $1, $2);}
   | while_statement if_statement DEL_QUEST	{$$ = template("%s\n", $1);}
   | if_body while_statement DEL_QUEST 		{$$ = template("%s%s\n", $1, $2);}
   | KW_return right_part DEL_QUEST			{$$ = template("return %s;\n", $2);}	
@@ -490,12 +494,7 @@ operator:
   | OP_LESS		{$$ = template(" < ");}
   | OP_LEQ		{$$ = template(" <= ");}
   | OP_GREATER	{$$ = template(" > ");}
-
   | OP_GEQ		{$$ = template(" >= ");}
-
-  | OP_INCREM   {$$ = template(" += ");}
-  | OP_DECREM   {$$ = template(" -= ");} 
-  | OP_MULCREM	{$$ = template(" *= ");}
   | OP_DIVCREM	{$$ = template(" /= ");}
   | OP_MODCREM  {$$ = template(" %= ");}
   | OP_EQ		{$$ = template(" == ");}

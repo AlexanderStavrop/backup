@@ -125,27 +125,23 @@ for i = 1:length(m_f)
             I_D(1, t) = -I_out(t);
             I_D(2, t) = -I_out(t);
         elseif (V_out(t) < 0 && I_out(t) > 0)
-            % ΓΙΑΤΙ ΔΕΝ ΘΕΤΟΥΜΕ ΤΗΝ ΤΑΣΗ ΜΕ ΚΑΤΙ, ΕΙΝΑΙ 0 ? ΑΦΟΥ ΤΗΝ ΒΑΛΑΜΕ
-            % ΝΑ ΕΙΝΑΙ ΘΕΤΙΚΗ
             I_D(3, t) = I_out(t);
             I_D(4, t) = I_out(t);
         end
     end
 
     % Calculating input and output power
-    P(1,:) = (I_Q(1,:) - I_D(1,:) + I_Q(3,:) - I_D(3,:)) * V_dc;
+    I_in = I_Q(1,:) - I_D(1,:) + I_Q(3,:) - I_D(3,:);
+    P(1,:) = I_in .* V_dc;
     P(2,:) = I_out .* V_out;
     
     
     % Calculating the PowerFactor values
-%     last_period_start_index = find(omega*time >= 18*pi, 1);
-%     last_period_end_index = find(omega*time >= 20*pi, 1);
-%     I_out_rms = rms(I_out(last_period_start_index:last_period_end_index));
-%     V_out_rms = rms(V_out(last_period_start_index:last_period_end_index));
-%     PF = I_out_rms * R / V_out_rms
-    I_out_rms = rms(I_out);
-    V_out_rms = rms(V_out);
-    PF = I_out_rms * R / V_out_rms;
+    last_period_start_index = find(time >= 0.04, 1);
+    last_period_end_index = find(time >= 0.06, 1);
+    I_out_rms = rms(I_out(last_period_start_index:last_period_end_index));
+    V_out_rms = rms(V_out(last_period_start_index:last_period_end_index));
+    PF = I_out_rms * R / V_out_rms
     
 
     % Setting the fourier transform parameters
@@ -160,256 +156,201 @@ for i = 1:length(m_f)
 
 
     % Plotting
-    path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
-
+    % path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
+    start_indx = find(time <= 0.04, 1, 'last');
+    end_indx = find(time <= 0.08, 1, 'last');
 
     % Plotting V_out with V_in
-    % title_str = sprintf("V_{out} - I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % plot(time(1:x_indx), V_out(1:x_indx))
-    % hold on;
-    % plot(time(1:x_indx), I_out(1:x_indx), 'LineWidth', 1)
-    % hold off;
-    % title(title_str)
-    % fname = sprintf("%sV_out_I_out_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("V_{out} - I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    plot(time(start_indx:end_indx), V_out(start_indx:end_indx))
+    hold on;
+    plot(time(start_indx:end_indx), I_out(start_indx:end_indx), 'LineWidth', 1)
+    hold off;
+    title(title_str)
 
-
-    % Plotting V_out 
-    % title_str = sprintf("V_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % plot(time(1:x_indx), V_out(1:x_indx))
-    % hold off;
-    % title(title_str)
-    % xlabel('time (s)')
-    % ylabel('Amlplitude (V)')
-    % fname = sprintf("%sV_out_%d", path, m_f(i));
-    % print(fname, '-depsc')
 
 
     % Plotting Ι_out 
-    % title_str = sprintf("I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % plot(time(1:x_indx), I_out(1:x_indx))
-    % hold off;
-    % title(title_str)
-    % xlabel('time (s)')
-    % ylabel('Amlplitude (A)')
-    % % Creting a smaller plot for better resolution
-    % xstart=.36;
-    % xend=.56;
-    % ystart=.7;
-    % yend=.9;
-    % axes('position',[xstart ystart xend-xstart yend-ystart ])
-    % box on
-    % % Setting the duration of the zoom
-    % start_indx = find(time <= 0.024, 1, 'last');
-    % end_indx = find(time <= 0.030, 1, 'last');
-    % % Plotting the zoomed in signal
-    % plot(time(start_indx:end_indx), I_out(start_indx:end_indx))
-    % fname = sprintf("%sI_out_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("I_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    plot(time(start_indx:end_indx), I_out(start_indx:end_indx))
+    hold off;
+    title(title_str)
+    xlabel('time (s)')
+    ylabel('Amlplitude (A)')
+    % Creting a smaller plot for better resolution
+    xstart=.36;
+    xend=.56;
+    ystart=.7;
+    yend=.9;
+    axes('position',[xstart ystart xend-xstart yend-ystart ])
+    box on
+    % Setting the duration of the zoom
+    start_indx = find(time <= 0.024, 1, 'last');
+    end_indx = find(time <= 0.030, 1, 'last');
+    % Plotting the zoomed in signal
+    plot(time(start_indx:end_indx), I_out(start_indx:end_indx))
+%     fname = sprintf("%s2_I_out_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
 
+    start_indx = find(time <= 0.04, 1, 'last');
+    end_indx = find(time <= 0.08, 1, 'last');
     % Plotting V_Q
-    % title_str = sprintf("V_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % 
-    % subplot(4,1,1)
-    % plot(time(1:x_indx), V_Q(1, 1:x_indx))
-    % title("V_{Q1}")
-    % subplot(4,1,2)
-    % plot(time(1:x_indx), V_Q(2, 1:x_indx))
-    % title("V_{Q2}")
-    % subplot(4,1,3)
-    % plot(time(1:x_indx), V_Q(3, 1:x_indx))
-    % title("V_{Q3}")
-    % subplot(4,1,4)
-    % plot(time(1:x_indx), V_Q(4, 1:x_indx))
-    % title("V_{Q4}")
-    % 
-    % sgtitle(title_str) 
-    % fname = sprintf("%sV_Q_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("V_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);   
+    subplot(4,1,1)
+    plot(time(start_indx:end_indx), V_Q(1, start_indx:end_indx))
+    title("V_{Q1}")
+    subplot(4,1,2)
+    plot(time(start_indx:end_indx), V_Q(2, start_indx:end_indx))
+    title("V_{Q2}")
+    subplot(4,1,3)
+    plot(time(start_indx:end_indx), V_Q(3, start_indx:end_indx))
+    title("V_{Q3}")
+    subplot(4,1,4)
+    plot(time(start_indx:end_indx), V_Q(4, start_indx:end_indx))
+    title("V_{Q4}")
+    sgtitle(title_str) 
+%     fname = sprintf("%s2_V_Q_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
 
     % Plotting I_Q
-    % title_str = sprintf("I_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % subplot(4,1,1)
-    % plot(time(1:x_indx), I_Q(1, 1:x_indx))
-    % title("Ι_{Q1}")
-    % subplot(4,1,2)
-    % plot(time(1:x_indx), I_Q(2, 1:x_indx))
-    % title("Ι_{Q2}")
-    % subplot(4,1,3)
-    % plot(time(1:x_indx), I_Q(3, 1:x_indx))
-    % title("Ι_{Q3}")
-    % subplot(4,1,4)
-    % plot(time(1:x_indx), I_Q(4, 1:x_indx))
-    % title("Ι_{Q4}")
-    % sgtitle(title_str) 
-    % fname = sprintf("%sI_Q_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("I_Q (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
+    subplot(4,1,1)
+    plot(time(start_indx:end_indx), I_Q(1, start_indx:end_indx))
+    title("Ι_{Q1}")
+    subplot(4,1,2)
+    plot(time(start_indx:end_indx), I_Q(2, start_indx:end_indx))
+    title("Ι_{Q2}")
+    subplot(4,1,3)
+    plot(time(start_indx:end_indx), I_Q(3, start_indx:end_indx))
+    title("Ι_{Q3}")
+    subplot(4,1,4)
+    plot(time(start_indx:end_indx), I_Q(4, start_indx:end_indx))
+    title("Ι_{Q4}")
+    sgtitle(title_str) 
+%     fname = sprintf("%s2_I_Q_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
     
     % Plotting V_D
-    % title_str = sprintf("V_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % subplot(2,2,1)
-    % plot(time(1:x_indx), V_D(1, 1:x_indx))
-    % title("V_{D1}")
-    % subplot(2,2,2)
-    % plot(time(1:x_indx), V_D(2, 1:x_indx))
-    % title("V_{D2}")
-    % subplot(2,2,3)
-    % plot(time(1:x_indx), V_D(3, 1:x_indx))
-    % title("V_{D3}")
-    % subplot(2,2,4)
-    % plot(time(1:x_indx), V_D(4, 1:x_indx))
-    % title("V_{D4}")
-    % sgtitle(title_str)
-    % fname = sprintf("%sV_D_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("V_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    subplot(2,2,1)
+    plot(time(start_indx:end_indx), V_D(1, start_indx:end_indx))
+    title("V_{D1}")
+    subplot(2,2,2)
+    plot(time(start_indx:end_indx), V_D(2, start_indx:end_indx))
+    title("V_{D2}")
+    subplot(2,2,3)
+    plot(time(start_indx:end_indx), V_D(3, start_indx:end_indx))
+    title("V_{D3}")
+    subplot(2,2,4)
+    plot(time(start_indx:end_indx), V_D(4, start_indx:end_indx))
+    title("V_{D4}")
+    sgtitle(title_str)
+%     fname = sprintf("%s2_V_D_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
     
     % Plotting I_D
-    % title_str = sprintf("I_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % subplot(4,1,1)
-    % plot(time(1:x_indx), I_D(1, 1:x_indx))
-    % title("I_{D1}")
-    % subplot(4,1,2)
-    % plot(time(1:x_indx), I_D(2, 1:x_indx))
-    % title("I_{D2}")
-    % subplot(4,1,3)
-    % plot(time(1:x_indx), I_D(3, 1:x_indx))
-    % title("I_{D3}")
-    % subplot(4,1,4)
-    % plot(time(1:x_indx), I_D(4, 1:x_indx))
-    % title("I_{D4}")
-    % sgtitle(title_str)
-    % fname = sprintf("%sI_D_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("I_D (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 800]);
+    subplot(4,1,1)
+    plot(time(start_indx:end_indx), I_D(1, start_indx:end_indx))
+    title("I_{D1}")
+    subplot(4,1,2)
+    plot(time(start_indx:end_indx), I_D(2, start_indx:end_indx))
+    title("I_{D2}")
+    subplot(4,1,3)
+    plot(time(start_indx:end_indx), I_D(3, start_indx:end_indx))
+    title("I_{D3}")
+    subplot(4,1,4)
+    plot(time(start_indx:end_indx), I_D(4, start_indx:end_indx))
+    title("I_{D4}")
+    sgtitle(title_str)
+%     fname = sprintf("%s2_I_D_%d", path, m_f(i));
+%     print(fname, '-depsc')
+
+
+    % Plotting I_in 
+    title_str = sprintf("I_{in} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    start_indx = find(time <= 0.04, 1, 'last');
+    end_indx = find(time <= 0.08, 1, 'last');
+    plot(time(start_indx:end_indx), I_in(start_indx:end_indx))
+    title(title_str)
+    xlabel('time (s)')
+    ylabel('Amlplitude (A)')
+%     fname = sprintf("%s2_I_in_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
 
     % Plotting Input and output power
-    % title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(time <= 0.04, 1, 'last');
-    % subplot(2,1,1)
-    % plot(time(1:x_indx), P(1, 1:x_indx))
-    % title("P_{in}")
-    % subplot(2,1,2)
-    % plot(time(1:x_indx), P(2, 1:x_indx))
-    % title("P_{out}")
-    % sgtitle(title_str)
-    % fname = sprintf("%sP_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    subplot(2,1,1)
+    plot(time(start_indx:end_indx), P(1, start_indx:end_indx))
+    title("P_{in}")
+    subplot(2,1,2)
+    plot(time(start_indx:end_indx), P(2, start_indx:end_indx))
+    title("P_{out}")
+    sgtitle(title_str)
+%     fname = sprintf("%s2_P_%d", path, m_f(i));
+%     print(fname, '-depsc')
 
 
     % Plotting the Fourier Transform of V_out
-    % title_str = sprintf("Fourier transform of V_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    % figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
-    % x_indx = find(freqs <= 2.5e5, 1, 'last');
-    % plot(freqs(1:x_indx), Y_V_out_half(1:x_indx))
-    % title(title_str)
-    % 
-    % sanitized_signal = Y_V_out_half(1:x_indx);
-    % sanitized_freqs = freqs(1:x_indx);
-    % 
-    % f_target = 50;
-    % db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    % offset = 5;
-    % text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 0);
-    % if (m_f(i) == 40)
-    %     % Creting a smaller plot for better resolution
-    %     xstart=.37;
-    %     xend=0.85;
-    %     ystart=.45;
-    %     yend=.85;
-    %     axes('position',[xstart ystart xend-xstart yend-ystart ])
-    %     box on
-    %     % Setting the duration of the zoom
-    %     end_indx = find(sanitized_freqs<=2.5e4, 1, 'last');
-    % 
-    %     % Plotting the zoomed in signal
-    %     sanitized_signal = Y_V_out_half(1:end_indx);
-    %     sanitized_freqs = freqs(1:end_indx);
-    %     plot(sanitized_freqs, sanitized_signal)
-    % 
-    %     f_target = 50;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 1;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 0);
-    % 
-    %     f_target = 3950;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last') + 1);
-    %     offset = 5;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 4050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 18;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 7950;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last') + 1);
-    %     offset = 5;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 8050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 18;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 11950;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 5;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 12050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 18;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % else
-    %     f_target = 19050;
-    %     db_value = 25.3346;
-    %     offset = 3;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 20050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 10;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 39950;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 3;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 40050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 10;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 59950;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 3;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % 
-    %     f_target = 60050;
-    %     db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
-    %     offset = 10;
-    %     text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 40);
-    % end
-    % fname = sprintf("%sFV_out_%d", path, m_f(i));
-    % print(fname, '-depsc')
+    title_str = sprintf("Fourier transform of V_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 400]);
+    x_indx = find(freqs <= 2.5e5, 1, 'last');
+    plot(freqs(1:x_indx), Y_V_out_half(1:x_indx))
+    title(title_str)
+    
+    sanitized_signal = Y_V_out_half(1:x_indx);
+    sanitized_freqs = freqs(1:x_indx);
+    
+    f_target = 50;
+    db_value = sanitized_signal(find(sanitized_freqs <= f_target, 1, 'last'));
+    offset = 5;
+    text(f_target, db_value + offset,sprintf('(%d Hz, %.2f dB)', f_target, db_value), 'rotation', 0);
+    if (m_f(i) == 40)
+        % Creting a smaller plot for better resolution
+        xstart=.37;
+        xend=0.75;
+        ystart=.35;
+        yend=.85;
+        axes('position',[xstart ystart xend-xstart yend-ystart ])
+        box on
+        % Setting the duration of the zoom
+        start_indx = find(sanitized_freqs<=0.3e4, 1, 'last');
+        end_indx = find(sanitized_freqs<=0.5e4, 1, 'last');
+    
+        % Plotting the zoomed in signal
+        sanitized_signal = Y_V_out_half(start_indx:end_indx);
+        sanitized_freqs = freqs(start_indx:end_indx);
+        plot(sanitized_freqs, sanitized_signal)
+    else
+        % Creting a smaller plot for better resolution
+        xstart=.37;
+        xend=0.75;
+        ystart=.35;
+        yend=.85;
+        axes('position',[xstart ystart xend-xstart yend-ystart ])
+        box on
+        % Setting the duration of the zoom
+        start_indx = find(sanitized_freqs<=1.9e4, 1, 'last');
+        end_indx = find(sanitized_freqs<=2.1e4, 1, 'last');
+    
+        % Plotting the zoomed in signal
+        sanitized_signal = Y_V_out_half(start_indx:end_indx);
+        sanitized_freqs = freqs(start_indx:end_indx);
+        plot(sanitized_freqs, sanitized_signal)
+    end
+%     fname = sprintf("%s2_FV_out_%d", path, m_f(i));
+%     print(fname, '-depsc')
 end

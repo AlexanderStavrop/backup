@@ -33,7 +33,7 @@ Cd_1 = sys_1_discrete.C;
 Dd_1 = sys_1_discrete.D;
 
 
-for a = [30*pi/180 18*pi/180];
+for a = [30*pi/180 18*pi/180]
     % Initialization of helping matrices (currents)    
     P1 = zeros(1, length(t));
     P2 = zeros(1, length(t));
@@ -171,193 +171,185 @@ for a = [30*pi/180 18*pi/180];
     path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
 
 
-%     % Plotting the Output Voltage and Current
-%     title_str = sprintf('Output Voltage and Current when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     plot(xaxis,V_out(startp:endp-1),xaxis,I_out(startp:endp-1))
-%     legend('V_o','I_o')
-%     title(sprintf('Output Voltage and Current when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('V_o, I_o')
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -120 120]);
-%     
+    % Plotting the Output Voltage and Current
+    title_str = sprintf('Output Voltage and Current when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    plot(xaxis,V_out(startp:endp-1),xaxis,I_out(startp:endp-1))
+    legend('V_o','I_o')
+    title(sprintf('Output Voltage and Current when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('V_o, I_o')
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -120 120]);
 %     fname = sprintf("%s1_V_out_I_out_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')
 
 
-%     % Plotting the Voltage of the Transistors
-%     title_str = sprintf('Transistor Voltage when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     
-%     subplot(1,2,1);
-%     plot(xaxis,V_Q1(startp:endp-1),xaxis,V_Q4(startp:endp-1))
-%     title(sprintf('Voltage in switches 1,4 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('V_{Q1}, V_{Q4}');
-%     legend('V_{Q1}','V_{Q4}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -110 110]);
-% 
-%     subplot(1,2,2);
-%     plot(xaxis,V_Q2(startp:endp-1),xaxis,V_Q3(startp:endp-1))
-%     title(sprintf('Voltage in switches 2,3 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('V_{Q2}, V_{Q3}');
-%     legend('V_{Q2}','V_{Q3}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -110 110]);
-% 
+    % Plotting the Voltage of the Transistors
+    title_str = sprintf('Transistor Voltage when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    
+    subplot(1,2,1);
+    plot(xaxis,V_Q1(startp:endp-1),xaxis,V_Q4(startp:endp-1))
+    title(sprintf('Voltage in switches 1,4 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('V_{Q1}, V_{Q4}');
+    legend('V_{Q1}','V_{Q4}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -110 110]);
+
+    subplot(1,2,2);
+    plot(xaxis,V_Q2(startp:endp-1),xaxis,V_Q3(startp:endp-1))
+    title(sprintf('Voltage in switches 2,3 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('V_{Q2}, V_{Q3}');
+    legend('V_{Q2}','V_{Q3}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -110 110]);
 %     fname = sprintf("%s1_V_Q_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')
 
     
-%     % Plotting the Voltage of the Diodes
-%     title_str = sprintf('Diode Voltage when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     
-%     subplot(1,2,1);
-%     plot(xaxis,V_D1(startp:endp-1),xaxis,V_D4(startp:endp-1))
-%     title(sprintf('Voltage in diodes 1,4 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('V_{D1}, V_{D4}');
-%     legend('V_{D1}','V_{D4}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -5 5]);
-% 
-%     subplot(1,2,2);
-%     plot(xaxis,V_D2(startp:endp-1),xaxis,V_D3(startp:endp-1))
-%     title(sprintf('Voltage in diodes 2,3 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('V_{D2}, V_{D3}');
-%     legend('V_{D2}','V_{D3}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -5 5]);
-%     
+    % Plotting the Voltage of the Diodes
+    title_str = sprintf('Diode Voltage when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    
+    subplot(1,2,1);
+    plot(xaxis,V_D1(startp:endp-1),xaxis,V_D4(startp:endp-1))
+    title(sprintf('Voltage in diodes 1,4 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('V_{D1}, V_{D4}');
+    legend('V_{D1}','V_{D4}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -5 5]);
+
+    subplot(1,2,2);
+    plot(xaxis,V_D2(startp:endp-1),xaxis,V_D3(startp:endp-1))
+    title(sprintf('Voltage in diodes 2,3 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('V_{D2}, V_{D3}');
+    legend('V_{D2}','V_{D3}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -5 5]);
 %     fname = sprintf("%s1_V_D_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')  
 
     
-%     % Plotting the Current of the Transistors
-%     title_str = sprintf('Transistor Current when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     subplot(1,2,1);
-%     plot(xaxis,I_Q1(startp:endp-1),xaxis,I_Q4(startp:endp-1))
-%     title(sprintf('Current in switches 1,4 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('I_{Q1}, I_{Q4}');
-%     legend('I_{Q1}','I_{Q4}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -2 10]);
-% 
-%     subplot(1,2,2);
-%     plot(xaxis,I_Q2(startp:endp-1),xaxis,I_Q3(startp:endp-1))
-%     title(sprintf('Current in switches 2,3 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('I_{Q2}, I_{Q3}');
-%     legend('I_{Q2}','I_{Q3}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -2 10]);
-% 
+    % Plotting the Current of the Transistors
+    title_str = sprintf('Transistor Current when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    subplot(1,2,1);
+    plot(xaxis,I_Q1(startp:endp-1),xaxis,I_Q4(startp:endp-1))
+    title(sprintf('Current in switches 1,4 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('I_{Q1}, I_{Q4}');
+    legend('I_{Q1}','I_{Q4}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -2 10]);
+
+    subplot(1,2,2);
+    plot(xaxis,I_Q2(startp:endp-1),xaxis,I_Q3(startp:endp-1))
+    title(sprintf('Current in switches 2,3 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('I_{Q2}, I_{Q3}');
+    legend('I_{Q2}','I_{Q3}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -2 10]);
 %     fname = sprintf("%s1_I_Q_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')  
 
 
-%     % Plotting the Current of the Diodes
-%     title_str = sprintf('Diode Current when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     subplot(1,2,1);
-%     plot(xaxis,I_D1(startp:endp-1),xaxis,I_D4(startp:endp-1))
-%     title(sprintf('Current in Diodes 1,4 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('I_{D1}, I_{D4}');
-%     legend('I_{D1}','I_{D4}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -2 10]);
-% 
-%     subplot(1,2,2);
-%     plot(xaxis,I_D3(startp:endp-1),xaxis,I_D2(startp:endp-1))
-%     title(sprintf('Current in Diodes 2,3 when a = %.0f', rad2deg(a)))
-%     xlabel('Angle')
-%     ylabel('I_{D2}, I_{D3}');
-%     legend('I_{D3}','I_{D2}');
-%     xticks(0:60:360); 
-%     xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
-%     axis([0 360, -2 10]);
-% 
+    % Plotting the Current of the Diodes
+    title_str = sprintf('Diode Current when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    subplot(1,2,1);
+    plot(xaxis,I_D1(startp:endp-1),xaxis,I_D4(startp:endp-1))
+    title(sprintf('Current in Diodes 1,4 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('I_{D1}, I_{D4}');
+    legend('I_{D1}','I_{D4}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -2 10]);
+
+    subplot(1,2,2);
+    plot(xaxis,I_D3(startp:endp-1),xaxis,I_D2(startp:endp-1))
+    title(sprintf('Current in Diodes 2,3 when a = %.0f', rad2deg(a)))
+    xlabel('Angle')
+    ylabel('I_{D2}, I_{D3}');
+    legend('I_{D3}','I_{D2}');
+    xticks(0:60:360); 
+    xticklabels({'0', '\pi/3', '2\pi/3', '\pi', '4\pi/3', '5\pi/3', '2\pi'}); 
+    axis([0 360, -2 10]);
 %     fname = sprintf("%s1_I_D_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')
 
 
-%     % Calculating and plotting the input current 
-%     I_dc = I_Q1 - I_D1 + I_Q3 - I_D3;
-% 
-%     title_str = sprintf('Input Current when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     plot(t,I_dc)
-%     title(sprintf('Input current when a = %.0f', rad2deg(a)))
-%     xlabel('time(s)')
-%     ylabel('I_{in}(A)');
-%     axis([0 0.05, -5 10]);
-% 
+    % Calculating and plotting the input current 
+    I_dc = I_Q1 - I_D1 + I_Q3 - I_D3;
+
+    title_str = sprintf('Input Current when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    plot(t,I_dc)
+    title(sprintf('Input current when a = %.0f', rad2deg(a)))
+    xlabel('time(s)')
+    ylabel('I_{in}(A)');
+    axis([0 0.05, -5 10]);
 %     fname = sprintf("%s1_I_in_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')
 
 
-%     % Calculating and plotting the input and output power
-%     Pin = Vdc*I_dc;         % Input's Power
-%     Pout = V_out.*I_out;    % Output's Power
-% 
-%     title_str = sprintf('P_in - P_out when a = %.0f', rad2deg(a));
-%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
-%     subplot(1,2,1);
-%     plot(t,Pin)
-%     title(sprintf('Input Power when a = %.0f', rad2deg(a)))
-%     xlabel('time(s)');
-%     ylabel('P_{in}');
-%     axis([0 0.05, -300 1000]);
-% 
-%     subplot(1,2,2);
-%     plot(t,Pout)
-%     title(sprintf('Output Power when a = %.0f', rad2deg(a)))
-%     xlabel('time(s)');
-%     ylabel('P_{out}');
-%     axis([0 0.05, -300 1000]);
-% 
+    % Calculating and plotting the input and output power
+    Pin = Vdc*I_dc;         % Input's Power
+    Pout = V_out.*I_out;    % Output's Power
+
+    title_str = sprintf('P_in - P_out when a = %.0f', rad2deg(a));
+    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 450]);
+    subplot(1,2,1);
+    plot(t,Pin)
+    title(sprintf('Input Power when a = %.0f', rad2deg(a)))
+    xlabel('time(s)');
+    ylabel('P_{in}');
+    axis([0 0.05, -300 1000]);
+
+    subplot(1,2,2);
+    plot(t,Pout)
+    title(sprintf('Output Power when a = %.0f', rad2deg(a)))
+    xlabel('time(s)');
+    ylabel('P_{out}');
+    axis([0 0.05, -300 1000]);
 %     fname = sprintf("%s1_P_%.0f", path, rad2deg(a));
 %     print(fname, '-depsc')
 
-%     V1rms = rms(V_out(startp:endp));
-%     I1rms = rms(I_out(startp:endp));
-%     P_1 = (I1rms^2)*R;
-%     S1 = I1rms * V1rms;
-%     PF1 = P_1/S1;
-%     fprintf('Power Factor when a = %.0f\n', rad2deg(a)); 
-%     disp(PF1)
-% 
-%     % /------------------------/Q.1.B/------------------------/
-% 
-%     NFFT = length(V_out);
-%     % Frequency axis
-%     F = (1/DT)/2*linspace(0,1,NFFT/2+1);
-%     % Fourier transformation of output's voltage
-%     VoF = fft(V_out,NFFT)/NFFT;
-% 
-% 
-%     figure();
-%     plot(F,2*abs(VoF(1:NFFT/2+1)));
-%     title(sprintf('Voltage Vo: Harmonics when a=%.0f',rad2deg(a)));
-%     xlabel('Frequency (Hz)')
-%     ylabel('Fourier of Vo')
-%     axis([0 1000, -1 150]);
+    V1rms = rms(V_out(startp:endp));
+    I1rms = rms(I_out(startp:endp));
+    P_1 = (I1rms^2)*R;
+    S1 = I1rms * V1rms;
+    PF1 = P_1/S1;
+    fprintf('Power Factor when a = %.0f\n', rad2deg(a)); 
+    disp(PF1)
+
+
+    NFFT = length(V_out);
+    % Frequency axis
+    F = (1/DT)/2*linspace(0,1,NFFT/2+1);
+    % Fourier transformation of output's voltage
+    VoF = fft(V_out,NFFT)/NFFT;
+
+
+    figure();
+    plot(F,2*abs(VoF(1:NFFT/2+1)));
+    title(sprintf('Voltage Vo: Harmonics when a=%.0f',rad2deg(a)));
+    xlabel('Frequency (Hz)')
+    ylabel('Fourier of Vo')
+    axis([0 1000, -1 150]);
 
     
     

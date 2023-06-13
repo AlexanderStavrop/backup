@@ -1,0 +1,81 @@
+def merge(arr[] :integer, p :integer, q : integer, r: integer):
+ 
+	n1, n2 : integer;
+	n1 = q - p + 1;
+	n2 = r - q;
+	
+	L[n1] : integer;
+	M[n2] : integer;
+	
+	for i in [0:n1]:
+		L[i] = arr[p + i];
+	endfor;
+	
+	for j in [0:n2]:
+		M[j] = arr[q + 1 + j];
+	endfor;
+
+	i, j, k: integer;
+	i = 0;
+	j = 0;
+	k = p;
+	
+	while (i < n1 and j < n2):
+		if (L[i] <= M[j]):
+			arr[k] = L[i];
+			i += 1;
+		else:
+			arr[k] = M[j];
+			j = j + 1;	
+		endif;
+		k += 1;
+	endwhile;
+	   
+	while (i < n1):
+		arr[k] = L[i];
+		i += 1;
+		k += 1;
+	endwhile;
+
+	while (j < n2):
+		arr[k] = M[j];
+		j += 1;
+		k += 1;
+	endwhile;
+enddef;
+
+def mergeSort(arr[] :integer, l:integer, r:integer):
+	if (l < r):
+		m :integer;
+		m = l + (r - l) / 2;
+		
+	    mergeSort(arr, l, m);
+	    mergeSort(arr, m + 1, r);
+
+		merge(arr, l, m, r);
+	endif;
+enddef;
+
+def printArray(arr[]: integer, size: integer):
+	for i in [0:size]:
+		printf("%d ", arr[i]);
+	endfor;
+	printf("\n");
+enddef;
+
+def main() -> integer:
+	arr[6] : integer;
+	size : integer;
+	
+	arr[0] = 6;
+	arr[1] = 5;
+	arr[2] = 12;
+	arr[3] = 10;
+	arr[4] = 9;
+	arr[5] = 1;
+	
+	size = sizeof(arr) / sizeof(arr[0]);
+	mergeSort(arr, 0, size - 1);
+	printf("Sorted array: \n");
+  	printArray(arr, size);
+enddef;

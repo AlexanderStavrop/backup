@@ -139,105 +139,113 @@ for i = 1   :length(m_f)
 
 
     % Plotting
-    % path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
+    path = '~/Documents/Github/backup/Ηλεκτρονικά Ισχύος/Lab_4/Review/Images/';
 
-    % Plotting Polar Voltages
-    title_str = sprintf("Polar Voltages (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
-    % Finding the indexes for the seoond period of time
-    start_indx = find(time <= 0.04, 1, 'last');
-    end_indx = find(time <= 0.08, 1, 'last');
-    
-    subplot(3,1,1)
-    plot(time(start_indx:end_indx), V_A_line(start_indx:end_indx))
-    title("V_{AB} line-line")
-    subplot(3,1,2)
-    plot(time(start_indx:end_indx), V_B_line(start_indx:end_indx))
-    title("V_{BC} line-line")
-    subplot(3,1,3)
-    plot(time(start_indx:end_indx), V_C_line(start_indx:end_indx))
-    title("V_{CA} line-line")
-
-    sgtitle(title_str) 
+%     % Plotting Polar Voltages
+%     title_str = sprintf("Polar Voltages (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), V_A_line(start_indx:end_indx))
+%     title("V_{AB} line-line")
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), V_B_line(start_indx:end_indx))
+%     title("V_{BC} line-line")
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), V_C_line(start_indx:end_indx))
+%     title("V_{CA} line-line")
+% 
+%     sgtitle(title_str) 
 %     fname = sprintf("%s4_Polar_voltages_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
-    % Plotting Phase Voltages and Phase current
-    title_str = sprintf("Phase Voltages and Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
-    % Finding the indexes for the seoond period of time
-    start_indx = find(time <= 0.04, 1, 'last');
-    end_indx = find(time <= 0.08, 1, 'last');
-    
-    subplot(3,1,1)
-    plot(time(start_indx:end_indx), V_A_phase(start_indx:end_indx))
-    title("V_{out} - I_{out} (Phase A)")
-    hold on;
-    plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
-    subplot(3,1,2)
-    plot(time(start_indx:end_indx), V_B_phase(start_indx:end_indx))
-    title("V_{out} - I_{out} (Phase B)")
-    hold on;
-    plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
-    subplot(3,1,3)
-    plot(time(start_indx:end_indx), V_C_phase(start_indx:end_indx))
-    title("V_{out} - I_{out} (Phase C)")
-    hold on;
-    plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
-    sgtitle(title_str) 
-  
+%     % Plotting Phase Voltages and Phase current
+%     title_str = sprintf("Phase Voltages and Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), V_A_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase A)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), V_B_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase B)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), V_C_phase(start_indx:end_indx))
+%     title("V_{out} - I_{out} (Phase C)")
+%     hold on;
+%     plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
+%     
+%     sgtitle(title_str) 
+% 
 %     fname = sprintf("%s4_Phase_V_I_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
-    % Plotting Phase current
-    title_str = sprintf("Phase Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
-    % Finding the indexes for the seoond period of time
-    start_indx = find(time <= 0.04, 1, 'last');
-    end_indx = find(time <= 0.08, 1, 'last');
-    
-    subplot(3,1,1)
-    plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
-    title("I_{out} (Phase A)")
-    subplot(3,1,2)
-    plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
-    title("I_{out} (Phase B)")
-    subplot(3,1,3)
-    plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
-    title("I_{out} (Phase C)")
-    sgtitle(title_str)  
+%     % Plotting Phase current
+%     title_str = sprintf("Phase Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(3,1,1)
+%     plot(time(start_indx:end_indx), I_out(1, start_indx:end_indx))
+%     title("I_{out} (Phase A)")
+%     subplot(3,1,2)
+%     plot(time(start_indx:end_indx), I_out(2, start_indx:end_indx))
+%     title("I_{out} (Phase B)")
+%     subplot(3,1,3)
+%     plot(time(start_indx:end_indx), I_out(3, start_indx:end_indx))
+%     title("I_{out} (Phase C)")
+% 
+%     sgtitle(title_str)  
 %     fname = sprintf("%s4_Phase_I_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
 
-    % Plotting Transistor current
-    title_str = sprintf("Transistor Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
-    figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
-    % Finding the indexes for the seoond period of time
-    start_indx = find(time <= 0.04, 1, 'last');
-    end_indx = find(time <= 0.08, 1, 'last');
-    
-    subplot(6,1,1)
-    plot(time(start_indx:end_indx), I_Q(1, start_indx:end_indx))
-    title("I_{Q1}")
-    subplot(6,1,2)
-    plot(time(start_indx:end_indx), I_Q(2, start_indx:end_indx))
-    title("I_{Q2}")
-    subplot(6,1,3)
-    plot(time(start_indx:end_indx), I_Q(3, start_indx:end_indx))
-    title("I_{Q3}")
-    subplot(6,1,4)
-    plot(time(start_indx:end_indx), I_Q(4, start_indx:end_indx))
-    title("I_{Q4}")
-    subplot(6,1,5)
-    plot(time(start_indx:end_indx), I_Q(5, start_indx:end_indx))
-    title("I_{Q5}")
-    subplot(6,1,6)
-    plot(time(start_indx:end_indx), I_Q(6, start_indx:end_indx))
-    title("I_{Q6}")
-    sgtitle(title_str) 
+%     % Plotting Transistor current
+%     title_str = sprintf("Transistor Current (m_a = %.1f, m_f = %d)", m_a, m_f(i));
+%     figure('Name', title_str,'NumberTitle','off', 'Position', [2000 700 900 775]);
+%     % Finding the indexes for the seoond period of time
+%     start_indx = find(time <= 0.04, 1, 'last');
+%     end_indx = find(time <= 0.08, 1, 'last');
+%     
+%     subplot(6,1,1)
+%     plot(time(start_indx:end_indx), I_Q(1, start_indx:end_indx))
+%     title("I_{Q1}")
+% 
+%     subplot(6,1,2)
+%     plot(time(start_indx:end_indx), I_Q(2, start_indx:end_indx))
+%     title("I_{Q2}")
+% 
+%     subplot(6,1,3)
+%     plot(time(start_indx:end_indx), I_Q(3, start_indx:end_indx))
+%     title("I_{Q3}")
+% 
+%     subplot(6,1,4)
+%     plot(time(start_indx:end_indx), I_Q(4, start_indx:end_indx))
+%     title("I_{Q4}")
+% 
+%     subplot(6,1,5)
+%     plot(time(start_indx:end_indx), I_Q(5, start_indx:end_indx))
+%     title("I_{Q5}")
+% 
+%     subplot(6,1,6)
+%     plot(time(start_indx:end_indx), I_Q(6, start_indx:end_indx))
+%     title("I_{Q6}")
+% 
+%     sgtitle(title_str) 
 %     fname = sprintf("%s4_I_Q_%d", path, m_f(i));
 %     print(fname, '-depsc')
 
@@ -252,21 +260,27 @@ for i = 1   :length(m_f)
     subplot(6,1,1)
     plot(time(start_indx:end_indx), I_D(1, start_indx:end_indx))
     title("I_{D1}")
+
     subplot(6,1,2)
     plot(time(start_indx:end_indx), I_D(2, start_indx:end_indx))
     title("I_{D2}")
+
     subplot(6,1,3)
     plot(time(start_indx:end_indx), I_D(3, start_indx:end_indx))
     title("I_{D3}")
+
     subplot(6,1,4)
     plot(time(start_indx:end_indx), I_D(4, start_indx:end_indx))
     title("I_{D4}")
+
     subplot(6,1,5)
     plot(time(start_indx:end_indx), I_D(5, start_indx:end_indx))
     title("I_{D5}")
+
     subplot(6,1,6)
     plot(time(start_indx:end_indx), I_D(6, start_indx:end_indx))
     title("I_{D6}")
+
     sgtitle(title_str)
 
 
@@ -279,28 +293,25 @@ for i = 1   :length(m_f)
     % Finding the indexes for the seoond period of time
     start_indx = find(time <= 0.04, 1, 'last');
     end_indx = find(time <= 0.08, 1, 'last');
-    end_indx_PF = find(time <= 0.06, 1, 'last');
-    plot(time(start_indx:end_indx_PF), I_in(start_indx:end_indx_PF));
+    
+    plot(time(start_indx:end_indx), I_in(start_indx:end_indx));
     title(title_str)
 
-
     % Calculating the PF
-    Ia_rms = rms(I_out(1, start_indx:end_indx_PF));
-    Ib_rms = rms(I_out(2, start_indx:end_indx_PF));
-    Ic_rms = rms(I_out(3, start_indx:end_indx_PF));
-    VA_rms = rms(V_A_phase(start_indx:end_indx_PF));
-    VB_rms = rms(V_A_phase(start_indx:end_indx_PF));
-    VC_rms = rms(V_A_phase(start_indx:end_indx_PF));
+    Ia_rms = rms(I_out(1, start_indx:end_indx));
+    Ib_rms = rms(I_out(2, start_indx:end_indx));
+    Ic_rms = rms(I_out(3, start_indx:end_indx));
+    VA_rms = rms(V_A_phase(start_indx:end_indx));
+    VB_rms = rms(V_A_phase(start_indx:end_indx));
+    VC_rms = rms(V_A_phase(start_indx:end_indx));
 
-    P = R * (Ia_rms^2 + Ib_rms^2 + Ic_rms^2);
-    S = VA_rms.*Ia_rms + VB_rms.*Ib_rms + VC_rms.*Ic_rms;
-    PF = P/S
+    P = R * (Ia_rms^2 + Ib_rms^2 + Ic_rms^2)
+    S = VA_rms.*Ia_rms + VB_rms.*I_out(2,:) + VC_rms.*I_out(3,:);
 
 
     % Calculating and plotting the input and output power
     P_in = V_dc .* I_in;
     P_out = V_A.*I_out(1,:) + V_B.*I_out(2,:) + V_C.*I_out(3,:);
-
 
     % Plotting Input and Output Power
     title_str = sprintf("P_{in} - P_{out} (m_a = %.1f, m_f = %d)", m_a, m_f(i));

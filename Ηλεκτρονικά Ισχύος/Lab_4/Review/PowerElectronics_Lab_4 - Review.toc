@@ -14,7 +14,6 @@
 \contentsline {subsection}{\numberline {3.1}Κυματομορφές Κυκλώματος}{4}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Συντελεστής Ισχύος}{7}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Αρμονικές Τάσης Εξόδου}{7}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Τριφασικός Αντιστροφέας Γέφυρας Εξαπαλμικής Λειτουργίας}{9}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Κυματομορφές Κυκλώματος}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Συντελεστής Ισχύος}{9}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Τριφασικός Αντιστροφέας Γέφυρας με μονοπολική PWM}{10}{section.5}%
+\contentsline {section}{\numberline {4}Τριφασικός Αντιστροφέας Γέφυρας Εξαπαλμικής Λειτουργίας}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Κυματομορφές Κυκλώματος}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Συντελεστής Ισχύος}{8}{subsection.4.2}%
