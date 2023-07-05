@@ -5,3 +5,8 @@
 \contentsline {section}{\numberline {2}Αναδρομικές και αναδρομικά απαριθμήσιμες γλώσσες}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Το συμπλήρωμα μιας Turing-απαριθμήσιμης γλώσσας είναι πάντα αναδρομική γλώσσα}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Για κάθε ντετερμινιστικό αυτόματο στοίβας μπορεί να κατασκευασθεί ισοδύναμη μηχανή απόφασης Turing}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Γραμματικές χωρίς περιορισμούς}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Κατασκευάστε γραμματική χωρίς περιορισμούς για την γλώσσα $L = \{a^{n(n+1)} : n \leq 0\}$}{3}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Μη επιλυσιμότητα}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Δύο μηχανές Turing M1, M2, υπάρχει έστω και μία συμβολοσειρά για την οποία τερματίζουν και οι δύο μηχανές;}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Δύο μηχανές Turing M1, M2, τερματίζει η μηχανή M2 για αυστηρά λιγότερες εισόδους από την M1}{5}{subsection.4.2}%

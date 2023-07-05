@@ -16,6 +16,98 @@
 \begin{align*}
 	(\overline{x_2} &\lor x_3 \lor z_1 \lor z_2)   \wedge   (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor z_2)   \wedge   (\overline{x_2} \lor x_3 \lor z_1 \lor \overline{z_2}) \wedge   (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor \overline{z_2})   \wedge   (\overline{x_1} \lor x_2 \lor \overline{x_3} \lor z_3) \wedge \\&\wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor z_4) \wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor \overline{z_4}) \wedge (x_2 \lor x_1 \lor \overline{x_5} \lor z_5) \wedge (x_2 \lor x_1 \lor \overline{x_5} \lor \overline{z_5})
 \end{align*}
-\clearpage
+\noindent\\
 \subsubsection{Με απευθείας  αναγωγή από SAT σε IndependentSet, δώστε το στιγμιότυπο (G, K) του IndependentSet στο οποίο θα αναγόταν το αρχικό στιγμιότυπο του SAT}
+Εφόσον, υπάρχουν 3 συνθήκες στη αρχική έκφραση, το επιθυμητό μέγεθος του ανεξάρτητου συνόλου Κ ισούται με 3 και ο ζητούμενος γράφος κατασκευάζεται ως εξής:
+
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.5 cm, scale = 1, transform shape]
+		\node[state, thick]     (q0)  							 		  {$\overline{x_2}$};
+		\node[state, thick]     (q1) [below of=q0]   		   {$x_3$};
+		\node[state, thick]     (q2) [right=3cm of q1]      {$\overline{x_1}$};
+		\node[state, thick]     (q3) [above of=q2]   		  {$x_2$};
+		\node[state, thick]		(q4) [above right of=q3]  {$\overline{x_3}$};
+		\node[state, thick]		(q5) [below right of=q4]  {$\overline{x_4}$};
+		\node[state, thick]		(q6) [below of=q5]  		  {$x_5$};
+		\node[state, thick]		(q7) [right=3cm of q6]     {$x_2$};
+		\node[state, thick]		(q8) [above right of=q7]  {$x_1$};
+		\node[state, thick]		(q9) [below right of=q8]  {$\overline{x_5}$};
+		
+		\path[-] (q0) edge [thick] (q3)
+		   			   (q0) edge [thick, bend right=-100] (q7)				
+					   (q0) edge [thick] (q1)
+					  
+					   (q1) edge [thick, bend right=-20] (q4)						
+				      
+					   (q2) edge [thick, bend right=100] (q8)
+					   (q2) edge [thick] (q3)
+					   (q2) edge [thick] (q4)
+					   (q2) edge [thick] (q5)
+					   (q2) edge [thick] (q6)
+					   
+					   (q3) edge [thick] (q4)
+					   (q3) edge [thick] (q5)
+					   (q3) edge [thick] (q6)
+					   
+					   (q4) edge [thick] (q5)
+					   (q4) edge [thick] (q6)
+					   
+					   (q5) edge [thick] (q6)
+					   
+					   (q6) edge [thick, bend right=100] (q9)
+					   
+					   (q7) edge [thick] (q8)
+					   (q7) edge [thick] (q9)
+					   
+					   (q8) edge [thick] (q9);
+	\end{tikzpicture}
+\end{center}
+\clearpage
 \subsubsection{Υπάρχει μία λύση λύση για το στιγμιότυπο (G, K) του (β) και την αντίστοιχη ανάθεση τιμών αληθείας στις μεταβλητές $x_i$ που ικανοποιεί το αρχικό στιγμιότυπο SAT;}
+
+Για την επιλογή μία λύσης του παραπάνω στιγμιότυπου απαιτείται η επιλογή τριών κορυφών. Ενδεικτικά επιλέχθηκαν οι εξής κορυφές
+\begin{equation*}
+	x_2 = false, x_4 = false, x1 = true
+\end{equation*}
+\begin{center}
+	\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=2.5 cm, scale = 1, transform shape]
+		\node[accepting, state, thick]     (q0)  							 		  {$\overline{x_2}$};
+		\node[state, thick]     					(q1) [below of=q0]   		   {$x_3$};
+		\node[state, thick]     					(q2) [right=3cm of q1]      {$\overline{x_1}$};
+		\node[state, thick]     					(q3) [above of=q2]   		   {$x_2$};
+		\node[accepting, state, thick]	   (q4) [above right of=q3]   {$\overline{x_3}$};
+		\node[state, thick]							(q5) [below right of=q4]   {$\overline{x_4}$};
+		\node[state, thick]							(q6) [below of=q5]  		   {$x_5$};
+		\node[state, thick]							(q7) [right=3cm of q6]      {$x_2$};
+		\node[accepting, state, thick]	   (q8) [above right of=q7]   {$x_1$};
+		\node[state, thick]							(q9) [below right of=q8]   {$\overline{x_5}$};
+		
+		\path[-] (q0) edge [thick] (q3)
+		(q0) edge [thick, bend right=-100] (q7)				
+		(q0) edge [thick] (q1)
+		
+		(q1) edge [thick, bend right=-20] (q4)						
+		
+		(q2) edge [thick, bend right=100] (q8)
+		(q2) edge [thick] (q3)
+		(q2) edge [thick] (q4)
+		(q2) edge [thick] (q5)
+		(q2) edge [thick] (q6)
+		
+		(q3) edge [thick] (q4)
+		(q3) edge [thick] (q5)
+		(q3) edge [thick] (q6)
+		
+		(q4) edge [thick] (q5)
+		(q4) edge [thick] (q6)
+		
+		(q5) edge [thick] (q6)
+		
+		(q6) edge [thick, bend right=100] (q9)
+		
+		(q7) edge [thick] (q8)
+		(q7) edge [thick] (q9)
+		
+		(q8) edge [thick] (q9);
+	\end{tikzpicture}
+\end{center}

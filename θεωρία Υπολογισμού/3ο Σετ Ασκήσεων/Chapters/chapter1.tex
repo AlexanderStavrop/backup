@@ -1,9 +1,6 @@
 \section{Μηχανές Turing}
 
 \subsection{Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright$ \underline{$\sqcup$} $w  \sqcup$ σε $\vartriangleright$ \underline{$\sqcup$} $w^Rw^R\sqcup$ με $w \in \{a,b\}^*$}
-
-
-
 \begin{center}
 	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,semithick,node distance=2.0cm,auto]
 		\node(q1)                  			{$> R_\sqcup$};
@@ -26,7 +23,6 @@
 	\vspace{-0.3cm}
 \end{center}
 
-\noindent\\\\
 \subsection{Μηχανή Turing που μετασχηματίζει είσοδο $\vartriangleright$ \underline{$\sqcup$} $x \sqcup y \sqcup$ σε $\vartriangleright$ \underline{$\sqcup$} $z \sqcup w \sqcup$ με $x, y, z, w \in \{0,1\}^*, |x|=|y|=|z|=|w|$ και $z = x (NAND) y, W = x (AND) y$}
 \begin{center}
 	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,semithick,node distance=2.0cm,auto]
@@ -40,7 +36,8 @@
 		\node(q7) [below=4cm of q2] {$R$};
 		\node(q8) [above right=0.8cm and 0.8cm of q7] {$\sqcup R^2_\sqcup 1 L^2_\sqcup 0$};
 		\node(q9) [below right=0.8cm and 0.8cm of q7] {$\sqcup R^2_\sqcup 0 L^2_\sqcup 1$};
-
+		\node(q10) [left =1.3cm of q7] {$L_\sqcup$};
+		
 		
 %		\node(q5) [right = 2 of q4] {$\sqcup L_\sqcup R_0 R_\sqcup x$ };
 %		\node(q6) [left of = q4] {$L_\sqcup$};
@@ -57,6 +54,7 @@
 		\draw[->] (q7) -- node [below right]  {$x = 0$} (q8);
 		\draw[->] (q8) [out=0,in=270] -| +(1.5,-3.83) -| (q7);
 		\draw[->] (q7) -- node [above right]  {$x = 1$} (q9);
+		\draw[->] (q7) -- node [above]  {$x = \sqcup$} (q10);
 		\draw[->] (q9) [out=0,in=270] -| +(1.5,-1) -| (q7);	
 	\end{tikzpicture}
 	\vspace{-0.3cm}

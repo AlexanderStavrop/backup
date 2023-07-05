@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.4.4)  3 MAY 2023 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.6.29)  5 JUL 2023 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -437,7 +437,7 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 Package: babel 2023/02/13 3.86 The Babel package
 \babel@savecnt=\count196
 \U@D=\dimen154
-\l@unhyphenated=\language87
+\l@unhyphenated=\language7
 
 (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
@@ -451,12 +451,16 @@ Language: greek 2023/03/04 1.12 Greek support for the babel system
 )
 (/usr/share/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'british' set to \l@english
+(babel)             (\language0). Reported on input line 82.
+Package babel Info: Hyphen rules for 'UKenglish' set to \l@english
+(babel)             (\language0). Reported on input line 83.
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
-Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language21). Reported on input line 105.
-Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language21). Reported on input line 108.
+Package babel Info: Hyphen rules for 'australian' set to \l@english
+(babel)             (\language0). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@english
+(babel)             (\language0). Reported on input line 108.
 ))
 (/usr/share/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 Package babel Info: Importing font and identification data for english
@@ -2141,13 +2145,13 @@ Package rerunfilecheck Info: File `"Computation theory".out' has not changed.
 (rerunfilecheck)             Checksum: F8919EDC3DCB4F3055E100CDF766BDF3;3039.
  ) 
 Here is how much of TeX's memory you used:
- 32083 strings out of 476025
- 616024 string characters out of 5796533
+ 32085 strings out of 477909
+ 616044 string characters out of 5838516
  1880388 words of memory out of 5000000
- 51876 multiletter control sequences out of 15000+600000
+ 51634 multiletter control sequences out of 15000+600000
  526153 words of font info for 72 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 84i,23n,89p,905b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59 hyphenation exceptions out of 8191
+ 84i,23n,89p,905b,1002s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publi

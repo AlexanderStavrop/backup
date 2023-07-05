@@ -1,0 +1,64 @@
+\section{Γραμματικές χωρίς περιορισμούς}
+\subsection{Κατασκευάστε γραμματική χωρίς περιορισμούς για την γλώσσα $L = \{a^{n(n+1)} : n \leq 0\}$}
+
+\noindent
+Η γλώσσα για την οποία κατασκευάζεται η γραμματική είναι η εξής:
+\begin{equation*}
+	L = \{a^{n(n+1)} : n \leq 0\}
+\end{equation*}
+
+όμως κάνοντας τις απαραίτητες πράξεις καταλήγει στην εξής μορφή:
+\begin{equation*}
+	L = \{a^{n(n+1)} : n \leq 0\} \xRightarrow{}  L = \{a^{n^2} a^n : n \leq 0\}
+\end{equation*}
+
+\noindent
+Η ζητούμενη γραμματική χωρίς περιορισμούς είναι η εξής:
+\begin{align*}
+	G = (&V, Σ, R, S)\\
+	V = \{&S, S_1, A, B, C, D, E, a\}\\
+	Σ = \{&a\}\\
+	R = \{& S \xrightarrow{} AS_1E\\
+	& S_1 \xrightarrow{} BS_1YZ\\
+	& S_1 \xrightarrow{} e\\
+	& DC \xrightarrow{} CD\\
+	& DE \xrightarrow{} Ea\\
+	& BC \xrightarrow{} CaB\\
+	& Ba \xrightarrow{} aB\\
+	& Ca \xrightarrow{} aC\\
+	& Aa \xrightarrow{} aA\\
+	& AC \xrightarrow{} A\\
+	& BE \xrightarrow{} E\\
+	& ΑΕ \xrightarrow{} e\\\}
+\end{align*}
+
+
+\noindent
+Η γλώσσα αποτελείται από 12 κανόνες οι οποίοι χωρίζουν τη διαδικασία σε 4 φάσεις. Ξεκινώντας γίνεται αρχικοποίηση τοποθετώντας τους χαρακτήρες Α και Ε ώστε να γνωρίζουμε ποιά είναι τα όρια της έκφρασης.
+
+\noindent\\
+\textbf{Πρώτη φάση}\\
+Κατά την πρώτη φάση και εφόσον έχουν τοποθετηθεί τα διαχωριστικά Α, Ε, ενδιάμεσα τους τοποθετούνται n τριάδες Β C D με τελική μορφή την $B^n(CD)^n$ λόγω της μορφής του κανόνα 2 ενώ είναι εμφανές πως αυτή η μορφή μπορεί εύκολα να αντιστοιχηθεί στην ζητούμενη.  Για την λήξη της φάσης, εφόσον δηλαδή έχουν τοποθετηθεί n τριάδες, αξιοποιείται ο τρίτος κανόνας μέσω του οποίου τοποθετείται κενός χαρακτήρας.
+
+\noindent\\
+\textbf{Δεύτερη φάση}\\
+Εφόσον πλέον έχει τοποθετηθεί ο απαραίτητος αριθμός Β, C και D αξιοποιούνται ο κανόνας 4 ώστε να τοποθετηθεί ο απαραίτητος αριθμός συμβόλων α. Πιο συγκεκριμένα, κάθε φορά που αξιοποιείται ο 4ος κανόνας, δηλαδή εντοπίζεται C, D με την ανάποδη φορά (DC), γίνεται αντιστροφή των συμβόλων, διαδικασία η οποία επαναλαμβάνεται έως ότου η τελική μορφή είναι $B^n C^n D^n$, δηλαδή τα B, C, D βρίσκονται συνεχόμενα.
+
+\noindent\\
+\textbf{Τρίτη φάση}\\
+Κατά την τρίτη φάση και εφόσον τα σύμβολα B, C, D βρίσκονται ταξινομημένα,  αξιοποιώντας το 5ο κανόνα, όταν ανιχνευτεί  ζεύγος DE, το D αντικαθίσταται από α στα δεξιά του Ε, ώστε να κατασκευαστεί το δεύτερο μέρος της ζητούμενης σχέσης. Αντίστοιχα, για τα ζεύγη BC, αξιοποιώντας τον κανόνα 6, τοποθετείται ένα α ενδιάμεσα τους και τα Β,C αντιστρέφονται με αποτέλεσμα, στο τέλος της διαδικασίας να έχουν συμβεί στο σύνολο $n^2$ εισαγωγές α, δημιουργώντας έτσι τον πρώτο όρο της ζητούμενης σχέσης.  
+
+\noindent
+\textbf{Τέταρτη φάση}\\
+Τέλος, αξιοποιώντας τους υπόλοιπους κανόνες, αφαιρούνται όλα τα μη τερματικά σύμβολα ώστε να μείνει στο τέλος η ζητούμενη έκφραση.
+
+\noindent\\
+Ακολουθεί παράδειγμα χρήσης της γραμματικής για την είσοδο aaaaaa$\in$ L
+\begin{align*}
+	S &\xRightarrow{} AS_1E \xRightarrow{} AΒS_1CDE \xRightarrow{} AΒBS_1CDCDE \xRightarrow{} AΒBCDCDE \xRightarrow{} AΒBCCDDE  \xRightarrow{} AΒBCCDEa \xRightarrow{}\\
+	&\xRightarrow{} AΒBCCEaa \xRightarrow{} AΒCaΒCEaa \xRightarrow{} ACaBaΒCEaa \xRightarrow{} ACaBaCaBEaa  \xRightarrow{} ACaaBCaBEaa \xRightarrow{}\\
+	&\xRightarrow{} ACaaCaBaBEaa \xRightarrow{} ACaCaaBaBEaa \xRightarrow{} ACCaaaBaBEaa \xRightarrow{} ACCaaaaBBEaa \xRightarrow{}\\ 
+	&\xRightarrow{} ACaaaaBBEaa \xRightarrow{} AaaaaBBEaa \xRightarrow{} AaaaaBEaa \xRightarrow{} AaaaaEaa \xRightarrow{} ... \xRightarrow{} AΕaaaaaa \xRightarrow{} aaaaaa
+\end{align*}
+
+
