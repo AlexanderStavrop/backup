@@ -1,0 +1,12 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\nameref {intro}}{1}{section*.1}%
+\contentsline {section}{\numberline {1}Οι κλάσεις P και NP}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Αποδείξτε ότι αν $L_1 \cap L_2 \in \mathcal {N}P$ και $\overline {L_1} \cup \overline {L_2} \in \mathcal {N}P$, τότε $\overline {L_1 \cap L_2} \in P$}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Δείξτε ότι το πρόβλημα 2023-MaxSAT ανήκει στην κλάση $\mathcal {N}P$}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Πολυωνυμικές Αναγωγές}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Έστω το στιγμιότυπο του SAT: $(\overline {x_2} \lor x_3) \wedge (\overline {x_1} \lor x_2 \lor \overline {x_3} \lor \overline {x_4} \lor x_5) \wedge (x_2 \lor x_1 \lor \overline {x_5})$}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Βάσει της πολυωνυμικής αναγωγής από SAT στο 4-SAT, δώστε το στιγμιότυπο του 4-SAT στο οποίο ανάγεται το παραπάνω στιγμιότυπο του SAT}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Με απευθείας αναγωγή από SAT σε IndependentSet, δώστε το στιγμιότυπο (G, K) του IndependentSet στο οποίο θα αναγόταν το αρχικό στιγμιότυπο του SAT}{4}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Υπάρχει μία λύση λύση για το στιγμιότυπο (G, K) του (β) και την αντίστοιχη ανάθεση τιμών αληθείας στις μεταβλητές $x_i$ που ικανοποιεί το αρχικό στιγμιότυπο SAT;}{4}{subsubsection.2.1.3}%
+\contentsline {section}{\numberline {3}Άσκηση Bonus}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Αποδείξτε ότι το πρόβλημα 2023-MaxSAT είναι $\mathcal {N}P$-πλήρες.}{5}{subsection.3.1}%

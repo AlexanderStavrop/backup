@@ -1,0 +1,21 @@
+\section{Πολυωνυμικές Αναγωγές}
+
+\subsection{Έστω το στιγμιότυπο του SAT: $(\overline{x_2} \lor x_3) \wedge (\overline{x_1} \lor x_2 \lor \overline{x_3} \lor \overline{x_4} \lor x_5) \wedge (x_2 \lor x_1 \lor \overline{x_5})$}
+
+\subsubsection{Βάσει της πολυωνυμικής αναγωγής από SAT στο 4-SAT, δώστε το στιγμιότυπο του 4-SAT στο οποίο ανάγεται το παραπάνω στιγμιότυπο του SAT}
+
+Για την μετατροπή του SAT στιγμιότυπου σε 4-SAT, απαιτείται κάθε όρος να περιέχει 4 στοιχεία. Οι απαραίτητοι μετασχηματισμοί είναι οι εξής: 
+\begin{align}
+	(\overline{x_2} \lor x_3) &\xRightarrow{} (\overline{x_2} \lor x_3 \lor z_1 \lor z_2) \wedge (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor z_2) \wedge (\overline{x_2} \lor x_3 \lor z_1 \lor \overline{z_2}) \wedge (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor \overline{z_2})\\
+	(\overline{x_1} \lor x_2 \lor \overline{x_3} \lor \overline{x_4} \lor x_5) &\xrightarrow{} (\overline{x_1} \lor x_2 \lor \overline{x_3} \lor z_3) \wedge (\overline{z_3} \lor \overline{x_4} \lor x_5) \xRightarrow{} \notag\\
+												&\xRightarrow{} (\overline{x_1} \lor x_2 \lor \overline{x_3} \lor z_3) \wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor z_4) \wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor \overline{z_4})\\
+	(x_2 \lor x_1 \lor \overline{x_5}) &\xrightarrow{} (x_2 \lor x_1 \lor \overline{x_5} \lor z_5) \wedge (x_2 \lor x_1 \lor \overline{x_5} \lor \overline{z_5})
+\end{align}
+
+οπότε, η τελική ζητούμε έκφραση 4-SAT είναι:
+\begin{align*}
+	(\overline{x_2} &\lor x_3 \lor z_1 \lor z_2)   \wedge   (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor z_2)   \wedge   (\overline{x_2} \lor x_3 \lor z_1 \lor \overline{z_2}) \wedge   (\overline{x_2} \lor x_3 \lor \overline{z_1} \lor \overline{z_2})   \wedge   (\overline{x_1} \lor x_2 \lor \overline{x_3} \lor z_3) \wedge \\&\wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor z_4) \wedge (\overline{z_3} \lor \overline{x_4} \lor x_5 \lor \overline{z_4}) \wedge (x_2 \lor x_1 \lor \overline{x_5} \lor z_5) \wedge (x_2 \lor x_1 \lor \overline{x_5} \lor \overline{z_5})
+\end{align*}
+\clearpage
+\subsubsection{Με απευθείας  αναγωγή από SAT σε IndependentSet, δώστε το στιγμιότυπο (G, K) του IndependentSet στο οποίο θα αναγόταν το αρχικό στιγμιότυπο του SAT}
+\subsubsection{Υπάρχει μία λύση λύση για το στιγμιότυπο (G, K) του (β) και την αντίστοιχη ανάθεση τιμών αληθείας στις μεταβλητές $x_i$ που ικανοποιεί το αρχικό στιγμιότυπο SAT;}
