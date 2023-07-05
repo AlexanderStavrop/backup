@@ -1,0 +1,29 @@
+\section{Section 1}
+
+\subsection{Subsection 1}
+\label{theory:1_phase}
+
+\subsection*{Subsection 2}
+\label{subsection2}
+\addcontentsline{toc}{subsection}{\nameref{subsection2}}
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Images/university.png}
+		\caption{subcaption 1}
+		\label{circ:1_phase_D}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Images/university.png}
+		\caption{subcaption 1}
+		\label{circ:1_phase_Th}
+	\end{subfigure}
+	\caption{Caption 1}
+\end{figure}
+
+\begin{equation}
+	a \leq \tan^{-1} \left(\frac{\omega L}{R} \right) \label{eq:Q11_V_o}
+\end{equation}
